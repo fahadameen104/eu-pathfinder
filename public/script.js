@@ -39,6 +39,20 @@ const countries = [
   { slug: "italy", name: "Italy", code: "it", region: "Southern", landmark: "Colosseum, Rome", intro: "A large Mediterranean economy with demand in agriculture, hospitality, construction and care.", sectors: ["Agriculture", "Hospitality", "Construction", "Care services", "Manufacturing"], colors: ["#008c45", "#cd212a"] }
 ];
 
+const workerMarkets = [
+  { slug: "europe-jobs-from-pakistan", country: "Pakistan", audience: "Pakistani workers", titleAudience: "Pakistani Workers", planningNote: "If you are applying from Pakistan, first match your skills and work history to a real role in a named European destination. Check the destination's official immigration and embassy guidance for the current process before paying an intermediary." },
+  { slug: "europe-jobs-from-india", country: "India", audience: "Indian workers", titleAudience: "Indian Workers", planningNote: "If you live in India, distinguish the employer's recruitment process from the destination country's work-permit and visa process. Verify the named employer, role and application instructions independently." },
+  { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", planningNote: "For applicants in Bangladesh, keep copies of your passport, CV and experience records ready for an initial discussion. A document checklist is only a starting point; the destination authority sets the actual requirements." },
+  { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", planningNote: "If you are a Malaysian citizen or live in Malaysia as a foreign national, your passport nationality and current legal residence may affect where you can submit a visa application. Confirm the rules with the destination's official authority." },
+  { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", planningNote: "Applicants in Nepal should evaluate each vacancy against their actual qualifications and experience. Confirm that the employer and role are genuine, and check current work-visa instructions through official sources." },
+  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian workers living in Saudi Arabia", titleAudience: "Workers in Saudi Arabia", planningNote: "If you are a South Asian national living in Saudi Arabia, check both your current residence status and the European destination's rules on where non-citizens may apply. Residence in Saudi Arabia does not itself grant permission to work in Europe." },
+  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian workers living in the UAE", titleAudience: "Workers in the UAE", planningNote: "If you are a South Asian national living in the UAE, verify whether the European destination accepts applications from residents with your nationality and status. A UAE residence permit is not a European work permit." },
+  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian workers living in Oman", titleAudience: "Workers in Oman", planningNote: "If you are a South Asian national based in Oman, confirm where you are eligible to submit the destination country's visa application and which residence documents are required. Check with the official embassy or visa authority." },
+  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian workers living in Qatar", titleAudience: "Workers in Qatar", planningNote: "If you are a South Asian national living in Qatar, check whether the European destination processes applications from residents in Qatar and what proof of residence it requires. Procedures can differ between destinations." },
+  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian workers living in Kuwait", titleAudience: "Workers in Kuwait", planningNote: "If you are a South Asian national resident in Kuwait, verify the destination's rules for applying from Kuwait before making travel or appointment plans. Your nationality and valid local residence status may both matter." },
+  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian workers living in Bahrain", titleAudience: "Workers in Bahrain", planningNote: "If you are a South Asian national living in Bahrain, check the destination country's official process for applicants residing there, including any residence-validity requirements, before paying fees or booking travel." }
+];
+
 const countryPhotos = {
   poland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Wawel_%284%29.jpg/1280px-Wawel_%284%29.jpg",
   uk: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg/1280px-Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg",
@@ -255,6 +269,17 @@ function renderHome() {
       </div>
     </section>
 
+    <section class="section other-destinations" id="worker-markets" aria-labelledby="worker-markets-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><h2 id="worker-markets-title">Planning to work in Europe from Asia or the Gulf?</h2><p class="section-lead">Start with guidance for applicants in your country or current place of residence, then compare European destinations and their requirements.</p></div>
+        </div>
+        <div class="destination-pills">
+          ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
+        </div>
+      </div>
+    </section>
+
     <section class="section process-section" id="how" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-heading">
@@ -378,6 +403,83 @@ function renderCountryPage(country) {
     </section>`;
 }
 
+function renderWorkerMarketPage(market) {
+  const contactMessage = `Hello EU Pathfinder, I am looking for information about legal work in Europe from ${market.country}. Please share the current destinations, requirements and fees.`;
+  const contactUrl = whatsAppLink(contactMessage);
+
+  return `
+    <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none" aria-labelledby="worker-market-title">
+      <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-markets">For workers</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(market.country)}</span>
+        </nav>
+        <h1 id="worker-market-title">European work guidance for ${escapeHtml(market.audience)}</h1>
+        <p class="country-intro">Planning to work in Europe from ${escapeHtml(market.country)}? Explore destination guides, understand the typical application steps and discuss your experience with EU Pathfinder before deciding what to do next.</p>
+        <a class="button button-gold" href="/#destinations">Explore European destinations</a>
+      </div>
+    </section>
+
+    <section class="section" aria-label="European work guidance for applicants in ${escapeHtml(market.country)}">
+      <div class="wrap country-content">
+        <div class="country-main">
+          <h2>Start with a real role and destination</h2>
+          <p>Work-permit rules are set by each destination country. The available route depends on the role, employer, your experience and the rules in force when you apply. Use our destination guides as a starting point, then confirm current requirements with the relevant official authorities.</p>
+          <ul class="check-list">
+            <li>Compare destinations and the sectors described in each country guide.</li>
+            <li>Check that an opportunity names a verifiable employer and a specific role.</li>
+            <li>Ask for the full service fees and written terms before agreeing or paying.</li>
+            <li>Confirm visa and work-permit requirements through official government or embassy sources.</li>
+          </ul>
+
+          <h2>Applying from ${escapeHtml(market.country)}</h2>
+          <p>Your nationality and your current country of residence can both matter. If you live in a different country from the one that issued your passport, check with the destination country's embassy or official visa service where you are allowed to submit an application. Do this before making travel plans or paying anyone.</p>
+          <p>${escapeHtml(market.planningNote)}</p>
+
+          <h2>How EU Pathfinder can help you plan</h2>
+          <p>We can discuss your work history and goals, review the documents you provide, and explain the support options and fees before you decide whether to proceed. The steps below are a general overview; the process differs by country and case.</p>
+          ${renderProcessSteps(true)}
+
+          <h2>Check an opportunity before you commit</h2>
+          <p>A genuine recruitment process should identify the employer, role, pay, location and written terms. Verify these details independently and be cautious of anyone promising a guaranteed job, visa or work permit.</p>
+
+          <h2>Documents to prepare for an initial discussion</h2>
+          <p>These are useful starting documents, not a country-specific visa checklist. An employer or authority may request different items.</p>
+          <ul class="check-list">${documents.map((document) => `<li>${escapeHtml(document)}</li>`).join("")}</ul>
+
+          <h2>Frequently asked questions</h2>
+          <details class="faq-item">
+            <summary>Can I apply for European work from ${escapeHtml(market.country)}?</summary>
+            <div class="faq-answer"><p>That depends on the destination, role, employer and current immigration rules. Review the country guide and verify the official requirements for your situation before making a decision.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can EU Pathfinder guarantee a job, visa or work permit?</summary>
+            <div class="faq-answer"><p>No. Employers make hiring decisions, and work-permit and visa decisions belong to the relevant authorities. Be cautious of anyone promising guaranteed approval.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How can I check the fees before I start?</summary>
+            <div class="faq-answer"><p>Ask us for the current service scope, full fee breakdown and written terms before agreeing to any service.</p></div>
+          </details>
+        </div>
+        <aside class="country-sidebar">
+          <div class="side-card">
+            <h2>Ask about working in Europe from ${escapeHtml(market.country)}</h2>
+            <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
+            <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">Ask EU Pathfinder on WhatsApp</a>
+            <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section other-destinations" aria-labelledby="market-destinations-title">
+      <div class="wrap">
+        <h2 id="market-destinations-title">Explore European work destinations</h2>
+        <p>Read the country guides for typical sectors, general work-route information and documents to discuss.</p>
+        <div class="destination-pills">${renderDestinationPills("")}</div>
+      </div>
+    </section>`;
+}
+
 function renderNotFound() {
   return `
     <section class="not-found wrap">
@@ -387,19 +489,24 @@ function renderNotFound() {
     </section>`;
 }
 
-function updatePageMetadata(country) {
-  const title = country
-    ? `Work in ${country.name} | EU Pathfinder`
-    : "EU Pathfinder | Your path to legal work in Europe";
-  const description = country
-    ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-    : "Job opportunities, work-permit guidance and relocation support across 35 European destinations, with an adviser beside you from first message to arrival.";
+function updatePageMetadata(country, market) {
+  const title = market
+    ? `European Jobs for ${market.titleAudience} | EU Pathfinder`
+    : country
+      ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
+      : "Work in Europe | Jobs & Relocation Guidance | EU Pathfinder";
+  const description = market
+    ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
+    : country
+      ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
+      : "Job opportunities, work-permit guidance and relocation support across 35 European destinations, with an adviser beside you from first message to arrival.";
+  const canonicalPath = market ? market.slug : country?.slug;
 
   document.title = title;
   document.querySelector('meta[name="description"]').setAttribute("content", description);
   document.querySelector('link[rel="canonical"]').setAttribute(
     "href",
-    `https://eupathfinder.agency${country ? `/${country.slug}` : "/"}`
+    `https://eupathfinder.agency${canonicalPath ? `/${canonicalPath}` : "/"}`
   );
 }
 
@@ -477,6 +584,7 @@ const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.tes
   ? ""
   : pathname.split("/").pop();
 const currentCountry = countries.find((country) => country.slug === path);
+const currentWorkerMarket = workerMarkets.find((market) => market.slug === path);
 const main = document.querySelector("#main");
 
 if (!path) {
@@ -486,6 +594,9 @@ if (!path) {
 } else if (currentCountry) {
   main.innerHTML = renderCountryPage(currentCountry);
   updatePageMetadata(currentCountry);
+} else if (currentWorkerMarket) {
+  main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
+  updatePageMetadata(null, currentWorkerMarket);
 } else {
   main.innerHTML = renderNotFound();
   updatePageMetadata(null);
