@@ -820,6 +820,89 @@ svg {
   font-size: 16px;
 }
 
+.bank-transfer {
+  margin-top: 40px;
+  padding-top: 27px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.bank-transfer h3 {
+  margin: 0 0 17px;
+  color: #fff;
+  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.bank-transfer dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 30px;
+  margin: 0;
+}
+
+.bank-transfer dl div {
+  min-width: 0;
+}
+
+.bank-transfer dt {
+  margin-bottom: 5px;
+  color: #d6e0ed;
+  font-size: 12px;
+}
+
+.bank-transfer dd {
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+.bank-transfer .bank-iban dd {
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", monospace;
+  letter-spacing: 0.02em;
+}
+
+.bank-payment-note {
+  max-width: 70ch;
+  margin: 20px 0 0;
+  color: #e0e9f4;
+  font-size: 14px;
+}
+
+.bank-transfer-compact {
+  margin-top: 27px;
+  padding-top: 22px;
+  border-top-color: #d3dce6;
+}
+
+.bank-transfer-compact h3 {
+  color: var(--ink);
+  font-size: 20px;
+}
+
+.bank-transfer-compact dl {
+  grid-template-columns: 1fr;
+  gap: 11px;
+}
+
+.bank-transfer-compact dt {
+  color: var(--muted);
+}
+
+.bank-transfer-compact dd {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.bank-transfer-compact .bank-payment-note {
+  color: #35495f;
+  font-size: 13px;
+}
+
 .faq-section {
   background: #fff;
 }
@@ -1589,6 +1672,10 @@ svg {
     justify-self: start;
   }
 
+  .bank-transfer dl {
+    gap: 14px 20px;
+  }
+
   .faq-list {
     margin-top: 28px;
   }
@@ -1711,6 +1798,10 @@ svg {
 }
 
 @media (max-width: 390px) {
+  .bank-transfer dl {
+    grid-template-columns: 1fr;
+  }
+
   .wrap {
     width: calc(100% - 32px);
   }

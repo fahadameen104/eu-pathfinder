@@ -204,6 +204,20 @@ function renderFaqs() {
     </div>`;
 }
 
+function renderBankDetails(compact = false) {
+  return `
+    <section class="bank-transfer${compact ? " bank-transfer-compact" : ""}" aria-labelledby="bank-transfer-title">
+      <h3 id="bank-transfer-title">Bank transfer (EUR)</h3>
+      <dl>
+        <div><dt>Account name</dt><dd>EU Pathfinder</dd></div>
+        <div><dt>Bank</dt><dd>ClearBank Europe N.V.</dd></div>
+        <div class="bank-iban"><dt>IBAN</dt><dd>NL16CLRB0081834486</dd></div>
+        <div><dt>BIC / SWIFT</dt><dd>CLRBNL2A031</dd></div>
+      </dl>
+      <p class="bank-payment-note">Cryptocurrency is also accepted. Please contact us for supported assets, network details and current payment instructions before sending.</p>
+    </section>`;
+}
+
 function renderHome() {
   const featured = countries[0];
   return `
@@ -305,6 +319,7 @@ function renderHome() {
         <div><h2 id="pricing-title">Fees and pricing</h2><p>Our fees vary by destination, role and the level of support you need. For current rates and a clear breakdown, contact us on WhatsApp and an adviser will share the details with you directly.</p></div>
         <a class="button button-gold" href="${whatsAppLink("Hello EU Pathfinder, I would like to know about current fees and pricing.")}" target="_blank" rel="noopener noreferrer">Ask about pricing <span aria-hidden="true">↗</span></a>
       </div>
+      <div class="wrap">${renderBankDetails()}</div>
     </section>
 
     <section class="section faq-section" id="faq" aria-labelledby="faq-title">
@@ -389,6 +404,7 @@ function renderCountryPage(country) {
               Message us on WhatsApp
             </a>
             <p class="side-phone">+1 469 626 8272</p>
+            ${renderBankDetails(true)}
           </div>
         </aside>
       </div>
@@ -466,6 +482,7 @@ function renderWorkerMarketPage(market) {
             <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
             <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">Ask EU Pathfinder on WhatsApp</a>
             <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
+            ${renderBankDetails(true)}
           </div>
         </aside>
       </div>
