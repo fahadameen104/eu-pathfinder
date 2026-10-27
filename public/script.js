@@ -1,4 +1,4 @@
-const contactEmail = "Fahadameen407@gmail.com";
+const contactEmail = "info@eupathfinder.agency";
 const whatsappNumber = "14696268272";
 
 const countries = [
