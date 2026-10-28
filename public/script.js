@@ -593,6 +593,159 @@ function setupHomeInteractions() {
   filterCountries();
 }
 
+function getAssistantReply(question) {
+  const text = question.trim().toLocaleLowerCase();
+  const matches = (pattern) => pattern.test(text);
+  const answer = (message, link) => ({ message, link });
+
+  if (matches(/\b(price|pricing|fee|fees|cost|costs|payment|pay)\b/)) {
+    return answer(faqs[0][1]);
+  }
+  if (matches(/\b(guarantee|guaranteed|approval|approved)\b/)) {
+    return answer(faqs[1][1]);
+  }
+  if (matches(/\b(which countries|what countries|destinations|countries do you|countries can you)\b/)) {
+    return answer(faqs[2][1], { href: "/#destinations", label: "Browse destinations" });
+  }
+  if (matches(/\b(get started|start|begin|apply|application process)\b/)) {
+    return answer(faqs[3][1], { href: whatsAppLink(generalWhatsAppMessage), label: "Message an adviser on WhatsApp" });
+  }
+  if (matches(/\b(full cost|full costs|before i commit|before committing|hidden cost|hidden fee)\b/)) {
+    return answer(faqs[4][1]);
+  }
+  if (matches(/\b(document|documents|paperwork|checklist)\b/)) {
+    return answer(
+      `Commonly requested documents include: ${documents.join(", ")}. Exact requirements vary by destination, role and embassy; an adviser can prepare a personal checklist after reviewing your case.`
+    );
+  }
+  if (matches(/\b(service|services|help with|support|offer)\b/)) {
+    return answer(
+      `Our support can include ${services.map(([title]) => title.toLocaleLowerCase()).join(", ")}. Availability is confirmed case by case. Contact an adviser to discuss what applies to you.`
+    );
+  }
+
+  const country = countries.find((item) => {
+    const aliases = item.slug === "uk" ? ["uk", "britain", "united kingdom"] : [item.name.toLocaleLowerCase()];
+    return aliases.some((alias) => new RegExp(`\\b${alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text));
+  });
+  if (country) {
+    return answer(
+      `${country.intro} The guide lists typical sectors such as ${country.sectors.join(", ")}. Current openings and eligibility are confirmed case by case; this guide is general information, not a visa decision.`,
+      { href: `/${country.slug}`, label: `Read the ${country.name} guide` }
+    );
+  }
+
+  if (matches(/\b(visa|work permit|work route|immigration|eligibility)\b/)) {
+    return answer(
+      `Work routes depend on the destination's current rules. Common routes may include employer-sponsored permits, seasonal or temporary work where available, and skilled-worker routes where they exist. Check the destination's official guidance; an adviser can discuss your situation.`
+    );
+  }
+
+  return answer(
+    "I can answer questions about destinations, common documents, services and getting started using information on this website. I don't have enough information to answer that confidently, so please ask an adviser for a case-specific reply."
+  );
+}
+
+function setupWebsiteAssistant() {
+  if (!document.body || typeof document.createElement !== "function") return;
+  const originalLauncher = document.querySelector(".floating-chat");
+  if (!originalLauncher) return;
+
+  const launcher = document.createElement("button");
+  launcher.className = "floating-chat assistant-launcher";
+  launcher.type = "button";
+  launcher.setAttribute("aria-expanded", "false");
+  launcher.setAttribute("aria-controls", "website-assistant-panel");
+  launcher.innerHTML = `
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.75A2.75 2.75 0 0 1 6.75 2h10.5A2.75 2.75 0 0 1 20 4.75v8.5A2.75 2.75 0 0 1 17.25 16H11l-4.8 4.1c-.6.5-1.5.08-1.5-.7V16.2A2.75 2.75 0 0 1 4 13.25v-8.5Zm4 2.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Zm0 4a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H8Z"></path></svg>
+    <span>Ask our assistant</span>`;
+
+  const panel = document.createElement("section");
+  panel.id = "website-assistant-panel";
+  panel.className = "assistant-panel";
+  panel.setAttribute("role", "dialog");
+  panel.setAttribute("aria-labelledby", "assistant-title");
+  panel.hidden = true;
+  panel.innerHTML = `
+    <header class="assistant-header">
+      <div>
+        <h2 id="assistant-title">EU Pathfinder assistant</h2>
+        <p>Quick answers from our website</p>
+      </div>
+      <button class="assistant-close" type="button" aria-label="Close assistant">×</button>
+    </header>
+    <div class="assistant-messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+    <div class="assistant-quick-prompts" role="group" aria-label="Suggested questions">
+      <button type="button" data-assistant-question="How much do your services cost?">Fees</button>
+      <button type="button" data-assistant-question="Can you guarantee a visa or work permit?">Visa guarantees</button>
+      <button type="button" data-assistant-question="Which countries can you help with?">Destinations</button>
+    </div>
+    <form class="assistant-form">
+      <label class="sr-only" for="assistant-question">Ask a question</label>
+      <input id="assistant-question" name="question" type="text" maxlength="400" autocomplete="off" placeholder="Type your question" required>
+      <button class="assistant-send" type="submit">Send</button>
+    </form>
+    <p class="assistant-note">Answers use this website's information, not legal or visa advice. Please don't enter passport or payment details.</p>
+    <a class="assistant-contact" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Ask an adviser on WhatsApp</a>`;
+
+  originalLauncher.replaceWith(launcher);
+  document.body.append(panel);
+
+  const messages = panel.querySelector(".assistant-messages");
+  const input = panel.querySelector("#assistant-question");
+  const addMessage = (message, sender, link) => {
+    const item = document.createElement("div");
+    item.className = `assistant-message assistant-message-${sender}`;
+    const text = document.createElement("p");
+    text.textContent = message;
+    item.append(text);
+    if (link) {
+      const anchor = document.createElement("a");
+      anchor.href = link.href;
+      anchor.textContent = link.label;
+      if (link.href.startsWith("https://")) {
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+      }
+      item.append(anchor);
+    }
+    messages.append(item);
+    messages.scrollTop = messages.scrollHeight;
+  };
+  const submitQuestion = (question) => {
+    const cleanQuestion = question.trim();
+    if (!cleanQuestion) return;
+    addMessage(cleanQuestion, "user");
+    const reply = getAssistantReply(cleanQuestion);
+    addMessage(reply.message, "bot", reply.link);
+  };
+  const closePanel = () => {
+    panel.hidden = true;
+    launcher.setAttribute("aria-expanded", "false");
+    launcher.focus();
+  };
+
+  addMessage("Hello! Ask me about destinations, documents, services or how to get started. For individual advice, you can message our team on WhatsApp.", "bot");
+  launcher.addEventListener("click", () => {
+    panel.hidden = !panel.hidden;
+    launcher.setAttribute("aria-expanded", String(!panel.hidden));
+    if (!panel.hidden) input.focus();
+  });
+  panel.querySelector(".assistant-close").addEventListener("click", closePanel);
+  panel.querySelector(".assistant-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    submitQuestion(input.value);
+    input.value = "";
+    input.focus();
+  });
+  panel.querySelectorAll("[data-assistant-question]").forEach((button) => {
+    button.addEventListener("click", () => submitQuestion(button.dataset.assistantQuestion));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !panel.hidden) closePanel();
+  });
+}
+
 document.querySelector("#year").textContent = new Date().getFullYear();
 setupNavigation();
 
@@ -618,3 +771,5 @@ if (!path) {
   main.innerHTML = renderNotFound();
   updatePageMetadata(null);
 }
+
+setupWebsiteAssistant();
