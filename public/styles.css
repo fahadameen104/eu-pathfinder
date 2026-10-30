@@ -439,6 +439,148 @@ svg {
   padding-block: clamp(76px, 9vw, 120px);
 }
 
+.people-photo-section {
+  padding-block: clamp(56px, 7vw, 88px);
+  background: var(--mist);
+}
+
+.people-photo-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.people-photo-heading h2 {
+  max-width: 18ch;
+  margin: 0;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.people-photo-heading p {
+  max-width: 54ch;
+  margin: 0;
+  color: var(--muted);
+}
+
+.people-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.people-photo {
+  min-width: 0;
+  margin: 0;
+}
+
+.people-photo-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.35;
+  border-radius: 16px;
+  background: var(--navy);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.people-photo-frame::after {
+  position: absolute;
+  inset: 45% 0 0;
+  background: linear-gradient(180deg, transparent, rgba(10, 25, 21, 0.58));
+  content: "";
+  pointer-events: none;
+}
+
+.people-photo-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.people-photo:hover .people-photo-frame > img {
+  transform: scale(1.035);
+}
+
+.people-photo-brand {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(16, 34, 30, 0.88);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.people-photo-brand-mark,
+.people-photo-brand-mark svg {
+  width: 27px;
+  height: 27px;
+}
+
+.people-photo-brand-mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #248f7b 0%, #39aa91 58%, var(--coral) 100%);
+}
+
+.people-photo-brand-mark path {
+  fill: #fff;
+}
+
+.people-photo-brand-mark .brand-stem {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-width: 2.3px;
+}
+
+.people-photo-label {
+  position: absolute;
+  z-index: 1;
+  right: 12px;
+  bottom: 12px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--coral);
+  color: #222d27;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.people-photo figcaption {
+  margin-top: 12px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.people-photo-disclosure {
+  max-width: 88ch;
+  margin: 20px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
 .section-tint {
   background: var(--mist);
 }
@@ -1704,6 +1846,17 @@ svg {
     scroll-padding-top: 72px;
   }
 
+  .people-photo-heading {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .people-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
   .wrap {
     width: calc(100% - 40px);
   }
@@ -2030,6 +2183,10 @@ svg {
 }
 
 @media (max-width: 390px) {
+  .people-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
   .bank-transfer dl {
     grid-template-columns: 1fr;
   }

@@ -155,6 +155,95 @@ const whatsAppLink = (message) =>
 const generalWhatsAppMessage =
   "Hello EU Pathfinder, I would like to know more about your services and current fees.";
 
+const illustrativePhotos = {
+  consultation: {
+    url: "https://images.unsplash.com/photo-1556761175-b413da4baf72",
+    alt: "People meeting around a table in a bright office",
+    caption: "A conversation before the next step"
+  },
+  agriculture: {
+    url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
+    alt: "Cultivated fields across a rural landscape",
+    caption: "Agriculture and seasonal work"
+  },
+  logistics: {
+    url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
+    alt: "A warehouse prepared for packing and distribution",
+    caption: "Logistics and warehouse work"
+  },
+  transport: {
+    url: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7",
+    alt: "A heavy goods truck on a road",
+    caption: "Transport and delivery work"
+  },
+  construction: {
+    url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
+    alt: "A construction site with workers in protective clothing",
+    caption: "Construction and skilled trades"
+  }
+};
+
+function illustrativePhotoUrl(photo, width) {
+  return `${photo.url}?auto=format&fit=crop&w=${width}&q=68`;
+}
+
+function renderIllustrativePhoto(photo, sizes) {
+  return `
+    <figure class="people-photo">
+      <div class="people-photo-frame">
+        <img
+          src="${escapeHtml(illustrativePhotoUrl(photo, 720))}"
+          srcset="${escapeHtml(illustrativePhotoUrl(photo, 480))} 480w, ${escapeHtml(illustrativePhotoUrl(photo, 900))} 900w"
+          sizes="${sizes}"
+          alt="${escapeHtml(photo.alt)}"
+          width="900"
+          height="600"
+          loading="lazy"
+          decoding="async"
+          referrerpolicy="no-referrer"
+        >
+        <span class="people-photo-brand" aria-hidden="true">
+          <span class="people-photo-brand-mark">
+            <svg viewBox="0 0 40 40"><path d="M20 5 31 27l-11-6-11 6L20 5Z"></path><path class="brand-stem" d="M20 21v13"></path></svg>
+          </span>
+          <span>EU Pathfinder</span>
+        </span>
+        <span class="people-photo-label">Illustrative photo</span>
+      </div>
+      <figcaption>${escapeHtml(photo.caption)}</figcaption>
+    </figure>`;
+}
+
+function renderPeoplePhotoSection(photos, heading = "People, planning, and work in motion") {
+  const imageSizes = photos.length > 2
+    ? "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 25vw"
+    : "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 45vw";
+
+  return `
+    <section class="section people-photo-section" aria-labelledby="people-photo-title">
+      <div class="wrap">
+        <div class="people-photo-heading">
+          <h2 id="people-photo-title">${escapeHtml(heading)}</h2>
+          <p>Talk through your goals with an adviser, then explore the kinds of workplaces that may fit your experience.</p>
+        </div>
+        <div class="people-photo-grid">
+          ${photos.map((photo) => renderIllustrativePhoto(photo, imageSizes)).join("")}
+        </div>
+        <p class="people-photo-disclosure">Illustrative stock photos only. The people shown are not EU Pathfinder staff or clients, and the images do not represent specific vacancies or job placements.</p>
+      </div>
+    </section>`;
+}
+
+function getCountryWorkPhoto(country) {
+  const sectors = country.sectors.join(" ").toLowerCase();
+  if (/agriculture|horticulture|forestry|agri-food|food processing/.test(sectors)) {
+    return illustrativePhotos.agriculture;
+  }
+  if (/transport/.test(sectors)) return illustrativePhotos.transport;
+  if (/logistics|warehousing|shipping/.test(sectors)) return illustrativePhotos.logistics;
+  return illustrativePhotos.construction;
+}
+
 function renderCountryChip(country, selected = false) {
   return `
     <button class="hero-chip" type="button" data-feature="${country.slug}" aria-pressed="${selected}">
@@ -255,6 +344,13 @@ function renderHome() {
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct WhatsApp support</strong><p>Message an adviser any time with questions about your application.</p></div></div>
     </section>
+
+    ${renderPeoplePhotoSection([
+      illustrativePhotos.consultation,
+      illustrativePhotos.agriculture,
+      illustrativePhotos.logistics,
+      illustrativePhotos.transport
+    ], "A human conversation. A clearer path to work.")}
 
     <section class="section destinations-section" id="destinations" aria-labelledby="destinations-title">
       <div class="wrap">
@@ -393,6 +489,11 @@ function renderCountryPage(country) {
       </div>
     </section>
 
+    ${renderPeoplePhotoSection([
+      illustrativePhotos.consultation,
+      getCountryWorkPhoto(country)
+    ], `People and work in ${country.name}`)}
+
     <section class="section" aria-label="Work and relocation information for ${escapeHtml(country.name)}">
       <div class="wrap country-content">
         <div class="country-main">
@@ -438,6 +539,13 @@ function renderCountryPage(country) {
 function renderWorkerMarketPage(market) {
   const contactMessage = `Hello EU Pathfinder, I am looking for information about legal work in Europe from ${market.country}. Please share the current destinations, requirements and fees.`;
   const contactUrl = whatsAppLink(contactMessage);
+  const marketIndex = workerMarkets.findIndex(({ slug }) => slug === market.slug);
+  const workerPhoto = [
+    illustrativePhotos.agriculture,
+    illustrativePhotos.logistics,
+    illustrativePhotos.transport,
+    illustrativePhotos.construction
+  ][marketIndex % 4];
 
   return `
     <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none" aria-labelledby="worker-market-title">
@@ -450,6 +558,11 @@ function renderWorkerMarketPage(market) {
         <a class="button button-gold" href="/#destinations">Explore European destinations</a>
       </div>
     </section>
+
+    ${renderPeoplePhotoSection([
+      illustrativePhotos.consultation,
+      workerPhoto
+    ], "Plan with care. Explore work with confidence.")}
 
     <section class="section" aria-label="European work guidance for applicants in ${escapeHtml(market.country)}">
       <div class="wrap country-content">
