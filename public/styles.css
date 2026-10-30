@@ -1,18 +1,18 @@
 :root {
-  color-scheme: light;
-  --navy: #0b274b;
-  --navy-deep: #071d39;
-  --blue: #164277;
-  --gold: #f4ba45;
-  --green: #087c49;
-  --green-hover: #06653b;
-  --ink: #10243d;
-  --muted: #4a5b70;
-  --paper: #ffffff;
-  --mist: #f2f5f9;
-  --line: #d7dee7;
+  color-scheme: dark;
+  --navy: #0c1726;
+  --navy-deep: #060d17;
+  --blue: #2563eb;
+  --gold: #f59e0b;
+  --green: #047857;
+  --green-hover: #065f46;
+  --ink: #f1f5f9;
+  --muted: #aab8ca;
+  --paper: #060d17;
+  --mist: #0c1726;
+  --line: #26364a;
   --page: 1280px;
-  font-family: "Figtree", "Segoe UI", Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
 }
 
 * {
@@ -111,7 +111,7 @@ svg {
   align-items: center;
   gap: 12px;
   color: inherit;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.035em;
@@ -125,17 +125,46 @@ svg {
   height: 42px;
 }
 
+.brand-mark {
+  display: grid;
+  flex: none;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 58%, var(--gold) 100%);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+.brand-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.brand-copy strong {
+  font-size: 19px;
+  line-height: 1.15;
+}
+
+.brand-copy small {
+  color: #b8c5d5;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
 .brand-mark circle {
-  fill: #09284c;
+  display: none;
 }
 
 .brand-mark path {
-  fill: var(--gold);
+  fill: #fff;
 }
 
 .brand-mark .brand-stem {
   fill: none;
-  stroke: #f4ba45;
+  stroke: #fff;
   stroke-linecap: round;
   stroke-width: 2.3px;
 }
@@ -143,12 +172,12 @@ svg {
 .primary-nav {
   display: flex;
   align-items: center;
-  gap: clamp(20px, 3vw, 46px);
+  gap: clamp(12px, 1.6vw, 24px);
 }
 
 .primary-nav > a:not(.button) {
-  color: #eef4fc;
-  font-size: 14px;
+  color: #d5deeb;
+  font-size: 13px;
   font-weight: 700;
   text-decoration: none;
   transition: color 160ms ease;
@@ -219,8 +248,8 @@ svg {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 86% 22%, rgba(35, 91, 157, 0.5), transparent 38%),
-    linear-gradient(125deg, #0b2a57 0%, #0c356c 58%, #08264e 100%);
+    radial-gradient(ellipse at 50% 20%, rgba(37, 99, 235, 0.22), transparent 48%),
+    linear-gradient(125deg, #060d17 0%, #0c1726 58%, #081425 100%);
   color: #fff;
 }
 
@@ -245,13 +274,16 @@ svg {
 
 .hero-copy {
   max-width: 1060px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .home-hero h1,
 .country-hero h1 {
+  margin-inline: auto;
   max-width: 1080px;
   margin: 0;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(56px, 8.6vw, 96px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -267,7 +299,7 @@ svg {
 .hero-intro {
   max-width: 74ch;
   margin: 30px 0 0;
-  color: #e4edf8;
+  color: #c4cfdd;
   font-size: clamp(18px, 2vw, 23px);
   line-height: 1.55;
 }
@@ -278,6 +310,7 @@ svg {
   align-items: center;
   gap: 14px;
   margin-top: 34px;
+  justify-content: center;
 }
 
 .hero-secondary {
@@ -294,6 +327,7 @@ svg {
 .featured-place {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 14px;
   margin-top: 48px;
   color: inherit;
@@ -346,6 +380,7 @@ svg {
 
 .hero-chips {
   display: flex;
+  justify-content: flex-start;
   gap: 9px;
   margin-top: 24px;
   padding: 0 0 4px;
@@ -390,7 +425,7 @@ svg {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-bottom: 1px solid var(--line);
-  background: #fff;
+  background: var(--mist);
 }
 
 .proof-item {
@@ -412,8 +447,8 @@ svg {
   flex: none;
   place-items: center;
   border-radius: 50%;
-  background: #fff4d8;
-  color: #79500a;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
   font-size: 20px;
   font-weight: 800;
 }
@@ -428,7 +463,7 @@ svg {
 .proof-item p {
   max-width: 33ch;
   margin: 0;
-  color: var(--muted);
+  color: #b8c5d5;
   font-size: 13px;
   line-height: 1.45;
 }
@@ -458,7 +493,7 @@ svg {
 .content-heading {
   max-width: 780px;
   margin: 0;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(36px, 5.2vw, 64px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -498,10 +533,10 @@ svg {
 .filter-button {
   min-height: 40px;
   padding: 0 15px;
-  border: 1px solid #bac5d2;
+  border: 1px solid #35465b;
   border-radius: 100px;
-  background: #fff;
-  color: var(--ink);
+  background: #0c1726;
+  color: #dbe5f1;
   cursor: pointer;
   font-size: 13px;
   font-weight: 750;
@@ -510,9 +545,9 @@ svg {
 
 .filter-button:hover,
 .filter-button[aria-pressed="true"] {
-  border-color: var(--navy);
-  background: var(--navy);
-  color: #fff;
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #0c1726;
 }
 
 .destination-search {
@@ -529,7 +564,7 @@ svg {
   width: 19px;
   height: 19px;
   fill: none;
-  stroke: #566a82;
+  stroke: #b5c3d4;
   stroke-linecap: round;
   stroke-width: 2;
   pointer-events: none;
@@ -539,14 +574,14 @@ svg {
   width: 100%;
   min-height: 50px;
   padding: 0 14px 0 45px;
-  border: 1px solid #bac5d2;
+  border: 1px solid #35465b;
   border-radius: 10px;
-  background: #fff;
-  color: var(--ink);
+  background: #091422;
+  color: #f1f5f9;
 }
 
 .destination-search input::placeholder {
-  color: #566a82;
+  color: #aab8ca;
   opacity: 1;
 }
 
@@ -567,18 +602,19 @@ svg {
   display: block;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid #d5dce5;
+  border: 1px solid #26364a;
   border-radius: 15px;
-  background: #fff;
+  background: #0c1726;
   color: var(--ink);
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(9, 29, 55, 0.035);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
 .destination-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 13px 28px rgba(9, 29, 55, 0.14);
+  border-color: #44566d;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
 }
 
 .destination-card[hidden] {
@@ -657,7 +693,7 @@ svg {
   padding: 4px 9px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 30px;
-  background: rgba(7, 29, 57, 0.55);
+  background: rgba(6, 13, 23, 0.82);
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -684,7 +720,7 @@ svg {
 .destination-landmark {
   display: block;
   margin: 7px 0 0 35px;
-  color: var(--muted);
+  color: #aab8ca;
   font-size: 12px;
 }
 
@@ -703,7 +739,7 @@ svg {
 
 .process-list {
   margin-top: 42px;
-  border-top: 1px solid #c8d2df;
+  border-top: 1px solid var(--line);
 }
 
 .process-step {
@@ -713,7 +749,7 @@ svg {
   align-items: center;
   min-height: 100px;
   padding-block: 18px;
-  border-bottom: 1px solid #c8d2df;
+  border-bottom: 1px solid var(--line);
 }
 
 .process-number {
@@ -722,8 +758,8 @@ svg {
   height: 40px;
   place-items: center;
   border-radius: 50%;
-  background: var(--navy);
-  color: #fff;
+  background: var(--gold);
+  color: #0c1726;
   font-size: 13px;
   font-weight: 800;
 }
@@ -739,12 +775,12 @@ svg {
 .process-step p {
   max-width: 60ch;
   margin: 0;
-  color: var(--muted);
+  color: #b8c5d5;
   font-size: 14px;
 }
 
 .services-section {
-  background: #fff;
+  background: var(--paper);
 }
 
 .services-grid {
@@ -771,8 +807,8 @@ svg {
   height: 29px;
   place-items: center;
   border-radius: 50%;
-  background: #fff0cc;
-  color: #74500b;
+  background: rgba(245, 158, 11, 0.13);
+  color: #fbbf24;
   font-weight: 900;
 }
 
@@ -785,7 +821,7 @@ svg {
 
 .service-item p {
   margin: 0;
-  color: var(--muted);
+  color: #b8c5d5;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -806,7 +842,7 @@ svg {
 .pricing-layout h2 {
   max-width: 700px;
   margin: 0 0 15px;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(36px, 5vw, 58px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -829,7 +865,7 @@ svg {
 .bank-transfer h3 {
   margin: 0 0 17px;
   color: #fff;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -873,14 +909,52 @@ svg {
   font-size: 14px;
 }
 
+.candidate-review {
+  background: var(--mist);
+}
+
+.review-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 42px;
+  margin: 38px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.review-checks li {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.review-checks strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.review-checks p,
+.review-note {
+  max-width: 65ch;
+  margin: 0;
+  color: #c3cfde;
+  font-size: 14px;
+}
+
+.review-note {
+  margin-top: 24px;
+}
+
 .bank-transfer-compact {
   margin-top: 27px;
   padding-top: 22px;
-  border-top-color: #d3dce6;
+  border-top-color: var(--line);
 }
 
 .bank-transfer-compact h3 {
-  color: var(--ink);
+  color: #f1f5f9;
   font-size: 20px;
 }
 
@@ -890,21 +964,21 @@ svg {
 }
 
 .bank-transfer-compact dt {
-  color: var(--muted);
+  color: #b8c5d5;
 }
 
 .bank-transfer-compact dd {
-  color: var(--ink);
+  color: #f1f5f9;
   font-size: 14px;
 }
 
 .bank-transfer-compact .bank-payment-note {
-  color: #35495f;
+  color: #b8c5d5;
   font-size: 13px;
 }
 
 .faq-section {
-  background: #fff;
+  background: var(--paper);
 }
 
 .faq-list {
@@ -939,9 +1013,9 @@ svg {
   height: 32px;
   flex: none;
   place-items: center;
-  border: 1px solid #bac5d2;
+  border: 1px solid #4a5b70;
   border-radius: 50%;
-  color: var(--navy);
+  color: #fbbf24;
   content: "+";
   font-size: 19px;
   transition: transform 160ms ease;
@@ -954,7 +1028,7 @@ svg {
 .faq-answer {
   max-width: 76ch;
   padding: 0 48px 23px 0;
-  color: var(--muted);
+  color: #b8c5d5;
   font-size: 14px;
 }
 
@@ -964,7 +1038,8 @@ svg {
 
 .contact-section {
   padding-block: clamp(76px, 9vw, 120px);
-  background: #fff4d8;
+  background: #112238;
+  color: #f1f5f9;
 }
 
 .contact-layout {
@@ -977,7 +1052,7 @@ svg {
 .contact-layout h2 {
   max-width: 800px;
   margin: 0 0 13px;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(37px, 5.5vw, 66px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -987,7 +1062,7 @@ svg {
 .contact-layout p {
   max-width: 60ch;
   margin: 0;
-  color: #35475d;
+  color: #b8c5d5;
   font-size: 16px;
 }
 
@@ -1000,7 +1075,7 @@ svg {
 
 .contact-email {
   padding: 11px 5px;
-  color: #203851;
+  color: #f1f5f9;
   font-size: 14px;
   font-weight: 750;
   text-align: center;
@@ -1130,9 +1205,9 @@ svg {
   height: min(590px, calc(100dvh - 116px));
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #35465b;
   border-radius: 18px;
-  background: #fff;
+  background: #0c1726;
   box-shadow: 0 18px 54px rgba(7, 29, 57, 0.28);
 }
 
@@ -1153,7 +1228,7 @@ svg {
 
 .assistant-header h2 {
   margin: 0;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: 19px;
   font-weight: 800;
   line-height: 1.25;
@@ -1206,7 +1281,7 @@ svg {
 .assistant-message a {
   display: inline-block;
   margin-top: 8px;
-  color: var(--blue);
+  color: #93c5fd;
   font-size: 13px;
   font-weight: 800;
   text-underline-offset: 3px;
@@ -1214,9 +1289,9 @@ svg {
 
 .assistant-message-bot {
   align-self: flex-start;
-  border: 1px solid #e0e6ee;
-  background: var(--mist);
-  color: var(--ink);
+  border: 1px solid #2b3c52;
+  background: #13243a;
+  color: #e8eef7;
 }
 
 .assistant-message-user {
@@ -1236,17 +1311,17 @@ svg {
 .assistant-quick-prompts button {
   min-height: 34px;
   padding: 5px 10px;
-  border: 1px solid #b9c7d7;
+  border: 1px solid #35465b;
   border-radius: 18px;
-  background: #fff;
-  color: var(--navy);
+  background: #0c1726;
+  color: #e8eef7;
   cursor: pointer;
   font-size: 12px;
   font-weight: 750;
 }
 
 .assistant-quick-prompts button:hover {
-  background: #edf3fa;
+  background: #1a2c43;
 }
 
 .assistant-form {
@@ -1261,15 +1336,15 @@ svg {
   min-height: 46px;
   flex: 1;
   padding: 0 12px;
-  border: 1px solid #9aabbe;
+  border: 1px solid #43566d;
   border-radius: 10px;
-  background: #fff;
-  color: var(--ink);
+  background: #091422;
+  color: #f1f5f9;
   font-size: 14px;
 }
 
 .assistant-form input::placeholder {
-  color: #53657b;
+  color: #b8c5d5;
   opacity: 1;
 }
 
@@ -1288,7 +1363,7 @@ svg {
   flex: none;
   margin: 0;
   padding: 0 16px 10px;
-  color: #43566c;
+  color: #b8c5d5;
   font-size: 11px;
   line-height: 1.45;
 }
@@ -1406,7 +1481,7 @@ svg {
 .country-sidebar h2,
 .other-destinations h2 {
   margin: 0 0 17px;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(28px, 3.5vw, 39px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1419,7 +1494,7 @@ svg {
 
 .country-main > p {
   max-width: 72ch;
-  color: #31455d;
+  color: #c0ccda;
 }
 
 .check-list {
@@ -1433,7 +1508,7 @@ svg {
 .check-list li {
   position: relative;
   padding: 12px 0 12px 31px;
-  border-bottom: 1px solid #e2e7ed;
+  border-bottom: 1px solid var(--line);
   font-size: 15px;
 }
 
@@ -1457,10 +1532,10 @@ svg {
 
 .sector-tags li {
   padding: 8px 13px;
-  border: 1px solid #d0dae5;
+  border: 1px solid #35465b;
   border-radius: 50px;
-  background: #f7f9fb;
-  color: #23384e;
+  background: #112238;
+  color: #e8eef7;
   font-size: 13px;
   font-weight: 700;
 }
@@ -1519,11 +1594,11 @@ svg {
 
 .side-card {
   padding: 28px;
-  border: 1px solid #d3dce6;
-  border-top: 5px solid var(--gold);
+  border: 1px solid #2b3c52;
+  border-top: 1px solid #2b3c52;
   border-radius: 14px;
-  background: #f6f8fb;
-  box-shadow: 0 12px 28px rgba(9, 29, 55, 0.08);
+  background: #0c1726;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
 }
 
 .side-card h2 {
@@ -1532,7 +1607,7 @@ svg {
 
 .side-card p {
   margin: 13px 0 20px;
-  color: #35495f;
+  color: #b8c5d5;
   font-size: 14px;
 }
 
@@ -1571,9 +1646,9 @@ svg {
   align-items: center;
   gap: 9px;
   padding: 0 14px;
-  border: 1px solid #c9d2dd;
+  border: 1px solid #35465b;
   border-radius: 50px;
-  background: #fff;
+  background: #112238;
   color: var(--ink);
   font-size: 13px;
   font-weight: 750;
@@ -1582,9 +1657,9 @@ svg {
 }
 
 .destination-pill:hover {
-  border-color: var(--navy);
-  background: var(--navy);
-  color: #fff;
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #0c1726;
 }
 
 .not-found {
@@ -1595,7 +1670,7 @@ svg {
 
 .not-found h1 {
   margin: 0 auto 15px;
-  font-family: "Bricolage Grotesque", "Figtree", sans-serif;
+  font-family: "Plus Jakarta Sans", "Inter", sans-serif;
   font-size: clamp(44px, 7vw, 72px);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -1608,6 +1683,49 @@ svg {
 }
 
 @media (max-width: 1020px) {
+  .site-header {
+    gap: 16px;
+    padding-inline: 24px;
+  }
+
+  .brand {
+    gap: 9px;
+    font-size: 17px;
+  }
+
+  .brand-mark,
+  .brand-mark svg {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-copy strong {
+    font-size: 16px;
+  }
+
+  .brand-copy small {
+    font-size: 8px;
+  }
+
+  .primary-nav {
+    gap: 11px;
+  }
+
+  .primary-nav > a:not(.button) {
+    font-size: 11px;
+  }
+
+  .nav-contact {
+    min-height: 43px;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+
+  .nav-contact svg {
+    width: 18px;
+    height: 18px;
+  }
+
   .destination-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1645,6 +1763,10 @@ svg {
   .brand-mark svg {
     width: 37px;
     height: 37px;
+  }
+
+  .brand-copy small {
+    display: none;
   }
 
   .menu-toggle {
@@ -1702,11 +1824,14 @@ svg {
   .primary-nav > a:not(.button) {
     padding: 13px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 14px;
   }
 
   .primary-nav .nav-contact {
     justify-content: center;
     margin-top: 14px;
+    min-height: 48px;
+    font-size: 13px;
   }
 
   .hero-inner {
@@ -1737,6 +1862,10 @@ svg {
   }
 
   .proof-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .review-checks {
     grid-template-columns: 1fr;
   }
 
@@ -1919,6 +2048,17 @@ svg {
     font-size: 13px;
   }
 
+  .floating-chat.assistant-launcher {
+    width: 52px;
+    min-height: 52px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .assistant-launcher span {
+    display: none;
+  }
+
   .floating-chat svg {
     width: 21px;
     height: 21px;
@@ -2020,6 +2160,10 @@ svg {
   .brand-mark svg {
     width: 34px;
     height: 34px;
+  }
+
+  .brand-copy strong {
+    font-size: 15px;
   }
 
   .hero-actions {

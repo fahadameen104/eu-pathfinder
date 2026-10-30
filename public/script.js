@@ -110,11 +110,17 @@ const services = [
 ];
 
 const faqs = [
-  ["How much do your services cost?", "Fees depend on the destination, the type of role and the support you need. Please contact us on WhatsApp and an adviser will share current information with you directly."],
-  ["Can you guarantee a visa or work permit?", "No one can. Visa and permit decisions are made by the relevant authorities. We prepare your case carefully and guide you through every step."],
-  ["Which countries can you help with?", "We currently support 35 destinations across Europe. Open any country page to see typical sectors, documents and the process."],
-  ["How do I get started?", "Choose a destination and send us a message on WhatsApp. We will ask a few questions about your experience and arrange the next steps."],
-  ["Will I know the full costs before I commit?", "Yes. We explain every stage and any costs outside our service before you agree to anything."]
+  ["How do I get started?", "Choose a destination and contact us on WhatsApp. An adviser can ask about your skills, experience and goals, explain the available support, and outline possible next steps before you decide whether to proceed."],
+  ["Which destinations are covered?", "The site currently has guidance for 35 European destinations. Open a destination page to review general information about sectors, common documents and the process. Availability and requirements depend on the country, role and employer."],
+  ["What does the process involve?", "The site outlines a typical seven-stage process, from an initial consultation and document preparation through permit and visa applications, travel preparation and arrival support. The exact steps vary by destination and case; the relevant authorities make all permit and visa decisions."],
+  ["What documents might I need?", "A valid passport, an updated CV, education or professional certificates, and evidence of work experience are common starting points. The destination authority and employer set the actual requirements, so confirm the current checklist for your case before arranging documents."],
+  ["Can you guarantee a job, visa or work permit?", "No. Job offers, work permits and visas cannot be guaranteed by EU Pathfinder. Employers make hiring decisions, and government authorities decide permit and visa applications. Check official requirements and independently verify any employer and written job offer."],
+  ["How much do your services cost?", "Fees depend on the destination, role and level of support. Contact us for current rates and a clear breakdown of service fees and any separate costs before you agree to proceed."],
+  ["Can I apply from a Gulf country?", "Some destination authorities accept applications from people who legally reside in a Gulf country, but rules vary. Your nationality and residence status may affect where you can apply. Check the destination's official embassy or visa authority before making plans."],
+  ["How can I check that a job offer is genuine?", "Ask for the employer's full legal name, the specific role and written terms. Verify the employer and vacancy independently, and confirm immigration requirements through official government sources. Do not rely on promises of guaranteed approval."],
+  ["How do I ask about current fees or my situation?", "Send EU Pathfinder a message on WhatsApp using the contact link on this site. Share only the information needed for an initial enquiry; do not send passport scans or other sensitive documents until you have confirmed how they will be handled."],
+  ["How should I handle payment requests?", "Ask for written service terms, an itemized fee breakdown and an invoice before paying. Confirm the beneficiary and payment instructions through a contact method you independently verified. Do not pay anyone who promises a guaranteed job, permit or visa."],
+  ["Should I send my passport or bank details by WhatsApp?", "Do not send passport scans, bank logins, card details, passwords or one-time codes in an initial chat. First confirm who will receive any documents, why they are needed and how they will be handled."]
 ];
 
 const documents = [
@@ -207,14 +213,8 @@ function renderFaqs() {
 function renderBankDetails(compact = false) {
   return `
     <section class="bank-transfer${compact ? " bank-transfer-compact" : ""}" aria-labelledby="bank-transfer-title">
-      <h3 id="bank-transfer-title">Bank transfer (EUR)</h3>
-      <dl>
-        <div><dt>Account name</dt><dd>EU Pathfinder</dd></div>
-        <div><dt>Bank</dt><dd>ClearBank Europe N.V.</dd></div>
-        <div class="bank-iban"><dt>IBAN</dt><dd>NL16CLRB0081834486</dd></div>
-        <div><dt>BIC / SWIFT</dt><dd>CLRBNL2A031</dd></div>
-      </dl>
-      <p class="bank-payment-note">Cryptocurrency is also accepted. Please contact us for supported assets, network details and current payment instructions before sending.</p>
+      <h3 id="bank-transfer-title">Before making a payment</h3>
+      <p class="bank-payment-note">Request written service terms, an itemized fee breakdown and an invoice before paying. Confirm the beneficiary and payment instructions through a contact method you independently verified. Never pay based on an unsolicited message or a promise of a guaranteed job, work permit or visa.</p>
     </section>`;
 }
 
@@ -314,12 +314,27 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="pricing-section" aria-labelledby="pricing-title">
+    <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
       <div class="wrap pricing-layout">
         <div><h2 id="pricing-title">Fees and pricing</h2><p>Our fees vary by destination, role and the level of support you need. For current rates and a clear breakdown, contact us on WhatsApp and an adviser will share the details with you directly.</p></div>
         <a class="button button-gold" href="${whatsAppLink("Hello EU Pathfinder, I would like to know about current fees and pricing.")}" target="_blank" rel="noopener noreferrer">Ask about pricing <span aria-hidden="true">↗</span></a>
       </div>
       <div class="wrap">${renderBankDetails()}</div>
+    </section>
+
+    <section class="section candidate-review" id="candidate-review" aria-labelledby="candidate-review-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><h2 id="candidate-review-title">Review an opportunity before you commit</h2><p class="section-lead">A few independent checks can help you make a more informed decision about a job, an intermediary and the next step.</p></div>
+        </div>
+        <ul class="review-checks">
+          <li><strong>Confirm the employer and role</strong><p>Get the employer's full legal name, work location, job duties, pay and written terms. Look up the employer independently.</p></li>
+          <li><strong>Check the rules with official sources</strong><p>Use the destination country's government or embassy website to verify current work-permit, visa and application requirements.</p></li>
+          <li><strong>Understand every fee first</strong><p>Ask for a written service scope, itemized charges, refund terms and invoice before agreeing to a service or making a payment.</p></li>
+          <li><strong>Protect your personal information</strong><p>Do not send passport scans, bank credentials, card details, passwords or one-time codes in an initial chat. Confirm how documents will be handled before sharing them.</p></li>
+        </ul>
+        <p class="review-note">EU Pathfinder cannot guarantee a job offer, work permit or visa. Employers make hiring decisions; government authorities decide applications.</p>
+      </div>
     </section>
 
     <section class="section faq-section" id="faq" aria-labelledby="faq-title">
@@ -654,6 +669,7 @@ function setupWebsiteAssistant() {
   const launcher = document.createElement("button");
   launcher.className = "floating-chat assistant-launcher";
   launcher.type = "button";
+  launcher.setAttribute("aria-label", "Ask EU Pathfinder assistant");
   launcher.setAttribute("aria-expanded", "false");
   launcher.setAttribute("aria-controls", "website-assistant-panel");
   launcher.innerHTML = `
