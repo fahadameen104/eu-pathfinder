@@ -1,4 +1,5 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runInNewContext } from "node:vm";
@@ -6,7 +7,13 @@ import { runInNewContext } from "node:vm";
 const root = new URL(".", import.meta.url);
 const publicDir = new URL("public/", root);
 const script = await readFile(new URL("script.js", publicDir), "utf8");
+const stylesheet = await readFile(new URL("styles.css", publicDir), "utf8");
 const template = await readFile(new URL("index.html", publicDir), "utf8");
+const assetVersion = createHash("sha256")
+  .update(script)
+  .update(stylesheet)
+  .digest("hex")
+  .slice(0, 12);
 const countryData = script.match(/^const countries = \[([\s\S]*?)^\];/m)?.[1];
 const workerMarketData = script.match(/^const workerMarkets = \[([\s\S]*?)^\];/m)?.[1];
 if (!countryData || !workerMarketData) {
@@ -85,6 +92,8 @@ function prerender(pathname) {
   const title = escapeAttribute(page.title);
   const canonical = escapeAttribute(page.canonical);
   const html = template
+    .replace(/<link\s+rel="stylesheet"\s+href="\/styles\.css(?:\?v=[^"]*)?"[^>]*>/, `<link rel="stylesheet" href="/styles.css?v=${assetVersion}">`)
+    .replace(/<script\s+src="\/script\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/script.js?v=${assetVersion}" defer></script>`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
     .replace(/<meta\s+name="description"[\s\S]*?>/, `<meta name="description" content="${description}">`)
     .replace(/<link\s+rel="canonical"[^>]*>/, `<link rel="canonical" href="${canonical}">`)
