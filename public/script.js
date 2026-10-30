@@ -332,6 +332,7 @@ function renderHome() {
           <li><strong>Check the rules with official sources</strong><p>Use the destination country's government or embassy website to verify current work-permit, visa and application requirements.</p></li>
           <li><strong>Understand every fee first</strong><p>Ask for a written service scope, itemized charges, refund terms and invoice before agreeing to a service or making a payment.</p></li>
           <li><strong>Protect your personal information</strong><p>Do not send passport scans, bank credentials, card details, passwords or one-time codes in an initial chat. Confirm how documents will be handled before sharing them.</p></li>
+          <li><strong>Verify credentials with the issuer</strong><p>Ask for the issuing authority, registration or certificate number, scope and expiry date, then confirm the record directly with the issuing body.</p></li>
         </ul>
         <p class="review-note">EU Pathfinder cannot guarantee a job offer, work permit or visa. Employers make hiring decisions; government authorities decide applications.</p>
       </div>
@@ -542,22 +543,6 @@ function updatePageMetadata(country, market) {
   );
 }
 
-function setupNavigation() {
-  const button = document.querySelector("#menu-toggle");
-  const navigation = document.querySelector("#primary-nav");
-  button.addEventListener("click", () => {
-    const expanded = button.getAttribute("aria-expanded") === "true";
-    button.setAttribute("aria-expanded", String(!expanded));
-    navigation.classList.toggle("is-open", !expanded);
-  });
-  navigation.addEventListener("click", (event) => {
-    if (event.target.closest("a")) {
-      button.setAttribute("aria-expanded", "false");
-      navigation.classList.remove("is-open");
-    }
-  });
-}
-
 function setupHomeInteractions() {
   const search = document.querySelector("#country-search");
   const cards = [...document.querySelectorAll(".destination-card")];
@@ -707,6 +692,14 @@ function setupWebsiteAssistant() {
   originalLauncher.replaceWith(launcher);
   document.body.append(panel);
 
+  const hero = document.querySelector(".home-hero");
+  if (hero && typeof IntersectionObserver === "function") {
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      if (panel.hidden) launcher.hidden = entry.isIntersecting;
+    });
+    heroObserver.observe(hero);
+  }
+
   const messages = panel.querySelector(".assistant-messages");
   const input = panel.querySelector("#assistant-question");
   const addMessage = (message, sender, link) => {
@@ -763,7 +756,6 @@ function setupWebsiteAssistant() {
 }
 
 document.querySelector("#year").textContent = new Date().getFullYear();
-setupNavigation();
 
 const pathname = decodeURIComponent(window.location.pathname).replace(/^\/+|\/+$/g, "");
 const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.test(pathname)

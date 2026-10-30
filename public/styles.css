@@ -1,16 +1,16 @@
 :root {
   color-scheme: dark;
-  --navy: #0c1726;
-  --navy-deep: #060d17;
-  --blue: #2563eb;
-  --gold: #f59e0b;
-  --green: #047857;
-  --green-hover: #065f46;
-  --ink: #f1f5f9;
-  --muted: #aab8ca;
-  --paper: #060d17;
-  --mist: #0c1726;
-  --line: #26364a;
+  --navy: #18332f;
+  --navy-deep: #10221e;
+  --blue: #52a899;
+  --coral: #f1846c;
+  --green: #087c5a;
+  --green-hover: #066447;
+  --ink: #f1f6f1;
+  --muted: #b6c8bf;
+  --paper: #10211d;
+  --mist: #192d28;
+  --line: #334a43;
   --page: 1280px;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
 }
@@ -51,7 +51,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--coral);
   outline-offset: 4px;
 }
 
@@ -82,7 +82,7 @@ svg {
   left: 10px;
   padding: 10px 16px;
   transform: translateY(-160%);
-  background: var(--gold);
+  background: var(--coral);
   color: var(--navy-deep);
   font-weight: 800;
   text-decoration: none;
@@ -130,8 +130,8 @@ svg {
   flex: none;
   place-items: center;
   border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 58%, var(--gold) 100%);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  background: linear-gradient(135deg, #248f7b 0%, #39aa91 58%, var(--coral) 100%);
+  box-shadow: 0 8px 20px rgba(36, 143, 123, 0.24);
 }
 
 .brand-copy {
@@ -142,16 +142,6 @@ svg {
 .brand-copy strong {
   font-size: 19px;
   line-height: 1.15;
-}
-
-.brand-copy small {
-  color: #b8c5d5;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.075em;
-  line-height: 1.3;
-  text-transform: uppercase;
 }
 
 .brand-mark circle {
@@ -167,28 +157,6 @@ svg {
   stroke: #fff;
   stroke-linecap: round;
   stroke-width: 2.3px;
-}
-
-.primary-nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(12px, 1.6vw, 24px);
-}
-
-.primary-nav > a:not(.button) {
-  color: #d5deeb;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: color 160ms ease;
-}
-
-.primary-nav > a:not(.button):hover {
-  color: var(--gold);
-}
-
-.menu-toggle {
-  display: none;
 }
 
 .button {
@@ -221,12 +189,12 @@ svg {
 }
 
 .button-gold {
-  background: var(--gold);
-  color: #112a49;
+  background: var(--coral);
+  color: #222d27;
 }
 
 .button-gold:hover {
-  background: #ffd06a;
+  background: #ffa58f;
 }
 
 .button-whatsapp {
@@ -248,8 +216,8 @@ svg {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 20%, rgba(37, 99, 235, 0.22), transparent 48%),
-    linear-gradient(125deg, #060d17 0%, #0c1726 58%, #081425 100%);
+    radial-gradient(ellipse at 50% 20%, rgba(71, 165, 143, 0.2), transparent 48%),
+    linear-gradient(125deg, #10211d 0%, #18332f 58%, #142a25 100%);
   color: #fff;
 }
 
@@ -293,13 +261,13 @@ svg {
 
 .home-hero h1 span {
   display: block;
-  color: var(--gold);
+  color: var(--coral);
 }
 
 .hero-intro {
   max-width: 74ch;
   margin: 30px 0 0;
-  color: #c4cfdd;
+  color: #d1ded7;
   font-size: clamp(18px, 2vw, 23px);
   line-height: 1.55;
 }
@@ -367,13 +335,13 @@ svg {
 }
 
 .featured-copy span {
-  color: #d5e0ee;
+  color: #d5e3db;
   font-size: 14px;
 }
 
 .featured-arrow {
   margin-left: 5px;
-  color: var(--gold);
+  color: var(--coral);
   font-size: 20px;
   transition: transform 160ms ease;
 }
@@ -398,7 +366,7 @@ svg {
   padding: 0 15px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 100px;
-  background: rgba(4, 22, 46, 0.22);
+  background: rgba(12, 38, 32, 0.28);
   color: #fff;
   cursor: pointer;
   font-size: 14px;
@@ -408,8 +376,8 @@ svg {
 
 .hero-chip:hover,
 .hero-chip[aria-pressed="true"] {
-  border-color: var(--gold);
-  background: rgba(244, 186, 69, 0.15);
+  border-color: var(--coral);
+  background: rgba(241, 132, 108, 0.16);
 }
 
 .flag {
@@ -447,8 +415,8 @@ svg {
   flex: none;
   place-items: center;
   border-radius: 50%;
-  background: rgba(245, 158, 11, 0.13);
-  color: #fbbf24;
+  background: rgba(241, 132, 108, 0.14);
+  color: #ffb39e;
   font-size: 20px;
   font-weight: 800;
 }
@@ -533,10 +501,10 @@ svg {
 .filter-button {
   min-height: 40px;
   padding: 0 15px;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 100px;
-  background: #0c1726;
-  color: #dbe5f1;
+  background: #18332f;
+  color: #d6e4dc;
   cursor: pointer;
   font-size: 13px;
   font-weight: 750;
@@ -545,9 +513,9 @@ svg {
 
 .filter-button:hover,
 .filter-button[aria-pressed="true"] {
-  border-color: var(--gold);
-  background: var(--gold);
-  color: #0c1726;
+  border-color: var(--coral);
+  background: var(--coral);
+  color: #222d27;
 }
 
 .destination-search {
@@ -564,7 +532,7 @@ svg {
   width: 19px;
   height: 19px;
   fill: none;
-  stroke: #b5c3d4;
+  stroke: #bbcec4;
   stroke-linecap: round;
   stroke-width: 2;
   pointer-events: none;
@@ -574,14 +542,14 @@ svg {
   width: 100%;
   min-height: 50px;
   padding: 0 14px 0 45px;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 10px;
-  background: #091422;
-  color: #f1f5f9;
+  background: #10211d;
+  color: #f1f6f1;
 }
 
 .destination-search input::placeholder {
-  color: #aab8ca;
+  color: #b6c8bf;
   opacity: 1;
 }
 
@@ -602,9 +570,9 @@ svg {
   display: block;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid #26364a;
+  border: 1px solid #334a43;
   border-radius: 15px;
-  background: #0c1726;
+  background: #18332f;
   color: var(--ink);
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
@@ -613,7 +581,7 @@ svg {
 
 .destination-card:hover {
   transform: translateY(-4px);
-  border-color: #44566d;
+  border-color: #527168;
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -758,8 +726,8 @@ svg {
   height: 40px;
   place-items: center;
   border-radius: 50%;
-  background: var(--gold);
-  color: #0c1726;
+  background: var(--coral);
+  color: #222d27;
   font-size: 13px;
   font-weight: 800;
 }
@@ -807,8 +775,8 @@ svg {
   height: 29px;
   place-items: center;
   border-radius: 50%;
-  background: rgba(245, 158, 11, 0.13);
-  color: #fbbf24;
+  background: rgba(241, 132, 108, 0.14);
+  color: #ffb39e;
   font-weight: 900;
 }
 
@@ -1013,9 +981,9 @@ svg {
   height: 32px;
   flex: none;
   place-items: center;
-  border: 1px solid #4a5b70;
+  border: 1px solid #527168;
   border-radius: 50%;
-  color: #fbbf24;
+  color: #ffb39e;
   content: "+";
   font-size: 19px;
   transition: transform 160ms ease;
@@ -1038,8 +1006,8 @@ svg {
 
 .contact-section {
   padding-block: clamp(76px, 9vw, 120px);
-  background: #112238;
-  color: #f1f5f9;
+  background: #1d3832;
+  color: #f1f6f1;
 }
 
 .contact-layout {
@@ -1121,7 +1089,7 @@ svg {
 }
 
 .footer-column a:hover {
-  color: var(--gold);
+  color: var(--coral);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1195,6 +1163,10 @@ svg {
   font-family: inherit;
 }
 
+.assistant-launcher[hidden] {
+  display: none;
+}
+
 .assistant-panel {
   position: fixed;
   z-index: 12;
@@ -1205,9 +1177,9 @@ svg {
   height: min(590px, calc(100dvh - 116px));
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 18px;
-  background: #0c1726;
+  background: #18332f;
   box-shadow: 0 18px 54px rgba(7, 29, 57, 0.28);
 }
 
@@ -1281,7 +1253,7 @@ svg {
 .assistant-message a {
   display: inline-block;
   margin-top: 8px;
-  color: #93c5fd;
+  color: #81e3d1;
   font-size: 13px;
   font-weight: 800;
   text-underline-offset: 3px;
@@ -1289,9 +1261,9 @@ svg {
 
 .assistant-message-bot {
   align-self: flex-start;
-  border: 1px solid #2b3c52;
-  background: #13243a;
-  color: #e8eef7;
+  border: 1px solid #30483f;
+  background: #1d3832;
+  color: #e4efe8;
 }
 
 .assistant-message-user {
@@ -1311,17 +1283,17 @@ svg {
 .assistant-quick-prompts button {
   min-height: 34px;
   padding: 5px 10px;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 18px;
-  background: #0c1726;
-  color: #e8eef7;
+  background: #18332f;
+  color: #e4efe8;
   cursor: pointer;
   font-size: 12px;
   font-weight: 750;
 }
 
 .assistant-quick-prompts button:hover {
-  background: #1a2c43;
+  background: #29463f;
 }
 
 .assistant-form {
@@ -1336,10 +1308,10 @@ svg {
   min-height: 46px;
   flex: 1;
   padding: 0 12px;
-  border: 1px solid #43566d;
+  border: 1px solid #527168;
   border-radius: 10px;
-  background: #091422;
-  color: #f1f5f9;
+  background: #10211d;
+  color: #f1f6f1;
   font-size: 14px;
 }
 
@@ -1352,7 +1324,7 @@ svg {
   min-width: 66px;
   border: 0;
   border-radius: 10px;
-  background: var(--gold);
+  background: var(--coral);
   color: var(--navy-deep);
   cursor: pointer;
   font-size: 14px;
@@ -1432,7 +1404,7 @@ svg {
 }
 
 .breadcrumbs a:hover {
-  color: var(--gold);
+  color: var(--coral);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -1532,10 +1504,10 @@ svg {
 
 .sector-tags li {
   padding: 8px 13px;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 50px;
-  background: #112238;
-  color: #e8eef7;
+  background: #1d3832;
+  color: #e4efe8;
   font-size: 13px;
   font-weight: 700;
 }
@@ -1594,10 +1566,10 @@ svg {
 
 .side-card {
   padding: 28px;
-  border: 1px solid #2b3c52;
-  border-top: 1px solid #2b3c52;
+  border: 1px solid #30483f;
+  border-top: 1px solid #30483f;
   border-radius: 14px;
-  background: #0c1726;
+  background: #18332f;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.24);
 }
 
@@ -1646,9 +1618,9 @@ svg {
   align-items: center;
   gap: 9px;
   padding: 0 14px;
-  border: 1px solid #35465b;
+  border: 1px solid #3f5b52;
   border-radius: 50px;
-  background: #112238;
+  background: #1d3832;
   color: var(--ink);
   font-size: 13px;
   font-weight: 750;
@@ -1657,9 +1629,9 @@ svg {
 }
 
 .destination-pill:hover {
-  border-color: var(--gold);
-  background: var(--gold);
-  color: #0c1726;
+  border-color: var(--coral);
+  background: var(--coral);
+  color: #222d27;
 }
 
 .not-found {
@@ -1701,18 +1673,6 @@ svg {
 
   .brand-copy strong {
     font-size: 16px;
-  }
-
-  .brand-copy small {
-    font-size: 8px;
-  }
-
-  .primary-nav {
-    gap: 11px;
-  }
-
-  .primary-nav > a:not(.button) {
-    font-size: 11px;
   }
 
   .nav-contact {
@@ -1763,75 +1723,6 @@ svg {
   .brand-mark svg {
     width: 37px;
     height: 37px;
-  }
-
-  .brand-copy small {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    min-height: 42px;
-    align-items: center;
-    gap: 10px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 800;
-  }
-
-  .menu-lines {
-    display: grid;
-    gap: 5px;
-    width: 21px;
-  }
-
-  .menu-lines i {
-    height: 2px;
-    background: currentColor;
-    transition: transform 160ms ease;
-  }
-
-  .menu-toggle[aria-expanded="true"] .menu-lines i:first-child {
-    transform: translateY(3.5px) rotate(45deg);
-  }
-
-  .menu-toggle[aria-expanded="true"] .menu-lines i:last-child {
-    transform: translateY(-3.5px) rotate(-45deg);
-  }
-
-  .primary-nav {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    left: 0;
-    display: none;
-    align-items: stretch;
-    gap: 0;
-    padding: 9px 20px 19px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    background: var(--navy-deep);
-  }
-
-  .primary-nav.is-open {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .primary-nav > a:not(.button) {
-    padding: 13px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    font-size: 14px;
-  }
-
-  .primary-nav .nav-contact {
-    justify-content: center;
-    margin-top: 14px;
-    min-height: 48px;
-    font-size: 13px;
   }
 
   .hero-inner {
@@ -2149,11 +2040,12 @@ svg {
   }
 
   .site-header {
-    padding-inline: 16px;
+    padding-inline: 12px;
   }
 
   .brand {
-    font-size: 17px;
+    gap: 7px;
+    font-size: 16px;
   }
 
   .brand-mark,
@@ -2163,7 +2055,12 @@ svg {
   }
 
   .brand-copy strong {
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .nav-contact {
+    gap: 8px;
+    padding-inline: 8px;
   }
 
   .hero-actions {
