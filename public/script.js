@@ -157,24 +157,24 @@ const generalWhatsAppMessage =
 
 const illustrativePhotos = {
   consultation: {
-    url: "https://images.unsplash.com/photo-1556761175-b413da4baf72",
-    alt: "People meeting around a table in a bright office",
-    caption: "A conversation before the next step"
+    url: "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13",
+    alt: "Two professionals greeting with a handshake across a desk",
+    caption: "A personal welcome and a clear next step"
   },
   agriculture: {
-    url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef",
-    alt: "Cultivated fields across a rural landscape",
-    caption: "Agriculture and seasonal work"
+    url: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae",
+    alt: "Farm workers carrying harvest crates through a field",
+    caption: "Agriculture and seasonal harvests"
   },
   logistics: {
-    url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d",
-    alt: "A warehouse prepared for packing and distribution",
-    caption: "Logistics and warehouse work"
+    url: "https://images.unsplash.com/photo-1759272548449-7b689a81c8fb",
+    alt: "Two logistics workers in safety vests coordinating among cargo containers",
+    caption: "Logistics crews coordinating a shipment"
   },
   transport: {
-    url: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7",
-    alt: "A heavy goods truck on a road",
-    caption: "Transport and delivery work"
+    url: "https://images.unsplash.com/photo-1574757974346-45bae947d89a",
+    alt: "A transport worker beside a truck, speaking with its driver",
+    caption: "Drivers and crews at work in transport"
   },
   construction: {
     url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
