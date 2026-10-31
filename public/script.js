@@ -53,6 +53,99 @@ const workerMarkets = [
   { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian workers living in Bahrain", titleAudience: "Workers in Bahrain", planningNote: "If you are a South Asian national living in Bahrain, check the destination country's official process for applicants residing there, including any residence-validity requirements, before paying fees or booking travel." }
 ];
 
+const guides = [
+  {
+    slug: "europe-hospitality-jobs",
+    title: "Hospitality jobs in Europe: a practical guide for workers",
+    description: "Explore hospitality roles, employer checks, work-permit basics and safer next steps for workers considering a hospitality job in Europe.",
+    summary: "A clear starting point for hotel, restaurant, kitchen and seasonal hospitality roles — and the checks to make before applying.",
+    image: "/travel-planning.svg",
+    intro: "Hotels, restaurants, catering teams and tourism businesses employ people in many different roles. The job, employer and immigration route all matter: there is no single Europe-wide hospitality work visa.",
+    sections: [
+      {
+        heading: "Roles and experience",
+        paragraphs: [
+          "Hospitality work can include hotel housekeeping, kitchen assistance, food preparation, waiting tables, reception, catering and seasonal resort work. Duties, language expectations, schedules and required experience vary by employer and destination.",
+          "Read the job description carefully. Ask what the role involves each day, where it is based, what hours are expected, what pay and deductions apply, and whether accommodation is included or charged separately."
+        ]
+      },
+      {
+        heading: "How the work-permit route is decided",
+        paragraphs: [
+          "The destination country's authorities set its work and residence rules. Some routes require an employer to apply or sponsor a permit; seasonal work may have separate rules where that route exists. A job title alone does not establish that a permit is available.",
+          "Before paying anyone, identify the destination, the legal employer and the specific role. Check the current process with the destination's official immigration service or embassy. EU Pathfinder cannot promise a vacancy, permit or visa decision."
+        ]
+      },
+      {
+        heading: "Check an offer before sharing documents",
+        bullets: [
+          "Get the employer's full legal name, work address, duties, pay, hours and written contract terms.",
+          "Verify the employer independently using an official business register or its established contact details.",
+          "Request a written list of service fees, refund terms and the exact work being provided before you agree.",
+          "Do not send passport scans, bank details, card numbers or one-time codes in an initial enquiry.",
+          "Be wary of guaranteed jobs, visas or permits, urgent payment demands, and offers with no verifiable employer."
+        ]
+      },
+      {
+        heading: "Prepare for a first conversation",
+        paragraphs: [
+          "A current CV, a summary of your work history and copies of relevant training certificates can help an adviser understand your goals. Share only what is needed for the discussion, and confirm how any documents will be handled before sending them.",
+          "Your nationality and where you legally live may affect where you can apply. Ask the relevant embassy which application location and documents apply to your situation."
+        ]
+      }
+    ],
+    resources: [
+      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" },
+      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" }
+    ]
+  },
+  {
+    slug: "europe-entry-level-seasonal-work-guide",
+    title: "Europe entry-level and seasonal work: a visa guide",
+    description: "A practical Europe unskilled jobs work visa guide: understand country-specific permits, employer checks and safe steps before applying.",
+    summary: "What people mean by “unskilled work,” why permits are country-specific, and how to assess seasonal or entry-level offers.",
+    image: "/family-airport.svg",
+    intro: "People often search for an “unskilled work visa for Europe,” but Europe does not issue one universal permit for every entry-level job. Each destination sets its own rules, and the correct route depends on the role, employer and applicant.",
+    sections: [
+      {
+        heading: "Start with a named job and country",
+        paragraphs: [
+          "Entry-level roles may be found in areas such as food production, agriculture, cleaning, warehousing, hospitality and seasonal tourism. Availability changes, and a sector list is not a job offer or proof that a permit route is open.",
+          "Ask for the destination country, employer's legal name, job location, duties, pay, hours and contract before considering an application. Verify the employer and vacancy independently."
+        ]
+      },
+      {
+        heading: "There is no one-size-fits-all European work visa",
+        paragraphs: [
+          "Work authorization is handled under each destination's rules. Employer-sponsored permits and seasonal or temporary routes exist in some circumstances, but requirements and eligibility are not the same across countries.",
+          "Use the destination government's official immigration pages and the relevant embassy or visa authority for current instructions. Do not rely on an agent's general claim that one visa covers Europe."
+        ]
+      },
+      {
+        heading: "A safer checklist before you pay",
+        bullets: [
+          "Confirm a real employer, a specific role and written terms.",
+          "Check the employer's recruitment process and work-permit steps through official sources.",
+          "Ask for itemized fees, the service agreement, refund terms and an invoice.",
+          "Keep control of your passport and never share banking credentials or verification codes.",
+          "Do not pay for a guaranteed job, permit or visa; final decisions belong to employers and authorities."
+        ]
+      },
+      {
+        heading: "Documents and application location",
+        paragraphs: [
+          "A passport, CV and proof of relevant experience can help with an initial discussion, but they are not a complete visa checklist. The authority may request different documents for the specific route.",
+          "Your passport nationality and your legal country of residence can both matter. Before booking travel, confirm where you are permitted to lodge an application and what proof of residence is required."
+        ]
+      }
+    ],
+    resources: [
+      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" },
+      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" }
+    ]
+  }
+];
+
 const countryPhotos = {
   poland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Wawel_%284%29.jpg/1280px-Wawel_%284%29.jpg",
   uk: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg/1280px-Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg",
@@ -72,14 +165,18 @@ const countryPhotos = {
   finland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Kirkko3.png/1280px-Kirkko3.png",
   france: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
   serbia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg/1280px-P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg",
+  moldova: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Stanca_deasupra_Rautului_Butuceni.jpg/1280px-Stanca_deasupra_Rautului_Butuceni.jpg",
   ukraine: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg/1280px-80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg",
   greece: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg/1280px-1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg",
   ireland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Cliffs-Of-Moher-OBriens-From-South.JPG/1280px-Cliffs-Of-Moher-OBriens-From-South.JPG",
   romania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/01_Chateau_Peles.jpg/1280px-01_Chateau_Peles.jpg",
+  latvia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg/1280px-House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg",
   lithuania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Traku_pilis_by_Augustas_Didzgalvis.jpg/1280px-Traku_pilis_by_Augustas_Didzgalvis.jpg",
+  luxembourg: "https://upload.wikimedia.org/wikipedia/commons/5/57/Selig_Luxembourg_from_Paffendall.jpg",
   netherlands: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/KinderdijkMolens02.jpg/1280px-KinderdijkMolens02.jpg",
   slovenia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Bled_from_the_Mountain.jpg/1280px-Lake_Bled_from_the_Mountain.jpg",
   spain: "https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg",
+  sweden: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Gamla_stan_September_2014_01.jpg/1280px-Gamla_stan_September_2014_01.jpg",
   russia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Basil%27s_Cathedral_in_Moscow.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow.jpg",
   malta: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Prelucrare_3D_pentru_La_Valletta_Harbour.jpg/1280px-Prelucrare_3D_pentru_La_Valletta_Harbour.jpg",
   belarus: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG/1280px-%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG",
@@ -234,6 +331,150 @@ function renderPeoplePhotoSection(photos, heading = "People, planning, and work 
     </section>`;
 }
 
+function renderEnquiryForm() {
+  return `
+    <form class="enquiry-form" action="/api/enquiry" method="post" data-enquiry-form>
+      <div class="enquiry-fields">
+        <label>
+          <span>Your name</span>
+          <input name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+        </label>
+        <label>
+          <span>Email address</span>
+          <input name="email" type="email" autocomplete="email" maxlength="254" required>
+        </label>
+        <label>
+          <span>Nationality</span>
+          <input name="nationality" type="text" autocomplete="country-name" maxlength="80" required>
+        </label>
+        <label>
+          <span>WhatsApp number</span>
+          <input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="32" placeholder="Include country code" required>
+        </label>
+        <label class="enquiry-topic">
+          <span>What would you like help with?</span>
+          <select name="interest" required>
+            <option value="">Choose a topic</option>
+            <option>Hospitality work</option>
+            <option>Seasonal or entry-level work</option>
+            <option>Work-permit guidance</option>
+            <option>Another question</option>
+          </select>
+        </label>
+        <label class="enquiry-message">
+          <span>Message <small>Optional</small></span>
+          <textarea name="message" rows="3" maxlength="1200" placeholder="A short note about your experience or question"></textarea>
+        </label>
+      </div>
+      <label class="enquiry-consent">
+        <input name="consent" type="checkbox" required>
+        <span>I agree to be contacted about this enquiry. Please do not include passport scans, payment details or other sensitive documents.</span>
+      </label>
+      <label class="enquiry-trap" aria-hidden="true" tabindex="-1">
+        Leave this field empty
+        <input name="website" type="text" tabindex="-1" autocomplete="off">
+      </label>
+      <div class="enquiry-submit-row">
+        <button class="button button-gold enquiry-submit" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+        <p class="enquiry-status" data-form-status role="status" aria-live="polite" hidden></p>
+      </div>
+      <p class="enquiry-privacy">Your details are sent through Cloudflare Pages and Resend to <a href="mailto:${contactEmail}">${contactEmail}</a> so the team can reply.</p>
+    </form>`;
+}
+
+function renderContactSection({
+  title = "Tell us what you are planning",
+  description = "Share a few details and an adviser can reply with the next steps. No job, permit or visa outcome is guaranteed.",
+  id = "contact"
+} = {}) {
+  return `
+    <section class="contact-section" id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
+      <div class="wrap contact-layout">
+        <div class="contact-copy">
+          <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
+          <p>${escapeHtml(description)}</p>
+          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? +1 469 626 8272 <span aria-hidden="true">↗</span></a>
+          <figure class="contact-travel-art">
+            <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
+            <figcaption>Illustration · travel documents shown are fictional</figcaption>
+          </figure>
+        </div>
+        ${renderEnquiryForm()}
+      </div>
+    </section>`;
+}
+
+function renderGuideCards() {
+  return `
+    <section class="section guide-library" id="worker-guides" aria-labelledby="worker-guides-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Straightforward reading on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
+        </div>
+        <div class="guide-card-grid">
+          ${guides.map((guide) => `
+            <article class="guide-card">
+              <a class="guide-card-image" href="/guides/${guide.slug}" tabindex="-1" aria-hidden="true">
+                <img src="${guide.image}" alt="" width="700" height="440" loading="lazy" decoding="async">
+                <span>Worker guide</span>
+              </a>
+              <div class="guide-card-copy">
+                <h3><a href="/guides/${guide.slug}">${escapeHtml(guide.title)}</a></h3>
+                <p>${escapeHtml(guide.summary)}</p>
+                <a class="text-link" href="/guides/${guide.slug}">Read the guide <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>`).join("")}
+        </div>
+      </div>
+    </section>`;
+}
+
+function renderGuidePage(guide) {
+  return `
+    <article class="guide-page">
+      <header class="guide-hero" style="--hero-photo:url('${escapeHtml(illustrativePhotoUrl(illustrativePhotos.consultation, 1800))}')">
+        <div class="wrap guide-hero-layout">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-guides">Worker guides</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(guide.title)}</span>
+            </nav>
+            <h1>${escapeHtml(guide.title)}</h1>
+            <p class="guide-intro">${escapeHtml(guide.intro)}</p>
+            <a class="button button-gold" href="/#contact">Ask a question <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure class="guide-art">
+            <img src="${guide.image}" alt="Illustration of travel planning with generic, fictional travel documents." width="700" height="440" fetchpriority="high">
+            <figcaption>Illustration · not an official passport, visa or travel booking</figcaption>
+          </figure>
+        </div>
+      </header>
+      <div class="wrap guide-content-layout">
+        <div class="guide-content">
+          ${guide.sections.map((section) => `
+            <section class="guide-section">
+              <h2>${escapeHtml(section.heading)}</h2>
+              ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+              ${section.bullets ? `<ul class="check-list">${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+            </section>`).join("")}
+          <section class="guide-resources" aria-labelledby="guide-resources-title">
+            <h2 id="guide-resources-title">Official starting points</h2>
+            <p>Rules change and depend on the destination. Check current details directly with official sources.</p>
+            <ul>${guide.resources.map((resource) => `<li><a href="${escapeHtml(resource.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.label)} <span aria-hidden="true">↗</span></a></li>`).join("")}</ul>
+          </section>
+          <p class="guide-disclaimer">This guide is general information, not legal advice, a job offer or a promise of a work permit or visa. Employers make hiring decisions; government authorities decide applications.</p>
+        </div>
+        <aside class="guide-aside">
+          <h2>Before you pay</h2>
+          <p>Get the employer, role, written terms and full fee breakdown in writing. Verify each independently.</p>
+          <a href="/#candidate-review" class="text-link">See the opportunity checks <span aria-hidden="true">↗</span></a>
+          <img src="/travel-route.svg" alt="" width="400" height="260" loading="lazy" decoding="async">
+        </aside>
+      </div>
+      ${renderGuideCards()}
+      ${renderContactSection({ title: "Have a question about your plans?" })}
+    </article>`;
+}
+
 function getCountryWorkPhoto(country) {
   const sectors = country.sectors.join(" ").toLowerCase();
   if (/agriculture|horticulture|forestry|agri-food|food processing/.test(sectors)) {
@@ -309,9 +550,14 @@ function renderBankDetails(compact = false) {
 
 function renderHome() {
   const featured = countries[0];
+  const heroPhoto = `${illustrativePhotos.consultation.url}?auto=format&fit=crop&w=1800&q=78`;
   return `
-    <section class="home-hero" aria-labelledby="home-title">
+    <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}')" aria-labelledby="home-title">
       <div class="wrap hero-inner">
+        <figure class="hero-travel-art">
+          <img src="/travel-planning.svg" alt="Illustration of a woman planning a journey at a laptop with coffee and fictional travel documents." width="700" height="440" fetchpriority="high">
+          <figcaption>Illustration · fictional travel documents</figcaption>
+        </figure>
         <div class="hero-copy">
           <h1 id="home-title">Your path to legal work in Europe,<span>planned with you</span></h1>
           <p class="hero-intro">Job opportunities, work-permit guidance and relocation support across 35 destinations, with an adviser beside you from first message to arrival.</p>
@@ -390,6 +636,8 @@ function renderHome() {
       </div>
     </section>
 
+    ${renderGuideCards()}
+
     <section class="section process-section" id="how" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-heading">
@@ -441,15 +689,10 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="wrap contact-layout">
-        <div><h2 id="contact-title">Speak with the EU Pathfinder team</h2><p>Choose a destination, then send us a message. We will reply with your next steps.</p></div>
-        <div class="contact-actions">
-          <a class="button button-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp · +1 469 626 8272</a>
-          <a class="contact-email" href="mailto:${contactEmail}">${contactEmail}</a>
-        </div>
-      </div>
-    </section>`;
+    ${renderContactSection({
+      title: "Speak with the EU Pathfinder team",
+      description: "Tell us your nationality, how to reach you and what kind of work guidance you need. We will reply with the next steps."
+    })}`;
 }
 
 function renderDestinationPills(currentSlug) {
@@ -467,11 +710,12 @@ function renderCountryPage(country) {
   const contactMessage = `Hello EU Pathfinder, I would like information about working in ${country.name}, including current fees.`;
   const contactUrl = whatsAppLink(contactMessage);
   const countryPhoto = countryPhotos[country.slug]
-    ? `url("${countryPhotos[country.slug]}")`
+    ? `url('${escapeHtml(countryPhotos[country.slug])}')`
     : "none";
+  const heroPhoto = `url('${escapeHtml(illustrativePhotoUrl(getCountryWorkPhoto(country), 1800))}')`;
 
   return `
-    <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto}" aria-labelledby="country-title">
+    <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto};--hero-photo:${heroPhoto}" aria-labelledby="country-title">
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#destinations">Destinations</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(country.name)}</span>
@@ -533,7 +777,10 @@ function renderCountryPage(country) {
         <p>Explore another destination to see its typical sectors, commonly requested documents and process information.</p>
         <div class="destination-pills">${renderDestinationPills(country.slug)}</div>
       </div>
-    </section>`;
+    </section>
+
+    ${renderGuideCards()}
+    ${renderContactSection({ title: `Ask about work in ${country.name}` })}`;
 }
 
 function renderWorkerMarketPage(market) {
@@ -546,9 +793,11 @@ function renderWorkerMarketPage(market) {
     illustrativePhotos.transport,
     illustrativePhotos.construction
   ][marketIndex % 4];
+  const heroPhoto = `url('${escapeHtml(illustrativePhotoUrl(workerPhoto, 1800))}')`;
 
   return `
-    <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none" aria-labelledby="worker-market-title">
+    <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto}" aria-labelledby="worker-market-title">
+      <img class="worker-travel-art" src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" fetchpriority="high">
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-markets">For workers</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(market.country)}</span>
@@ -617,6 +866,12 @@ function renderWorkerMarketPage(market) {
       </div>
     </section>
 
+    ${renderGuideCards()}
+    ${renderContactSection({
+      title: `Start a conversation from ${market.country}`,
+      description: "Share your nationality, contact details and the kind of work you are exploring. Requirements depend on the destination and your circumstances."
+    })}
+
     <section class="section other-destinations" aria-labelledby="market-destinations-title">
       <div class="wrap">
         <h2 id="market-destinations-title">Explore European work destinations</h2>
@@ -635,18 +890,26 @@ function renderNotFound() {
     </section>`;
 }
 
-function updatePageMetadata(country, market) {
-  const title = market
-    ? `European Jobs for ${market.titleAudience} | EU Pathfinder`
-    : country
-      ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
-      : "Work in Europe | Jobs & Relocation Guidance | EU Pathfinder";
-  const description = market
-    ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
-    : country
-      ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-      : "Job opportunities, work-permit guidance and relocation support across 35 European destinations, with an adviser beside you from first message to arrival.";
-  const canonicalPath = market ? market.slug : country?.slug;
+function updatePageMetadata(country, market, guide) {
+  const title = guide
+    ? `${guide.title} | EU Pathfinder`
+    : market
+      ? `European Jobs for ${market.titleAudience} | EU Pathfinder`
+      : country
+        ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
+        : "Work in Europe | Jobs & Relocation Guidance | EU Pathfinder";
+  const description = guide
+    ? guide.description
+    : market
+      ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
+      : country
+        ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
+        : "Job opportunities, work-permit guidance and relocation support across 35 European destinations, with an adviser beside you from first message to arrival.";
+  const canonicalPath = guide
+    ? `guides/${guide.slug}`
+    : market
+      ? market.slug
+      : country?.slug;
 
   document.title = title;
   document.querySelector('meta[name="description"]').setAttribute("content", description);
@@ -704,6 +967,44 @@ function setupHomeInteractions() {
   });
 
   filterCountries();
+}
+
+function setupEnquiryForms() {
+  document.querySelectorAll("[data-enquiry-form]").forEach((form) => {
+    const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector("[data-form-status]");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      button.disabled = true;
+      form.setAttribute("aria-busy", "true");
+      status.hidden = false;
+      status.dataset.state = "pending";
+      status.textContent = "Sending your enquiry…";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.message || "Your enquiry could not be sent. Please try again or email us directly.");
+        }
+        form.reset();
+        status.dataset.state = "success";
+        status.textContent = "Thanks — your enquiry has been sent. The team will reply using the contact details you provided.";
+      } catch (error) {
+        status.dataset.state = "error";
+        status.textContent = error instanceof Error
+          ? error.message
+          : "We couldn't send your enquiry. Please try again or email info@eupathfinder.agency.";
+      } finally {
+        button.disabled = false;
+        form.removeAttribute("aria-busy");
+      }
+    });
+  });
 }
 
 function getAssistantReply(question) {
@@ -876,6 +1177,7 @@ const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.tes
   : pathname.split("/").pop();
 const currentCountry = countries.find((country) => country.slug === path);
 const currentWorkerMarket = workerMarkets.find((market) => market.slug === path);
+const currentGuide = guides.find((guide) => guide.slug === path);
 const main = document.querySelector("#main");
 
 if (!path) {
@@ -888,9 +1190,13 @@ if (!path) {
 } else if (currentWorkerMarket) {
   main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
   updatePageMetadata(null, currentWorkerMarket);
+} else if (currentGuide) {
+  main.innerHTML = renderGuidePage(currentGuide);
+  updatePageMetadata(null, null, currentGuide);
 } else {
   main.innerHTML = renderNotFound();
   updatePageMetadata(null);
 }
 
 setupWebsiteAssistant();
+setupEnquiryForms();

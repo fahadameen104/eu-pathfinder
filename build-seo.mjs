@@ -16,18 +16,26 @@ const assetVersion = createHash("sha256")
   .slice(0, 12);
 const countryData = script.match(/^const countries = \[([\s\S]*?)^\];/m)?.[1];
 const workerMarketData = script.match(/^const workerMarkets = \[([\s\S]*?)^\];/m)?.[1];
-if (!countryData || !workerMarketData) {
-  throw new Error("Could not find country or worker-market routes in script.js.");
+const guideData = script.match(/^const guides = \[([\s\S]*?)^\];/m)?.[1];
+if (!countryData || !workerMarketData || !guideData) {
+  throw new Error("Could not find country, worker-market or guide routes in script.js.");
 }
 const countrySlugs = [...countryData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
   .map((match) => match[1]);
 const workerMarketSlugs = [...workerMarketData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
   .map((match) => match[1]);
-const routeSlugs = [...countrySlugs, ...workerMarketSlugs];
-if (!countrySlugs.length || !workerMarketSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
-  throw new Error("Country or worker-market slugs are missing or duplicated.");
+const guideSlugs = [...guideData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
+  .map((match) => match[1]);
+const routeSlugs = [...countrySlugs, ...workerMarketSlugs, ...guideSlugs];
+if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
+  throw new Error("Country, worker-market or guide slugs are missing or duplicated.");
 }
-const paths = ["/", ...routeSlugs.map((slug) => `/${slug}`)];
+const paths = [
+  "/",
+  ...countrySlugs.map((slug) => `/${slug}`),
+  ...workerMarketSlugs.map((slug) => `/${slug}`),
+  ...guideSlugs.map((slug) => `/guides/${slug}`)
+];
 
 function createElement() {
   return {
