@@ -137,7 +137,7 @@ for (const pathname of paths) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${paths.map((pathname) => `  <url><loc>https://eupathfinder.agency${pathname === "/" ? "/" : pathname}</loc></url>`).join("\n")}
+${paths.map((pathname) => `  <url><loc>https://eupathfinder.agency${pathname === "/" ? "/" : `${pathname}/`}</loc></url>`).join("\n")}
 </urlset>
 `;
 await writeFile(new URL("sitemap.xml", publicDir), sitemap, "utf8");

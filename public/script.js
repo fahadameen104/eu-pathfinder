@@ -414,14 +414,14 @@ function renderGuideCards() {
         <div class="guide-card-grid">
           ${guides.map((guide) => `
             <article class="guide-card">
-              <a class="guide-card-image" href="/guides/${guide.slug}" tabindex="-1" aria-hidden="true">
+              <a class="guide-card-image" href="/guides/${guide.slug}/" tabindex="-1" aria-hidden="true">
                 <img src="${guide.image}" alt="" width="700" height="440" loading="lazy" decoding="async">
                 <span>Worker guide</span>
               </a>
               <div class="guide-card-copy">
-                <h3><a href="/guides/${guide.slug}">${escapeHtml(guide.title)}</a></h3>
+                <h3><a href="/guides/${guide.slug}/">${escapeHtml(guide.title)}</a></h3>
                 <p>${escapeHtml(guide.summary)}</p>
-                <a class="text-link" href="/guides/${guide.slug}">Read the guide <span aria-hidden="true">↗</span></a>
+                <a class="text-link" href="/guides/${guide.slug}/">Read the guide <span aria-hidden="true">↗</span></a>
               </div>
             </article>`).join("")}
         </div>
@@ -497,7 +497,7 @@ function renderDestinationCard(country) {
   return `
     <a
       class="destination-card"
-      href="/${country.slug}"
+      href="/${country.slug}/"
       data-region="${escapeHtml(country.region)}"
       data-search="${escapeHtml(`${country.name} ${country.region} ${country.landmark}`.toLowerCase())}"
       style="--country-a:${country.colors[0]};--country-b:${country.colors[1]}"
@@ -571,7 +571,7 @@ function renderHome() {
           <a
             class="featured-place"
             id="featured-destination"
-            href="/${featured.slug}"
+            href="/${featured.slug}/"
             style="--country-a:${featured.colors[0]};--country-b:${featured.colors[1]}"
           >
             <span class="featured-flag"><img id="featured-flag" src="${getFlag(featured, 80)}" alt="" width="36" height="27"></span>
@@ -631,7 +631,7 @@ function renderHome() {
           <div><h2 id="worker-markets-title">Planning to work in Europe from Asia or the Gulf?</h2><p class="section-lead">Start with guidance for applicants in your country or current place of residence, then compare European destinations and their requirements.</p></div>
         </div>
         <div class="destination-pills">
-          ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
+          ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}/"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
         </div>
       </div>
     </section>
@@ -699,7 +699,7 @@ function renderDestinationPills(currentSlug) {
   return countries
     .filter((country) => country.slug !== currentSlug)
     .map((country) => `
-      <a class="destination-pill" href="/${country.slug}">
+      <a class="destination-pill" href="/${country.slug}/">
         <img class="flag" src="${getFlag(country, 40)}" alt="" width="27" height="20" loading="lazy">
         <span>${escapeHtml(country.name)}</span>
       </a>`)
@@ -915,7 +915,7 @@ function updatePageMetadata(country, market, guide) {
   document.querySelector('meta[name="description"]').setAttribute("content", description);
   document.querySelector('link[rel="canonical"]').setAttribute(
     "href",
-    `https://eupathfinder.agency${canonicalPath ? `/${canonicalPath}` : "/"}`
+    `https://eupathfinder.agency${canonicalPath ? `/${canonicalPath}/` : "/"}`
   );
 }
 
@@ -960,7 +960,7 @@ function setupHomeInteractions() {
       document.querySelector("#featured-flag").src = getFlag(country);
       document.querySelector("#featured-name").textContent = country.name;
       document.querySelector("#featured-landmark").textContent = country.landmark;
-      featured.href = `/${country.slug}`;
+      featured.href = `/${country.slug}/`;
       featured.style.setProperty("--country-a", country.colors[0]);
       featured.style.setProperty("--country-b", country.colors[1]);
     });
@@ -1045,7 +1045,7 @@ function getAssistantReply(question) {
   if (country) {
     return answer(
       `${country.intro} The guide lists typical sectors such as ${country.sectors.join(", ")}. Current openings and eligibility are confirmed case by case; this guide is general information, not a visa decision.`,
-      { href: `/${country.slug}`, label: `Read the ${country.name} guide` }
+      { href: `/${country.slug}/`, label: `Read the ${country.name} guide` }
     );
   }
 
