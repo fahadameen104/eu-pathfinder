@@ -281,7 +281,12 @@ const illustrativePhotos = {
 };
 
 function illustrativePhotoUrl(photo, width) {
+  if (!photo.url.startsWith("https://images.unsplash.com/")) return photo.url;
   return `${photo.url}?auto=format&fit=crop&w=${width}&q=68`;
+}
+
+function sectionPhotoStyle(photo) {
+  return `style="--section-photo:url('${escapeHtml(illustrativePhotoUrl(photo, 1800))}')"`;
 }
 
 function renderIllustrativePhoto(photo, sizes) {
@@ -311,13 +316,17 @@ function renderIllustrativePhoto(photo, sizes) {
     </figure>`;
 }
 
-function renderPeoplePhotoSection(photos, heading = "People, planning, and work in motion") {
+function renderPeoplePhotoSection(
+  photos,
+  heading = "People, planning, and work in motion",
+  backdropPhoto = illustrativePhotos.transport
+) {
   const imageSizes = photos.length > 2
     ? "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 25vw"
     : "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 45vw";
 
   return `
-    <section class="section people-photo-section" aria-labelledby="people-photo-title">
+    <section class="section people-photo-section photo-backed-section" ${sectionPhotoStyle(backdropPhoto)} aria-labelledby="people-photo-title">
       <div class="wrap">
         <div class="people-photo-heading">
           <h2 id="people-photo-title">${escapeHtml(heading)}</h2>
@@ -388,12 +397,13 @@ function renderContactSection({
   id = "contact"
 } = {}) {
   return `
-    <section class="contact-section" id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
+    <section class="contact-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
       <div class="wrap contact-layout">
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
           <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? +1 469 626 8272 <span aria-hidden="true">↗</span></a>
+          <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
             <figcaption>Illustration · travel documents shown are fictional</figcaption>
@@ -406,7 +416,7 @@ function renderContactSection({
 
 function renderGuideCards() {
   return `
-    <section class="section guide-library" id="worker-guides" aria-labelledby="worker-guides-title">
+    <section class="section guide-library photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="worker-guides" aria-labelledby="worker-guides-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Straightforward reading on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
@@ -433,6 +443,7 @@ function renderGuidePage(guide) {
   return `
     <article class="guide-page">
       <header class="guide-hero" style="--hero-photo:url('${escapeHtml(illustrativePhotoUrl(illustrativePhotos.consultation, 1800))}')">
+        <span class="hero-photo-backdrop" aria-hidden="true"></span>
         <div class="wrap guide-hero-layout">
           <div>
             <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -451,12 +462,12 @@ function renderGuidePage(guide) {
       <div class="wrap guide-content-layout">
         <div class="guide-content">
           ${guide.sections.map((section) => `
-            <section class="guide-section">
+            <section class="guide-section photo-backed-section" ${sectionPhotoStyle(guide.slug === "europe-hospitality-jobs" ? illustrativePhotos.logistics : illustrativePhotos.agriculture)}>
               <h2>${escapeHtml(section.heading)}</h2>
               ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
               ${section.bullets ? `<ul class="check-list">${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
             </section>`).join("")}
-          <section class="guide-resources" aria-labelledby="guide-resources-title">
+          <section class="guide-resources photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} aria-labelledby="guide-resources-title">
             <h2 id="guide-resources-title">Official starting points</h2>
             <p>Rules change and depend on the destination. Check current details directly with official sources.</p>
             <ul>${guide.resources.map((resource) => `<li><a href="${escapeHtml(resource.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.label)} <span aria-hidden="true">↗</span></a></li>`).join("")}</ul>
@@ -553,6 +564,7 @@ function renderHome() {
   const heroPhoto = `${illustrativePhotos.consultation.url}?auto=format&fit=crop&w=1800&q=78`;
   return `
     <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}')" aria-labelledby="home-title">
+      <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap hero-inner">
         <figure class="hero-travel-art">
           <img src="/travel-planning.svg" alt="Illustration of a woman planning a journey at a laptop with coffee and fictional travel documents." width="700" height="440" fetchpriority="high">
@@ -585,7 +597,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="proof-strip" aria-label="How EU Pathfinder supports you">
+    <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} aria-label="How EU Pathfinder supports you">
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Employer and document review</strong><p>Opportunities and paperwork are reviewed carefully as part of our support.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct WhatsApp support</strong><p>Message an adviser any time with questions about your application.</p></div></div>
@@ -596,9 +608,9 @@ function renderHome() {
       illustrativePhotos.agriculture,
       illustrativePhotos.logistics,
       illustrativePhotos.transport
-    ], "A human conversation. A clearer path to work.")}
+    ], "A human conversation. A clearer path to work.", illustrativePhotos.construction)}
 
-    <section class="section destinations-section" id="destinations" aria-labelledby="destinations-title">
+    <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Open any country to see typical sectors, commonly requested documents and how our process works there.</p></div>
@@ -625,7 +637,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="section other-destinations" id="worker-markets" aria-labelledby="worker-markets-title">
+    <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="worker-markets-title">Planning to work in Europe from Asia or the Gulf?</h2><p class="section-lead">Start with guidance for applicants in your country or current place of residence, then compare European destinations and their requirements.</p></div>
@@ -638,7 +650,7 @@ function renderHome() {
 
     ${renderGuideCards()}
 
-    <section class="section process-section" id="how" aria-labelledby="process-title">
+    <section class="section process-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="how" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="process-title">A clear path from first message to arrival</h2><p class="section-lead">Seven stages, each explained before you begin.</p></div>
@@ -647,7 +659,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="section services-section" id="services" aria-labelledby="services-title">
+    <section class="section services-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.construction)} id="services" aria-labelledby="services-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="services-title">Support beyond the core process</h2><p class="section-lead">Add the help you need, when you need it.</p></div>
@@ -658,7 +670,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
+    <section class="pricing-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="pricing" aria-labelledby="pricing-title">
       <div class="wrap pricing-layout">
         <div><h2 id="pricing-title">Fees and pricing</h2><p>Our fees vary by destination, role and the level of support you need. For current rates and a clear breakdown, contact us on WhatsApp and an adviser will share the details with you directly.</p></div>
         <a class="button button-gold" href="${whatsAppLink("Hello EU Pathfinder, I would like to know about current fees and pricing.")}" target="_blank" rel="noopener noreferrer">Ask about pricing <span aria-hidden="true">↗</span></a>
@@ -666,7 +678,7 @@ function renderHome() {
       <div class="wrap">${renderBankDetails()}</div>
     </section>
 
-    <section class="section candidate-review" id="candidate-review" aria-labelledby="candidate-review-title">
+    <section class="section candidate-review photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="candidate-review" aria-labelledby="candidate-review-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="candidate-review-title">Review an opportunity before you commit</h2><p class="section-lead">A few independent checks can help you make a more informed decision about a job, an intermediary and the next step.</p></div>
@@ -682,7 +694,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+    <section class="section faq-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="faq" aria-labelledby="faq-title">
       <div class="wrap">
         <div class="section-heading"><div><h2 id="faq-title">Questions before you start</h2></div></div>
         ${renderFaqs()}
@@ -716,6 +728,7 @@ function renderCountryPage(country) {
 
   return `
     <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto};--hero-photo:${heroPhoto}" aria-labelledby="country-title">
+      <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#destinations">Destinations</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(country.name)}</span>
@@ -736,9 +749,9 @@ function renderCountryPage(country) {
     ${renderPeoplePhotoSection([
       illustrativePhotos.consultation,
       getCountryWorkPhoto(country)
-    ], `People and work in ${country.name}`)}
+    ], `People and work in ${country.name}`, getCountryWorkPhoto(country))}
 
-    <section class="section" aria-label="Work and relocation information for ${escapeHtml(country.name)}">
+    <section class="section photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))} aria-label="Work and relocation information for ${escapeHtml(country.name)}">
       <div class="wrap country-content">
         <div class="country-main">
           <h2>Work routes</h2>
@@ -771,7 +784,7 @@ function renderCountryPage(country) {
       </div>
     </section>
 
-    <section class="section other-destinations">
+    <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))}>
       <div class="wrap">
         <h2>Other destinations</h2>
         <p>Explore another destination to see its typical sectors, commonly requested documents and process information.</p>
@@ -797,6 +810,7 @@ function renderWorkerMarketPage(market) {
 
   return `
     <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto}" aria-labelledby="worker-market-title">
+      <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <img class="worker-travel-art" src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" fetchpriority="high">
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -811,9 +825,9 @@ function renderWorkerMarketPage(market) {
     ${renderPeoplePhotoSection([
       illustrativePhotos.consultation,
       workerPhoto
-    ], "Plan with care. Explore work with confidence.")}
+    ], "Plan with care. Explore work with confidence.", workerPhoto)}
 
-    <section class="section" aria-label="European work guidance for applicants in ${escapeHtml(market.country)}">
+    <section class="section photo-backed-section" ${sectionPhotoStyle(workerPhoto)} aria-label="European work guidance for applicants in ${escapeHtml(market.country)}">
       <div class="wrap country-content">
         <div class="country-main">
           <h2>Start with a real role and destination</h2>
@@ -872,7 +886,7 @@ function renderWorkerMarketPage(market) {
       description: "Share your nationality, contact details and the kind of work you are exploring. Requirements depend on the destination and your circumstances."
     })}
 
-    <section class="section other-destinations" aria-labelledby="market-destinations-title">
+    <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(workerPhoto)} aria-labelledby="market-destinations-title">
       <div class="wrap">
         <h2 id="market-destinations-title">Explore European work destinations</h2>
         <p>Read the country guides for typical sectors, general work-route information and documents to discuss.</p>
@@ -883,7 +897,7 @@ function renderWorkerMarketPage(market) {
 
 function renderNotFound() {
   return `
-    <section class="not-found wrap">
+    <section class="not-found wrap photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)}>
       <h1>We couldn't find that destination.</h1>
       <p>Choose from our 35 destination guides to explore typical sectors, documents and next steps.</p>
       <a class="button button-gold" href="/#destinations">Browse destinations</a>

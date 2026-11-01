@@ -213,20 +213,37 @@ svg {
 
 .home-hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   background:
     radial-gradient(ellipse at 50% 20%, rgba(71, 165, 143, 0.2), transparent 48%),
     linear-gradient(90deg, rgba(16, 33, 29, 0.84) 0%, rgba(16, 33, 29, 0.72) 36%, rgba(16, 33, 29, 0.46) 68%, rgba(16, 33, 29, 0.3) 100%),
-    var(--hero-photo, none),
     linear-gradient(125deg, #10211d 0%, #18332f 58%, #142a25 100%);
-  background-position: center, center, right center, center;
+  background-position: center, center, center;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff;
 }
 
+.hero-photo-backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: -14px;
+  background-image:
+    linear-gradient(90deg, rgba(16, 33, 29, 0.76) 0%, rgba(16, 33, 29, 0.58) 52%, rgba(16, 33, 29, 0.38) 100%),
+    var(--hero-photo, none),
+    var(--country-photo, none);
+  background-position: center, center, center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  transform: scale(1.025);
+  pointer-events: none;
+}
+
 .home-hero::before {
   position: absolute;
+  z-index: 1;
   inset: 0;
   background: url("/europe-map.svg") no-repeat calc(100% + 170px) 46%;
   background-size: min(75vw, 920px) auto;
@@ -237,6 +254,7 @@ svg {
 
 .home-hero::after {
   position: absolute;
+  z-index: 1;
   right: -105px;
   bottom: -240px;
   width: 580px;
@@ -250,7 +268,7 @@ svg {
 
 .hero-inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding-block: clamp(80px, 9.5vw, 148px) 57px;
 }
 
@@ -458,6 +476,40 @@ svg {
 
 .section {
   padding-block: clamp(76px, 9vw, 120px);
+}
+
+.photo-backed-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.photo-backed-section::before {
+  position: absolute;
+  z-index: 0;
+  inset: -12px;
+  background-image: var(--section-photo);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  transform: scale(1.025);
+  content: "";
+  pointer-events: none;
+}
+
+.photo-backed-section::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(16, 33, 29, 0.9), rgba(16, 33, 29, 0.82));
+  content: "";
+  pointer-events: none;
+}
+
+.photo-backed-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .people-photo-section {
@@ -1356,17 +1408,23 @@ svg {
 
 .guide-hero {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   background:
-    linear-gradient(110deg, rgba(16, 34, 30, 0.84) 0%, rgba(16, 34, 30, 0.72) 48%, rgba(16, 34, 30, 0.46) 100%),
     url("/europe-map.svg") no-repeat calc(100% + 80px) 25% / min(60vw, 700px) auto,
-    var(--hero-photo, none) center / cover no-repeat,
     linear-gradient(125deg, #10221e, #18332f 70%, #21483d);
   color: #fff;
 }
 
+.guide-hero .hero-photo-backdrop {
+  background-image:
+    linear-gradient(110deg, rgba(16, 34, 30, 0.78) 0%, rgba(16, 34, 30, 0.66) 48%, rgba(16, 34, 30, 0.5) 100%),
+    var(--hero-photo, none);
+}
+
 .guide-hero-layout {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
   gap: clamp(36px, 6vw, 85px);
@@ -1969,13 +2027,11 @@ svg {
 
 .country-hero {
   position: relative;
+  isolation: isolate;
   min-height: 645px;
   overflow: hidden;
   background-color: var(--country-a);
   background-image:
-    linear-gradient(115deg, rgba(5, 23, 47, 0.84) 0%, rgba(6, 27, 55, 0.68) 48%, rgba(6, 27, 55, 0.46) 100%),
-    var(--hero-photo, none),
-    var(--country-photo, none),
     linear-gradient(130deg, var(--country-a), var(--country-b));
   background-position: center;
   background-repeat: no-repeat;
@@ -1983,8 +2039,15 @@ svg {
   color: #fff;
 }
 
+.country-hero .hero-photo-backdrop {
+  background-image:
+    linear-gradient(115deg, rgba(5, 23, 47, 0.72) 0%, rgba(6, 27, 55, 0.56) 48%, rgba(6, 27, 55, 0.42) 100%),
+    var(--hero-photo, none);
+}
+
 .country-hero::after {
   position: absolute;
+  z-index: 1;
   right: -100px;
   bottom: -290px;
   width: 700px;
@@ -1998,7 +2061,7 @@ svg {
 
 .country-hero .wrap {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding-block: 45px 90px;
 }
 
