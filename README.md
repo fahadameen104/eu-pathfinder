@@ -1,6 +1,6 @@
 # EU Pathfinder
 
-A responsive website for EU Pathfinder with 35 European destination guides, 11 worker-market landing pages for South Asia and the Gulf, and practical hospitality and entry-level work guides. It includes work-route guidance, document checklists, support services, pricing information, FAQs, WhatsApp and email contact, and an enquiry form.
+A responsive website for EU Pathfinder with European destination guides, worker-market landing pages for South Asia and the Gulf, and practical hospitality and entry-level work guides. It includes work-route guidance, document checklists, support services, pricing information, FAQs, WhatsApp and email contact, and an enquiry form. Country guides link to destination-filtered EURES searches where supported; live vacancy details and any advertised salary remain on the employer's current listing.
 
 Destination, worker-market and guide content live in `public\script.js`; `build-seo.mjs` prerenders the homepage and all routes into HTML with page-specific titles, descriptions, canonical URLs, and social metadata. It also generates the sitemap. Destination photos are from Wikipedia and Wikimedia Commons and are credited in the site footer; flag artwork supplies a fallback for destinations without a thumbnail. The original travel illustrations use fictional, non-official documents.
 

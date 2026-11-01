@@ -184,6 +184,12 @@ const countryPhotos = {
   italy: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg"
 };
 
+const euresCountryCodes = new Set([
+  "at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr",
+  "de", "gr", "hu", "ie", "it", "lv", "lt", "lu", "mt", "nl",
+  "pl", "pt", "ro", "sk", "si", "es", "se", "no", "ch"
+]);
+
 const processSteps = [
   ["Consultation and agreement", "We learn about your skills and goals, review your eligibility and agree on the service together."],
   ["Document collection and permit filing", "We help you gather and check your documents, then support the work permit application."],
@@ -718,6 +724,31 @@ function renderDestinationPills(currentSlug) {
     .join("");
 }
 
+function renderVacancySearchSection(country) {
+  const photo = getCountryWorkPhoto(country);
+  const supportsCountrySearch = euresCountryCodes.has(country.code);
+  const euresSearchUrl = `https://europa.eu/eures/portal/jv-se/search?page=1&resultsPerPage=10&orderBy=BEST_MATCH&locationCodes=${encodeURIComponent(country.code.toUpperCase())}&previousPageType=findJob&lang=en`;
+
+  return `
+    <section class="section vacancy-section photo-backed-section" ${sectionPhotoStyle(photo)} aria-labelledby="vacancies-title">
+      <div class="wrap vacancy-layout">
+        <figure class="vacancy-photo">
+          <img src="${escapeHtml(illustrativePhotoUrl(photo, 1000))}" alt="${escapeHtml(`Illustrative stock image: ${photo.alt}.`)}" width="1000" height="700" loading="lazy" decoding="async">
+          <figcaption>Illustrative stock photo; not tied to a specific vacancy.</figcaption>
+        </figure>
+        <div class="vacancy-copy">
+          <h2 id="vacancies-title">Current job listings in ${escapeHtml(country.name)}</h2>
+          <p>Search live vacancies published through EURES, the European job mobility portal. Open each listing to check the employer, location, requirements, contract and salary where provided.</p>
+          ${supportsCountrySearch
+            ? `<a class="button button-gold" href="${euresSearchUrl}" target="_blank" rel="noopener noreferrer">Browse ${escapeHtml(country.name)} vacancies on EURES <span aria-hidden="true">↗</span></a>`
+            : `<p class="vacancy-availability">A destination-filtered EURES search is not available here for ${escapeHtml(country.name)}. Check the portal's country coverage and job-search guidance before relying on listings.</p>
+              <a class="text-link" href="https://eures.europa.eu/jobseekers_en" target="_blank" rel="noopener noreferrer">EURES jobseeker information <span aria-hidden="true">↗</span></a>`}
+          <p class="vacancy-disclaimer">Vacancies can close or change without notice. EU Pathfinder does not verify or guarantee third-party job offers; confirm details directly with the employer and relevant authorities.</p>
+        </div>
+      </div>
+    </section>`;
+}
+
 function renderCountryPage(country) {
   const contactMessage = `Hello EU Pathfinder, I would like information about working in ${country.name}, including current fees.`;
   const contactUrl = whatsAppLink(contactMessage);
@@ -783,6 +814,8 @@ function renderCountryPage(country) {
         </aside>
       </div>
     </section>
+
+    ${renderVacancySearchSection(country)}
 
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))}>
       <div class="wrap">
