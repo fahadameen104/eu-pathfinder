@@ -913,6 +913,7 @@ function renderWorkerMarketPage(market) {
             <h2>Ask about working in Europe from ${escapeHtml(market.country)}</h2>
             <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
             <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">Ask EU Pathfinder on WhatsApp</a>
+            <p class="side-phone"><a href="${whatsAppLink(contactMessage, alternateWhatsAppNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp: ${alternateWhatsAppDisplay}</a></p>
             <p class="side-phone"><a href="tel:${contactPhoneNumber}">${contactPhoneDisplay}</a></p>
             <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
             ${renderBankDetails(true)}
