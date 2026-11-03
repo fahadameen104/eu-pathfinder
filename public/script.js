@@ -2,6 +2,8 @@ const contactEmail = "info@eupathfinder.agency";
 const contactPhoneNumber = "+12899143132";
 const contactPhoneDisplay = "+1 289 914 3132";
 const whatsappNumber = "12899143132";
+const alternateWhatsAppNumber = "14696268272";
+const alternateWhatsAppDisplay = "+1 469 626 8272";
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -47,12 +49,13 @@ const workerMarkets = [
   { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", planningNote: "For applicants in Bangladesh, keep copies of your passport, CV and experience records ready for an initial discussion. A document checklist is only a starting point; the destination authority sets the actual requirements." },
   { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", planningNote: "If you are a Malaysian citizen or live in Malaysia as a foreign national, your passport nationality and current legal residence may affect where you can submit a visa application. Confirm the rules with the destination's official authority." },
   { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", planningNote: "Applicants in Nepal should evaluate each vacancy against their actual qualifications and experience. Confirm that the employer and role are genuine, and check current work-visa instructions through official sources." },
-  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian workers living in Saudi Arabia", titleAudience: "Workers in Saudi Arabia", planningNote: "If you are a South Asian national living in Saudi Arabia, check both your current residence status and the European destination's rules on where non-citizens may apply. Residence in Saudi Arabia does not itself grant permission to work in Europe." },
-  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian workers living in the UAE", titleAudience: "Workers in the UAE", planningNote: "If you are a South Asian national living in the UAE, verify whether the European destination accepts applications from residents with your nationality and status. A UAE residence permit is not a European work permit." },
-  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian workers living in Oman", titleAudience: "Workers in Oman", planningNote: "If you are a South Asian national based in Oman, confirm where you are eligible to submit the destination country's visa application and which residence documents are required. Check with the official embassy or visa authority." },
-  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian workers living in Qatar", titleAudience: "Workers in Qatar", planningNote: "If you are a South Asian national living in Qatar, check whether the European destination processes applications from residents in Qatar and what proof of residence it requires. Procedures can differ between destinations." },
-  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian workers living in Kuwait", titleAudience: "Workers in Kuwait", planningNote: "If you are a South Asian national resident in Kuwait, verify the destination's rules for applying from Kuwait before making travel or appointment plans. Your nationality and valid local residence status may both matter." },
-  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian workers living in Bahrain", titleAudience: "Workers in Bahrain", planningNote: "If you are a South Asian national living in Bahrain, check the destination country's official process for applicants residing there, including any residence-validity requirements, before paying fees or booking travel." }
+  { slug: "europe-jobs-from-sri-lanka", country: "Sri Lanka", audience: "Sri Lankan workers", titleAudience: "Sri Lankan Workers", planningNote: "If you are applying from Sri Lanka, compare each role with your actual skills and experience, and verify the employer and written offer independently. Check the European destination's current work-permit and visa instructions through its official authorities." },
+  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian workers living in Saudi Arabia", titleAudience: "South Asian Workers in Saudi Arabia", planningNote: "If you are a South Asian national living in Saudi Arabia, check both your current residence status and the European destination's rules on where non-citizens may apply. Residence in Saudi Arabia does not itself grant permission to work in Europe." },
+  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian workers living in the UAE", titleAudience: "South Asian Workers in the UAE", planningNote: "If you are a South Asian national living in the UAE, verify whether the European destination accepts applications from residents with your nationality and status. A UAE residence permit is not a European work permit." },
+  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian workers living in Oman", titleAudience: "South Asian Workers in Oman", planningNote: "If you are a South Asian national based in Oman, confirm where you are eligible to submit the destination country's visa application and which residence documents are required. Check with the official embassy or visa authority." },
+  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian workers living in Qatar", titleAudience: "South Asian Workers in Qatar", planningNote: "If you are a South Asian national living in Qatar, check whether the European destination processes applications from residents in Qatar and what proof of residence it requires. Procedures can differ between destinations." },
+  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian workers living in Kuwait", titleAudience: "South Asian Workers in Kuwait", planningNote: "If you are a South Asian national resident in Kuwait, verify the destination's rules for applying from Kuwait before making travel or appointment plans. Your nationality and valid local residence status may both matter." },
+  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian workers living in Bahrain", titleAudience: "South Asian Workers in Bahrain", planningNote: "If you are a South Asian national living in Bahrain, check the destination country's official process for applicants residing there, including any residence-validity requirements, before paying fees or booking travel." }
 ];
 
 const guides = [
@@ -254,8 +257,8 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => (
 
 const getFlag = (country, size = 80) => `https://flagcdn.com/w${size}/${country.code}.png`;
 
-const whatsAppLink = (message) =>
-  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+const whatsAppLink = (message, number = whatsappNumber) =>
+  `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 
 const generalWhatsAppMessage =
   "Hello EU Pathfinder, I would like to know more about your services and current fees.";
@@ -410,7 +413,8 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Message us on WhatsApp: ${contactPhoneDisplay} <span aria-hidden="true">↗</span></a>
+          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp (Telnyx): ${contactPhoneDisplay} <span aria-hidden="true">↗</span></a>
+          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage, alternateWhatsAppNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp: ${alternateWhatsAppDisplay} <span aria-hidden="true">↗</span></a>
           <a class="contact-email" href="tel:${contactPhoneNumber}">Call us at ${contactPhoneDisplay}</a>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
@@ -649,7 +653,7 @@ function renderHome() {
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-markets-title">Planning to work in Europe from Asia or the Gulf?</h2><p class="section-lead">Start with guidance for applicants in your country or current place of residence, then compare European destinations and their requirements.</p></div>
+          <div><h2 id="worker-markets-title">Planning to work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh, Nepal and Sri Lanka, or South Asian workers living in a Gulf country. Then compare European destinations and verify their current requirements.</p></div>
         </div>
         <div class="destination-pills">
           ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}/"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
