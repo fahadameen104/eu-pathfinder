@@ -30,6 +30,37 @@ function decodeBase64(value) {
   }
 }
 
+async function readLimitedBody(request, maximumBytes) {
+  if (!request.body) {
+    return "";
+  }
+
+  const reader = request.body.getReader();
+  const chunks = [];
+  let totalBytes = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) {
+      break;
+    }
+
+    totalBytes += value.byteLength;
+    if (totalBytes > maximumBytes) {
+      await reader.cancel();
+      return null;
+    }
+    chunks.push(value);
+  }
+
+  const body = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    body.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(body);
+}
+
 async function isValidTelnyxWebhook(request, rawBody) {
   const signature = request.headers.get("telnyx-signature-ed25519");
   const timestamp = request.headers.get("telnyx-timestamp");
@@ -77,8 +108,13 @@ export async function onRequestPost({ request, env }) {
     return jsonResponse(415, { ok: false });
   }
 
-  const rawBody = await request.text();
-  if (new TextEncoder().encode(rawBody).length > 65536) {
+  let rawBody;
+  try {
+    rawBody = await readLimitedBody(request, 65536);
+  } catch {
+    return jsonResponse(400, { ok: false });
+  }
+  if (rawBody === null) {
     return jsonResponse(413, { ok: false });
   }
 
@@ -131,7 +167,8 @@ export async function onRequestPost({ request, env }) {
       method: "POST",
       headers: {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        ...(typeof data.id === "string" ? { "Idempotency-Key": `telnyx-${data.id}` } : {})
       },
       body: JSON.stringify({
         from: env.RESEND_FROM_EMAIL,
