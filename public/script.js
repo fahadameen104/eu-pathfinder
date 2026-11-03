@@ -1,5 +1,7 @@
 const contactEmail = "info@eupathfinder.agency";
-const whatsappNumber = "14696268272";
+const contactPhoneNumber = "+12899143132";
+const contactPhoneDisplay = "+1 289 914 3132";
+const whatsappNumber = "12899143132";
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -408,7 +410,8 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Prefer WhatsApp? +1 469 626 8272 <span aria-hidden="true">↗</span></a>
+          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Message us on WhatsApp: ${contactPhoneDisplay} <span aria-hidden="true">↗</span></a>
+          <a class="contact-email" href="tel:${contactPhoneNumber}">Call us at ${contactPhoneDisplay}</a>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
@@ -808,7 +811,7 @@ function renderCountryPage(country) {
               <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
               Message us on WhatsApp
             </a>
-            <p class="side-phone">+1 469 626 8272</p>
+            <p class="side-phone"><a href="tel:${contactPhoneNumber}">${contactPhoneDisplay}</a></p>
             ${renderBankDetails(true)}
           </div>
         </aside>
@@ -906,6 +909,7 @@ function renderWorkerMarketPage(market) {
             <h2>Ask about working in Europe from ${escapeHtml(market.country)}</h2>
             <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
             <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">Ask EU Pathfinder on WhatsApp</a>
+            <p class="side-phone"><a href="tel:${contactPhoneNumber}">${contactPhoneDisplay}</a></p>
             <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
             ${renderBankDetails(true)}
           </div>
