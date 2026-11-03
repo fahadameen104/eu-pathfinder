@@ -1,9 +1,8 @@
 const contactEmail = "info@eupathfinder.agency";
 const contactPhoneNumber = "+12899143132";
 const contactPhoneDisplay = "+1 289 914 3132";
-const whatsappNumber = "12899143132";
-const alternateWhatsAppNumber = "14696268272";
-const alternateWhatsAppDisplay = "+1 469 626 8272";
+const whatsappNumber = "14696268272";
+const whatsappDisplay = "+1 469 626 8272";
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -49,7 +48,6 @@ const workerMarkets = [
   { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", planningNote: "For applicants in Bangladesh, keep copies of your passport, CV and experience records ready for an initial discussion. A document checklist is only a starting point; the destination authority sets the actual requirements." },
   { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", planningNote: "If you are a Malaysian citizen or live in Malaysia as a foreign national, your passport nationality and current legal residence may affect where you can submit a visa application. Confirm the rules with the destination's official authority." },
   { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", planningNote: "Applicants in Nepal should evaluate each vacancy against their actual qualifications and experience. Confirm that the employer and role are genuine, and check current work-visa instructions through official sources." },
-  { slug: "europe-jobs-from-sri-lanka", country: "Sri Lanka", audience: "Sri Lankan workers", titleAudience: "Sri Lankan Workers", planningNote: "If you are applying from Sri Lanka, compare each role with your actual skills and experience, and verify the employer and written offer independently. Check the European destination's current work-permit and visa instructions through its official authorities." },
   { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian workers living in Saudi Arabia", titleAudience: "South Asian Workers in Saudi Arabia", planningNote: "If you are a South Asian national living in Saudi Arabia, check both your current residence status and the European destination's rules on where non-citizens may apply. Residence in Saudi Arabia does not itself grant permission to work in Europe." },
   { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian workers living in the UAE", titleAudience: "South Asian Workers in the UAE", planningNote: "If you are a South Asian national living in the UAE, verify whether the European destination accepts applications from residents with your nationality and status. A UAE residence permit is not a European work permit." },
   { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian workers living in Oman", titleAudience: "South Asian Workers in Oman", planningNote: "If you are a South Asian national based in Oman, confirm where you are eligible to submit the destination country's visa application and which residence documents are required. Check with the official embassy or visa authority." },
@@ -413,9 +411,8 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp (Telnyx): ${contactPhoneDisplay} <span aria-hidden="true">↗</span></a>
-          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage, alternateWhatsAppNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp: ${alternateWhatsAppDisplay} <span aria-hidden="true">↗</span></a>
-          <a class="contact-email" href="tel:${contactPhoneNumber}">Call us at ${contactPhoneDisplay}</a>
+          <a class="contact-whatsapp" href="tel:${contactPhoneNumber}">Call us: ${contactPhoneDisplay}</a>
+          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp us: ${whatsappDisplay} <span aria-hidden="true">↗</span></a>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
@@ -653,7 +650,7 @@ function renderHome() {
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-markets-title">Planning to work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh, Nepal and Sri Lanka, or South Asian workers living in a Gulf country. Then compare European destinations and verify their current requirements.</p></div>
+          <div><h2 id="worker-markets-title">Planning to work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh, Malaysia and Nepal, or South Asian workers living in a Gulf country. Then compare European destinations and verify their current requirements.</p></div>
         </div>
         <div class="destination-pills">
           ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}/"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
@@ -912,9 +909,8 @@ function renderWorkerMarketPage(market) {
           <div class="side-card">
             <h2>Ask about working in Europe from ${escapeHtml(market.country)}</h2>
             <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
-            <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">Ask EU Pathfinder on WhatsApp</a>
-            <p class="side-phone"><a href="${whatsAppLink(contactMessage, alternateWhatsAppNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp: ${alternateWhatsAppDisplay}</a></p>
-            <p class="side-phone"><a href="tel:${contactPhoneNumber}">${contactPhoneDisplay}</a></p>
+              <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">WhatsApp us: ${whatsappDisplay}</a>
+              <p class="side-phone"><a href="tel:${contactPhoneNumber}">Call us: ${contactPhoneDisplay}</a></p>
             <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
             ${renderBankDetails(true)}
           </div>
@@ -953,14 +949,14 @@ function updatePageMetadata(country, market, guide) {
       ? `European Jobs for ${market.titleAudience} | EU Pathfinder`
       : country
         ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
-        : "Work in Europe | Jobs & Relocation Guidance | EU Pathfinder";
+        : "Europe Jobs & Work Permits | EU Pathfinder";
   const description = guide
     ? guide.description
     : market
       ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
       : country
         ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-        : "Job opportunities, work-permit guidance and relocation support across 35 European destinations, with an adviser beside you from first message to arrival.";
+        : "Explore European job and work-permit guidance for applicants in Pakistan, India, Bangladesh, Nepal and Malaysia, plus South Asian residents in Gulf countries.";
   const canonicalPath = guide
     ? `guides/${guide.slug}`
     : market

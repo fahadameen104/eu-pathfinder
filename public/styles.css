@@ -211,6 +211,15 @@ svg {
   border-radius: 12px;
 }
 
+.button-call {
+  background: #fff;
+  color: var(--navy-deep);
+}
+
+.button-call:hover {
+  background: #e9efec;
+}
+
 .header-contact-links {
   display: flex;
   flex-wrap: wrap;
