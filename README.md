@@ -13,6 +13,8 @@ The enquiry form posts to a Cloudflare Pages Function at `functions\api\enquiry.
 
 Never put the Resend API key in `public\` files or client-side code. Form submissions contain the visitor's name, email, nationality, WhatsApp number and optional message; they pass through Cloudflare Pages and Resend before delivery to the business inbox.
 
+Inbound SMS to the Telnyx number `+1 289 914 3132` can be delivered to `info@eupathfinder.agency` by assigning the number to a Telnyx Messaging Profile with the webhook URL `https://eupathfinder.agency/api/telnyx-inbound`. The Pages Function verifies Telnyx's Ed25519 signature, forwards only inbound messages addressed to that number through the existing Resend configuration, and does not persist or log message content. Configure the profile for API V2 and limit allowed outbound destinations to those the business needs; inbound SMS and verification-code delivery are still subject to carrier and WhatsApp support.
+
 ## Run locally
 
 Run `node build-seo.mjs` to generate the static destination pages, then serve the `public` folder with any static file server. Opening `public\index.html` directly still works for the homepage.
