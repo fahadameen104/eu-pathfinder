@@ -43,76 +43,20 @@ const countries = [
 ];
 
 const workerMarkets = [
-  { slug: "europe-jobs-from-pakistan", country: "Pakistan", audience: "Pakistani workers", titleAudience: "Pakistani Workers", planningNote: "If you are applying from Pakistan, first match your skills and work history to a real role in a named European destination. Check the destination's official immigration and embassy guidance for the current process before paying an intermediary." },
-  { slug: "europe-jobs-from-india", country: "India", audience: "Indian workers", titleAudience: "Indian Workers", planningNote: "If you live in India, distinguish the employer's recruitment process from the destination country's work-permit and visa process. Verify the named employer, role and application instructions independently." },
-  { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", planningNote: "For applicants in Bangladesh, keep copies of your passport, CV and experience records ready for an initial discussion. A document checklist is only a starting point; the destination authority sets the actual requirements." },
-  { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", planningNote: "If you are a Malaysian citizen or live in Malaysia as a foreign national, your passport nationality and current legal residence may affect where you can submit a visa application. Confirm the rules with the destination's official authority." },
-  { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", planningNote: "Applicants in Nepal should evaluate each vacancy against their actual qualifications and experience. Confirm that the employer and role are genuine, and check current work-visa instructions through official sources." },
-  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian workers living in Saudi Arabia", titleAudience: "South Asian Workers in Saudi Arabia", planningNote: "If you are a South Asian national living in Saudi Arabia, check both your current residence status and the European destination's rules on where non-citizens may apply. Residence in Saudi Arabia does not itself grant permission to work in Europe." },
-  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian workers living in the UAE", titleAudience: "South Asian Workers in the UAE", planningNote: "If you are a South Asian national living in the UAE, verify whether the European destination accepts applications from residents with your nationality and status. A UAE residence permit is not a European work permit." },
-  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian workers living in Oman", titleAudience: "South Asian Workers in Oman", planningNote: "If you are a South Asian national based in Oman, confirm where you are eligible to submit the destination country's visa application and which residence documents are required. Check with the official embassy or visa authority." },
-  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian workers living in Qatar", titleAudience: "South Asian Workers in Qatar", planningNote: "If you are a South Asian national living in Qatar, check whether the European destination processes applications from residents in Qatar and what proof of residence it requires. Procedures can differ between destinations." },
-  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian workers living in Kuwait", titleAudience: "South Asian Workers in Kuwait", planningNote: "If you are a South Asian national resident in Kuwait, verify the destination's rules for applying from Kuwait before making travel or appointment plans. Your nationality and valid local residence status may both matter." },
-  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian workers living in Bahrain", titleAudience: "South Asian Workers in Bahrain", planningNote: "If you are a South Asian national living in Bahrain, check the destination country's official process for applicants residing there, including any residence-validity requirements, before paying fees or booking travel." }
+  { slug: "europe-jobs-from-pakistan", country: "Pakistan", audience: "Pakistani workers", titleAudience: "Pakistani Workers", seoTitle: "Jobs in Europe from Pakistan | EU Pathfinder", seoDescription: "Explore European work destinations from Pakistan. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from Pakistan, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances." },
+  { slug: "europe-jobs-from-india", country: "India", audience: "Indian workers", titleAudience: "Indian Workers", seoTitle: "Jobs in Europe from India | EU Pathfinder", seoDescription: "Explore European work destinations from India. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from India, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances." },
+  { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", seoTitle: "Jobs in Europe from Bangladesh | EU Pathfinder", seoDescription: "Explore European work destinations from Bangladesh. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from Bangladesh, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances." },
+  { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", seoTitle: "Jobs in Europe from Malaysia | EU Pathfinder", seoDescription: "Explore European work destinations from Malaysia. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from Malaysia, tell us about your work history and the kind of role you are seeking. Your nationality and residence status may affect application procedures." },
+  { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", seoTitle: "Jobs in Europe from Nepal | EU Pathfinder", seoDescription: "Explore European work destinations from Nepal. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from Nepal, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances." },
+  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian and African workers living in Saudi Arabia", titleAudience: "Workers in Saudi Arabia", diaspora: true, seoTitle: "Europe Jobs from Saudi Arabia | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Saudi Arabia. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Saudi Arabia, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian and African workers living in the UAE", titleAudience: "Workers in the UAE", diaspora: true, seoTitle: "Europe Jobs from the UAE | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in the UAE. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in the UAE, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian and African workers living in Oman", titleAudience: "Workers in Oman", diaspora: true, seoTitle: "Europe Jobs from Oman | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Oman. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Oman, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian and African workers living in Qatar", titleAudience: "Workers in Qatar", diaspora: true, seoTitle: "Europe Jobs from Qatar | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Qatar. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Qatar, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian and African workers living in Kuwait", titleAudience: "Workers in Kuwait", diaspora: true, seoTitle: "Europe Jobs from Kuwait | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Kuwait. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Kuwait, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian and African workers living in Bahrain", titleAudience: "Workers in Bahrain", diaspora: true, seoTitle: "Europe Jobs from Bahrain | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Bahrain. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Bahrain, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." }
 ];
 
 const guides = [
-  {
-    slug: "europe-jobs-for-african-workers",
-    title: "Jobs in Europe for African Workers: A Practical Guide",
-    description: "Explore how African applicants can search for European jobs, check country-specific work permits and verify an offer before paying.",
-    summary: "A practical guide to finding a real role, checking work-permit rules and protecting yourself during an international job search.",
-    image: "/travel-route.svg",
-    intro: "If you are exploring work in Europe from an African country, start with a named destination, a real employer and a specific role. Hiring and work-permit rules are set country by country; no single process applies across Europe.",
-    sections: [
-      {
-        heading: "Start with a real job and destination",
-        paragraphs: [
-          "Search for a specific role that matches your experience, then check the employer's full legal name, work location, duties, pay, hours and written terms. EURES is an official European job-mobility portal where you can explore vacancies and living and working information; a listing does not by itself confirm that a particular work-permit route is available to you.",
-          "Do not rely on a broad promise of a job anywhere in Europe. Ask which country, employer and role an adviser is discussing, and verify those details independently."
-        ]
-      },
-      {
-        heading: "Check the work-permit route with official sources",
-        paragraphs: [
-          "There is no one work permit that covers every European country. The destination country's authorities set the rules, and eligibility can depend on the role, employer, your nationality and where you legally live.",
-          "Before paying fees or making travel plans, check current instructions on the destination government's immigration website or with its embassy or consulate. If you live outside your country of citizenship, confirm where you are allowed to submit an application and what proof of residence is required."
-        ]
-      },
-      {
-        heading: "Verify recruiters, employers and costs",
-        bullets: [
-          "Get the employer's legal name, job location, duties, pay, hours and contract terms in writing.",
-          "Check the employer through independent sources and contact it using details you found yourself.",
-          "Ask any adviser or agency for its exact service scope, itemized fees, refund terms and invoice before agreeing or paying.",
-          "Be cautious of urgent payment demands, vague employers, requests to surrender your passport, or promises of guaranteed jobs, permits or visas.",
-          "The International Labour Organization's fair-recruitment guidance is a useful reference when assessing recruitment practices."
-        ]
-      },
-      {
-        heading: "Prepare documents carefully",
-        paragraphs: [
-          "A current CV and a clear summary of your work history, training and language skills can help with an initial discussion. Keep your original documents secure and do not send passport scans, banking details, card numbers or one-time codes in an initial enquiry.",
-          "A general checklist is not a visa application checklist. Share personal documents only when there is a clear, legitimate need, and first confirm how they will be handled."
-        ]
-      },
-      {
-        heading: "Questions to ask before you commit",
-        bullets: [
-          "Who is the legal employer, and where exactly is the job?",
-          "What are the pay, work hours, deductions and accommodation terms?",
-          "Which official work-permit route applies to this role and destination?",
-          "What services are included in each fee, and what are the refund terms?",
-          "Can I verify the employer and requirements directly with official sources?"
-        ]
-      }
-    ],
-    resources: [
-      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" },
-      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" },
-      { label: "International Labour Organization — Fair recruitment", url: "https://www.ilo.org/topics-and-sectors/fair-recruitment" }
-    ]
-  },
   {
     slug: "europe-hospitality-jobs",
     title: "Hospitality jobs in Europe: a practical guide for workers",
@@ -485,7 +429,7 @@ function renderGuideCards() {
     <section class="section guide-library photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="worker-guides" aria-labelledby="worker-guides-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Practical guidance on hospitality work, entry-level roles, applying from Africa and checking an offer before you commit.</p></div>
+          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Practical guidance on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
         </div>
         <div class="guide-card-grid">
           ${guides.map((guide) => `
@@ -706,7 +650,7 @@ function renderHome() {
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-markets-title">Planning to work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh, Malaysia and Nepal, or South Asian workers living in a Gulf country. Then compare European destinations and verify their current requirements.</p></div>
+          <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU Pathfinder to discuss support and current fees.</p></div>
         </div>
         <div class="destination-pills">
           ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}/"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
@@ -900,6 +844,9 @@ function renderWorkerMarketPage(market) {
     illustrativePhotos.construction
   ][marketIndex % 4];
   const heroPhoto = `url('${escapeHtml(illustrativePhotoUrl(workerPhoto, 1800))}')`;
+  const audienceIntro = market.diaspora
+    ? `If you are from Pakistan, India, Bangladesh, Nepal or an African country and live or work in ${market.country}, tell us about your occupation and the European destinations you are considering.`
+    : `If you are applying from ${market.country}, tell us about your occupation and the European destinations you are considering.`;
 
   return `
     <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto}" aria-labelledby="worker-market-title">
@@ -923,13 +870,14 @@ function renderWorkerMarketPage(market) {
     <section class="section photo-backed-section" ${sectionPhotoStyle(workerPhoto)} aria-label="European work guidance for applicants in ${escapeHtml(market.country)}">
       <div class="wrap country-content">
         <div class="country-main">
-          <h2>Start with a real role and destination</h2>
-          <p>Work-permit rules are set by each destination country. The available route depends on the role, employer, your experience and the rules in force when you apply. Use our destination guides as a starting point, then confirm current requirements with the relevant official authorities.</p>
+          <h2>Explore Europe work options from ${escapeHtml(market.country)}</h2>
+          <p>${audienceIntro} We welcome enquiries from labourers and workers with experience in construction, logistics, transport, agriculture, hospitality, cleaning, manufacturing and other fields. We can discuss your profile, support options and current fees; this is not a job offer or a promise of a vacancy.</p>
+          <p>Work-permit rules are set by each destination country. The available route depends on the role, employer, your experience and the rules in force when you apply. Review our destination guides and contact EU Pathfinder to discuss your next steps.</p>
           <ul class="check-list">
             <li>Compare destinations and the sectors described in each country guide.</li>
             <li>Check that an opportunity names a verifiable employer and a specific role.</li>
             <li>Ask for the full service fees and written terms before agreeing or paying.</li>
-            <li>Confirm visa and work-permit requirements through official government or embassy sources.</li>
+            <li>Contact EU Pathfinder to discuss your work background and the support options available.</li>
           </ul>
 
           <h2>Applying from ${escapeHtml(market.country)}</h2>
@@ -1002,17 +950,17 @@ function updatePageMetadata(country, market, guide) {
   const title = guide
     ? `${guide.title} | EU Pathfinder`
     : market
-      ? `European Jobs for ${market.titleAudience} | EU Pathfinder`
+      ? market.seoTitle
       : country
         ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
         : "Europe Jobs & Work Permits | EU Pathfinder";
   const description = guide
     ? guide.description
     : market
-      ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
+      ? market.seoDescription
       : country
         ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-        : "Explore European jobs and work-permit guidance for applicants from India, Pakistan, Bangladesh, Nepal and Africa, plus South Asian workers in Gulf countries.";
+        : "European jobs guidance for Pakistan, India, Bangladesh and Nepal applicants, plus South Asian and African workers in the Gulf. Explore destinations and contact EU Pathfinder.";
   const canonicalPath = guide
     ? `guides/${guide.slug}`
     : market
