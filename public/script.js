@@ -58,6 +58,62 @@ const workerMarkets = [
 
 const guides = [
   {
+    slug: "europe-jobs-for-african-workers",
+    title: "Jobs in Europe for African Workers: A Practical Guide",
+    description: "Explore how African applicants can search for European jobs, check country-specific work permits and verify an offer before paying.",
+    summary: "A practical guide to finding a real role, checking work-permit rules and protecting yourself during an international job search.",
+    image: "/travel-route.svg",
+    intro: "If you are exploring work in Europe from an African country, start with a named destination, a real employer and a specific role. Hiring and work-permit rules are set country by country; no single process applies across Europe.",
+    sections: [
+      {
+        heading: "Start with a real job and destination",
+        paragraphs: [
+          "Search for a specific role that matches your experience, then check the employer's full legal name, work location, duties, pay, hours and written terms. EURES is an official European job-mobility portal where you can explore vacancies and living and working information; a listing does not by itself confirm that a particular work-permit route is available to you.",
+          "Do not rely on a broad promise of a job anywhere in Europe. Ask which country, employer and role an adviser is discussing, and verify those details independently."
+        ]
+      },
+      {
+        heading: "Check the work-permit route with official sources",
+        paragraphs: [
+          "There is no one work permit that covers every European country. The destination country's authorities set the rules, and eligibility can depend on the role, employer, your nationality and where you legally live.",
+          "Before paying fees or making travel plans, check current instructions on the destination government's immigration website or with its embassy or consulate. If you live outside your country of citizenship, confirm where you are allowed to submit an application and what proof of residence is required."
+        ]
+      },
+      {
+        heading: "Verify recruiters, employers and costs",
+        bullets: [
+          "Get the employer's legal name, job location, duties, pay, hours and contract terms in writing.",
+          "Check the employer through independent sources and contact it using details you found yourself.",
+          "Ask any adviser or agency for its exact service scope, itemized fees, refund terms and invoice before agreeing or paying.",
+          "Be cautious of urgent payment demands, vague employers, requests to surrender your passport, or promises of guaranteed jobs, permits or visas.",
+          "The International Labour Organization's fair-recruitment guidance is a useful reference when assessing recruitment practices."
+        ]
+      },
+      {
+        heading: "Prepare documents carefully",
+        paragraphs: [
+          "A current CV and a clear summary of your work history, training and language skills can help with an initial discussion. Keep your original documents secure and do not send passport scans, banking details, card numbers or one-time codes in an initial enquiry.",
+          "A general checklist is not a visa application checklist. Share personal documents only when there is a clear, legitimate need, and first confirm how they will be handled."
+        ]
+      },
+      {
+        heading: "Questions to ask before you commit",
+        bullets: [
+          "Who is the legal employer, and where exactly is the job?",
+          "What are the pay, work hours, deductions and accommodation terms?",
+          "Which official work-permit route applies to this role and destination?",
+          "What services are included in each fee, and what are the refund terms?",
+          "Can I verify the employer and requirements directly with official sources?"
+        ]
+      }
+    ],
+    resources: [
+      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" },
+      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" },
+      { label: "International Labour Organization — Fair recruitment", url: "https://www.ilo.org/topics-and-sectors/fair-recruitment" }
+    ]
+  },
+  {
     slug: "europe-hospitality-jobs",
     title: "Hospitality jobs in Europe: a practical guide for workers",
     description: "Explore hospitality roles, employer checks, work-permit basics and safer next steps for workers considering a hospitality job in Europe.",
@@ -429,7 +485,7 @@ function renderGuideCards() {
     <section class="section guide-library photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="worker-guides" aria-labelledby="worker-guides-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Straightforward reading on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
+          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Practical guidance on hospitality work, entry-level roles, applying from Africa and checking an offer before you commit.</p></div>
         </div>
         <div class="guide-card-grid">
           ${guides.map((guide) => `
@@ -956,7 +1012,7 @@ function updatePageMetadata(country, market, guide) {
       ? `Looking for jobs in Europe from ${market.country}? Explore destination guides and general work-route information for ${market.audience}. Requirements depend on the role and country.`
       : country
         ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-        : "Explore European job and work-permit guidance for applicants in Pakistan, India, Bangladesh, Nepal and Malaysia, plus South Asian residents in Gulf countries.";
+        : "Explore European jobs and work-permit guidance for applicants from India, Pakistan, Bangladesh, Nepal and Africa, plus South Asian workers in Gulf countries.";
   const canonicalPath = guide
     ? `guides/${guide.slug}`
     : market

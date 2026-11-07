@@ -21,14 +21,45 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Jobs and Work Permits in Slovakia | EU Pathfinder">
     <meta name="twitter:description" content="A manufacturing-led economy at the heart of Central Europe, known for automotive production. Explore work routes, common hiring sectors, documents and support for Slovakia.">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://eupathfinder.agency/#organization",
+            "name": "EU Pathfinder",
+            "url": "https://eupathfinder.agency/",
+            "email": "info@eupathfinder.agency",
+            "telephone": "+12899143132",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "email": "info@eupathfinder.agency",
+              "telephone": "+12899143132"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://eupathfinder.agency/#website",
+            "url": "https://eupathfinder.agency/",
+            "name": "EU Pathfinder",
+            "publisher": {
+              "@id": "https://eupathfinder.agency/#organization"
+            },
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="/styles.css?v=a03bf6e98523">
-    <script src="/script.js?v=a03bf6e98523" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=aea63f6010cd">
+    <script src="/script.js?v=aea63f6010cd" defer></script>
     <title>Jobs and Work Permits in Slovakia | EU Pathfinder</title>
   </head>
   <body>
@@ -342,10 +373,21 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
     <section class="section guide-library photo-backed-section" style="--section-photo:url('https://images.unsplash.com/photo-1574757974346-45bae947d89a?auto=format&amp;fit=crop&amp;w=1800&amp;q=68')" id="worker-guides" aria-labelledby="worker-guides-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Straightforward reading on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
+          <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Practical guidance on hospitality work, entry-level roles, applying from Africa and checking an offer before you commit.</p></div>
         </div>
         <div class="guide-card-grid">
 
+            <article class="guide-card">
+              <a class="guide-card-image" href="/guides/europe-jobs-for-african-workers/" tabindex="-1" aria-hidden="true">
+                <img src="/travel-route.svg" alt="" width="700" height="440" loading="lazy" decoding="async">
+                <span>Worker guide</span>
+              </a>
+              <div class="guide-card-copy">
+                <h3><a href="/guides/europe-jobs-for-african-workers/">Jobs in Europe for African Workers: A Practical Guide</a></h3>
+                <p>A practical guide to finding a real role, checking work-permit rules and protecting yourself during an international job search.</p>
+                <a class="text-link" href="/guides/europe-jobs-for-african-workers/">Read the guide <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>
             <article class="guide-card">
               <a class="guide-card-image" href="/guides/europe-hospitality-jobs/" tabindex="-1" aria-hidden="true">
                 <img src="/travel-planning.svg" alt="" width="700" height="440" loading="lazy" decoding="async">
