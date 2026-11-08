@@ -282,6 +282,18 @@ const illustrativePhotos = {
     alt: "A transport worker beside a truck, speaking with its driver",
     caption: "Drivers and crews at work in transport"
   },
+  teamPlanning: {
+    url: "https://images.unsplash.com/photo-1551836022-d5d88e9218df",
+    alt: "Colleagues reviewing a work plan together",
+    caption: "",
+    imageOnly: true
+  },
+  teamCollaboration: {
+    url: "https://images.unsplash.com/photo-1521737711867-e3b97375f902",
+    alt: "Coworkers sharing ideas around a laptop",
+    caption: "",
+    imageOnly: true
+  },
   construction: {
     url: "https://images.unsplash.com/photo-1504307651254-35680f356dfd",
     alt: "A construction site with workers in protective clothing",
@@ -299,6 +311,17 @@ function sectionPhotoStyle(photo) {
 }
 
 function renderIllustrativePhoto(photo, sizes) {
+  const photoBrand = photo.imageOnly
+    ? ""
+    : `
+        <span class="people-photo-brand" aria-hidden="true">
+          <span class="people-photo-brand-mark">
+            <svg viewBox="0 0 40 40"><path d="M20 5 31 27l-11-6-11 6L20 5Z"></path><path class="brand-stem" d="M20 21v13"></path></svg>
+          </span>
+          <span>EU Pathfinder</span>
+        </span>
+        <span class="people-photo-label">Illustrative photo</span>`;
+
   return `
     <figure class="people-photo">
       <div class="people-photo-frame">
@@ -313,15 +336,9 @@ function renderIllustrativePhoto(photo, sizes) {
           decoding="async"
           referrerpolicy="no-referrer"
         >
-        <span class="people-photo-brand" aria-hidden="true">
-          <span class="people-photo-brand-mark">
-            <svg viewBox="0 0 40 40"><path d="M20 5 31 27l-11-6-11 6L20 5Z"></path><path class="brand-stem" d="M20 21v13"></path></svg>
-          </span>
-          <span>EU Pathfinder</span>
-        </span>
-        <span class="people-photo-label">Illustrative photo</span>
+        ${photoBrand}
       </div>
-      <figcaption>${escapeHtml(photo.caption)}</figcaption>
+      ${photo.caption ? `<figcaption>${escapeHtml(photo.caption)}</figcaption>` : ""}
     </figure>`;
 }
 
@@ -331,8 +348,8 @@ function renderPeoplePhotoSection(
   backdropPhoto = illustrativePhotos.transport
 ) {
   const imageSizes = photos.length > 2
-    ? "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 25vw"
-    : "(max-width: 500px) calc(100vw - 32px), (max-width: 760px) calc(50vw - 28px), 45vw";
+    ? "(max-width: 500px) calc(50vw - 22px), (max-width: 760px) calc(50vw - 28px), 25vw"
+    : "(max-width: 500px) calc(50vw - 22px), (max-width: 760px) calc(50vw - 28px), 45vw";
 
   return `
     <section class="section people-photo-section photo-backed-section" ${sectionPhotoStyle(backdropPhoto)} aria-labelledby="people-photo-title">
@@ -617,7 +634,9 @@ function renderHome() {
       illustrativePhotos.consultation,
       illustrativePhotos.agriculture,
       illustrativePhotos.logistics,
-      illustrativePhotos.transport
+      illustrativePhotos.transport,
+      illustrativePhotos.teamPlanning,
+      illustrativePhotos.teamCollaboration
     ], "A human conversation. A clearer path to work.", illustrativePhotos.construction)}
 
     <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">

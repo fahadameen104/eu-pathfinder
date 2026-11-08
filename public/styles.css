@@ -21,6 +21,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 88px;
+  overflow-x: clip;
 }
 
 body {
@@ -255,13 +256,13 @@ svg {
   z-index: 0;
   inset: -14px;
   background-image:
-    linear-gradient(90deg, rgba(16, 33, 29, 0.76) 0%, rgba(16, 33, 29, 0.58) 52%, rgba(16, 33, 29, 0.38) 100%),
+    linear-gradient(90deg, rgba(16, 33, 29, 0.68) 0%, rgba(16, 33, 29, 0.5) 52%, rgba(16, 33, 29, 0.34) 100%),
     var(--hero-photo, none),
     var(--country-photo, none);
   background-position: center, center, center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(8px);
+  filter: blur(5px);
   transform: scale(1.025);
   pointer-events: none;
 }
@@ -539,7 +540,17 @@ svg {
 
 .people-photo-section {
   padding-block: clamp(56px, 7vw, 88px);
-  background: var(--mist);
+  background: linear-gradient(125deg, #e5f0e9 0%, #f0f3e8 100%);
+  color: #173a30;
+}
+
+.people-photo-section.photo-backed-section::before {
+  filter: none;
+  opacity: 0.12;
+}
+
+.people-photo-section.photo-backed-section::after {
+  background: linear-gradient(110deg, rgba(229, 240, 233, 0.94), rgba(240, 243, 232, 0.9));
 }
 
 .people-photo-heading {
@@ -564,13 +575,17 @@ svg {
 .people-photo-heading p {
   max-width: 54ch;
   margin: 0;
-  color: var(--muted);
+  color: #36594d;
 }
 
 .people-photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 20px;
+}
+
+.people-photo:only-child {
+  grid-column: 1 / -1;
 }
 
 .people-photo {
@@ -582,9 +597,10 @@ svg {
   position: relative;
   overflow: hidden;
   aspect-ratio: 1.35;
-  border-radius: 16px;
-  background: var(--navy);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  background: #d3e4da;
+  box-shadow: 0 16px 34px rgba(25, 58, 48, 0.18);
 }
 
 .people-photo-frame::after {
@@ -665,7 +681,7 @@ svg {
 
 .people-photo figcaption {
   margin-top: 12px;
-  color: var(--ink);
+  color: #173a30;
   font-size: 15px;
   font-weight: 750;
   line-height: 1.4;
@@ -674,7 +690,7 @@ svg {
 .people-photo-disclosure {
   max-width: 88ch;
   margin: 20px 0 0;
-  color: var(--muted);
+  color: #36594d;
   font-size: 12px;
   line-height: 1.55;
 }
@@ -809,9 +825,9 @@ svg {
   display: block;
   min-width: 0;
   overflow: hidden;
-  border: 1px solid #334a43;
+  border: 1px solid #3d5a50;
   border-radius: 15px;
-  background: #18332f;
+  background: #1b3831;
   color: var(--ink);
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
@@ -927,7 +943,7 @@ svg {
 .destination-landmark {
   display: block;
   margin: 7px 0 0 35px;
-  color: #aab8ca;
+  color: #b6c8bf;
   font-size: 12px;
 }
 
@@ -2523,22 +2539,22 @@ svg {
   }
 
   .hero-inner {
-    padding-block: 72px 43px;
+    padding-block: 54px 38px;
   }
 
   .hero-copy {
-    margin-inline: auto;
-    text-align: center;
+    margin-inline: 0;
+    text-align: left;
   }
 
   .home-hero h1 {
-    max-width: 1080px;
-    margin-inline: auto;
+    max-width: 720px;
+    margin-inline: 0;
   }
 
   .hero-actions,
   .featured-place {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .home-hero::before {
@@ -2548,7 +2564,7 @@ svg {
   }
 
   .home-hero h1 {
-    font-size: clamp(53px, 12.8vw, 78px);
+    font-size: clamp(38px, 9.4vw, 66px);
   }
 
   .hero-intro {
@@ -2858,10 +2874,6 @@ svg {
 }
 
 @media (max-width: 390px) {
-  .people-photo-grid {
-    grid-template-columns: 1fr;
-  }
-
   .bank-transfer dl {
     grid-template-columns: 1fr;
   }
@@ -3020,11 +3032,30 @@ svg {
   }
 }
 
+@keyframes itinerary-drift {
+  0%,
+  100% {
+    transform: translateY(-42%);
+  }
+
+  50% {
+    transform: translateY(calc(-42% - 6px));
+  }
+}
+
+@media (min-width: 761px) and (prefers-reduced-motion: no-preference) {
+  .hero-travel-art {
+    animation: itinerary-drift 8s ease-in-out infinite;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
