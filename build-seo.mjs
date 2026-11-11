@@ -105,8 +105,8 @@ function prerender(pathname) {
   const canonical = escapeAttribute(page.canonical);
   const mainPattern = /<main id="main" tabindex="-1"(?: data-prerendered="true")?>[\s\S]*?<\/main>/;
   const html = template
-    .replace(/<link\s+rel="stylesheet"\s+href="\/styles\.css(?:\?v=[^"]*)?"[^>]*>/, `<link rel="stylesheet" href="/styles.css?v=${assetVersion}">`)
-    .replace(/<script\s+src="\/script\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/script.js?v=${assetVersion}" defer></script>`)
+    .replace(/<link\s+rel="stylesheet"\s+href="\/?styles\.css(?:\?v=[^"]*)?"[^>]*>/, `<link rel="stylesheet" href="/styles.css?v=${assetVersion}">`)
+    .replace(/<script\s+src="\/?script\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/script.js?v=${assetVersion}" defer></script>`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
     .replace(/<meta\s+name="description"[\s\S]*?>/, `<meta name="description" content="${description}">`)
     .replace(/<link\s+rel="canonical"[^>]*>/, `<link rel="canonical" href="${canonical}">`)
@@ -119,7 +119,10 @@ function prerender(pathname) {
     throw new Error(`Could not replace the main content for ${pathname}`);
   }
   const prerenderedHtml = html.replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
-  return prerenderedHtml.replace(/[ \t]+$/gm, "");
+  const normalizedHtml = prerenderedHtml.replace(/[ \t]+$/gm, "");
+  return pathname === "/"
+    ? normalizedHtml.replace("<body>", '<body class="home-page">')
+    : normalizedHtml;
 }
 
 const titles = new Set();

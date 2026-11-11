@@ -697,8 +697,8 @@ function renderHome() {
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap hero-inner">
         <figure class="hero-travel-art">
-          <img src="/travel-planning.svg" alt="Illustration of a woman planning a journey at a laptop with coffee and fictional travel documents." width="700" height="440" fetchpriority="high">
-          <figcaption>Illustration · fictional travel documents</figcaption>
+          <img src="glass-globe-hero.svg" alt="A luminous 3D glass globe with a glowing route from South Asia to Europe and a floating compass." width="900" height="700" fetchpriority="high">
+          <figcaption>A luminous route toward Europe</figcaption>
         </figure>
         <div class="hero-copy">
           <h1 id="home-title">Your path to legal work in Europe,<span>planned with you</span></h1>

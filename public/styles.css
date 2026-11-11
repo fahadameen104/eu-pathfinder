@@ -3056,6 +3056,122 @@ svg {
   }
 }
 
+/* Dimensional globe artwork and a matching glass-compass brand mark. */
+.home-page {
+  --navy: #112d47;
+  --navy-deep: #0a172b;
+  --coral: #ffc979;
+  --green: #12a990;
+  --green-hover: #0d8978;
+  --ink: #f2fbff;
+  --muted: #b6ccdd;
+  --paper: #0a172b;
+  --mist: #10263e;
+  --line: #28445d;
+  background:
+    radial-gradient(ellipse at 8% 12%, rgba(44, 163, 190, 0.12), transparent 36rem),
+    radial-gradient(ellipse at 92% 70%, rgba(63, 212, 193, 0.08), transparent 38rem),
+    #0a172b;
+}
+
+.home-page .site-header {
+  border-bottom-color: rgba(202, 242, 255, 0.14);
+  background: rgba(8, 20, 38, 0.88);
+}
+
+.home-page .brand-mark {
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1a3b56, #0d263d 72%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.28), 0 0 24px rgba(54, 221, 210, 0.18);
+}
+
+.home-page .home-hero h1 {
+  max-width: 640px;
+}
+
+.home-page .hero-copy {
+  max-width: 680px;
+}
+
+.home-page .hero-travel-art {
+  top: 50%;
+  width: min(36%, 440px);
+}
+
+.brand-mark {
+  background: linear-gradient(145deg, #e8fff9 0%, #41ddd0 22%, #13839e 54%, #112746 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.72), inset 0 -5px 10px rgba(7, 24, 54, 0.48), 0 8px 24px rgba(54, 221, 210, 0.3);
+}
+
+.brand-mark circle.logo-globe {
+  display: block;
+  stroke: rgba(231, 255, 250, 0.88);
+  stroke-width: 1.1px;
+  filter: drop-shadow(0 1px 2px rgba(1, 17, 40, 0.7));
+}
+
+.brand-mark .logo-grid,
+.watermark-mark .logo-grid {
+  fill: none;
+  stroke: rgba(222, 255, 250, 0.58);
+  stroke-width: 0.8px;
+}
+
+.brand-mark .logo-pointer,
+.watermark-mark .logo-pointer {
+  fill: #ffe0a0;
+  filter: drop-shadow(0 1px 1px rgba(24, 37, 55, 0.72));
+}
+
+.brand-mark .logo-center,
+.watermark-mark .logo-center {
+  fill: #fff4d5;
+}
+
+.watermark-mark circle.logo-globe {
+  fill: url(#watermarkOcean);
+  stroke: rgba(231, 255, 250, 0.72);
+  stroke-width: 1.1px;
+}
+
+.hero-travel-art {
+  border-color: rgba(158, 255, 239, 0.58);
+  background: linear-gradient(145deg, rgba(205, 255, 248, 0.18), rgba(14, 42, 70, 0.3));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.36), 0 36px 100px rgba(0, 0, 0, 0.42), 0 0 72px rgba(53, 218, 211, 0.22);
+}
+
+.hero-travel-art img {
+  transform: perspective(1000px) rotateY(-4deg) translateZ(20px);
+  filter: drop-shadow(0 18px 26px rgba(3, 18, 35, 0.2));
+}
+
+.hero-travel-art figcaption {
+  color: #defff8;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 760px) {
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-travel-art {
+    position: relative;
+    z-index: 2;
+    display: block;
+    order: 2;
+    top: auto;
+    right: auto;
+    width: min(360px, 90%);
+    margin: 30px auto 0;
+    transform: none;
+  }
+
+  .hero-travel-art img {
+    transform: none;
+  }
+}
+
 @media (max-width: 390px) {
   .bank-transfer dl {
     grid-template-columns: 1fr;
@@ -3304,4 +3420,96 @@ svg {
 
 .ad-placement-native {
   width: min(100%, 420px);
+}
+
+/* Homepage visual refresh: richer ambient light, editorial scale, and a glassy 3D hero card. */
+.home-hero {
+  min-height: min(790px, calc(100svh - 74px));
+  background-image:
+    radial-gradient(ellipse at 78% 35%, rgba(75, 226, 219, 0.3), transparent 35%),
+    radial-gradient(ellipse at 18% 82%, rgba(255, 184, 99, 0.2), transparent 34%),
+    linear-gradient(90deg, rgba(8, 20, 38, 0.91) 0%, rgba(10, 31, 52, 0.8) 42%, rgba(10, 35, 54, 0.42) 100%),
+    linear-gradient(135deg, #0a172b, #123e50 58%, #102b43);
+}
+
+.hero-photo-backdrop {
+  filter: blur(8px) saturate(0.82);
+  opacity: 0.88;
+}
+
+.hero-inner {
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(72px, 8vw, 112px) 48px;
+}
+
+.hero-copy {
+  max-width: 760px;
+}
+
+.home-hero h1 {
+  max-width: 710px;
+  font-size: clamp(54px, 6.7vw, 82px);
+  letter-spacing: -0.055em;
+  line-height: 0.99;
+  text-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+}
+
+.home-hero h1 span {
+  color: #76f0d4;
+}
+
+.hero-intro {
+  max-width: 57ch;
+  color: rgba(235, 246, 240, 0.86);
+}
+
+.hero-travel-art {
+  width: min(36%, 420px);
+  right: 1.5%;
+  border-color: rgba(178, 255, 245, 0.44);
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(231, 255, 252, 0.22), rgba(114, 231, 225, 0.07));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 32px 90px rgba(0, 0, 0, 0.36), 0 0 70px rgba(75, 226, 219, 0.2);
+}
+
+.featured-place {
+  width: fit-content;
+  min-width: 245px;
+  margin-top: 38px;
+  padding: 13px 18px 13px 13px;
+  border-color: rgba(178, 255, 245, 0.4);
+  background: linear-gradient(120deg, rgba(231, 255, 252, 0.18), rgba(114, 231, 225, 0.07));
+}
+
+.hero-chip[aria-pressed="true"] {
+  border-color: #76f0d4;
+  background: rgba(118, 240, 212, 0.18);
+  box-shadow: 0 0 22px rgba(75, 226, 219, 0.17), inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+@media (max-width: 760px) {
+  .home-hero {
+    min-height: auto;
+  }
+
+  .hero-inner {
+    min-height: 0;
+    padding-block: 58px 40px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(42px, 10.5vw, 66px);
+  }
+
+  .hero-intro {
+    max-width: 48ch;
+  }
+
+  .featured-place {
+    width: fit-content;
+    min-width: min(245px, 100%);
+  }
 }
