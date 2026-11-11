@@ -261,6 +261,42 @@ const whatsAppLink = (message, number = whatsappNumber) =>
 const generalWhatsAppMessage =
   "Hello EU Pathfinder, I would like to know more about your services and current fees.";
 
+const adUnits = {
+  banner160x300: { key: "9f5d961df72d84207a7c585fcd9bafd0", width: 160, height: 300 },
+  banner300x250: { key: "68ae835ab078cbe5e6ff5fc70ed08248", width: 300, height: 250 },
+  banner320x50: { key: "7f1535800958512c257f0442f1b03040", width: 320, height: 50 },
+  native: { key: "ef9f0d6ccc74f609b9c9c30847a270be" }
+};
+
+function renderAdSlot(unitName) {
+  const unit = adUnits[unitName];
+  if (!unit) throw new Error(`Unknown ad unit: ${unitName}`);
+
+  if (unitName === "native") {
+    return `
+      <aside class="ad-placement ad-placement-native" aria-label="Advertisement">
+        <span class="ad-placement-label">Advertisement</span>
+        <script async="async" data-cfasync="false" src="https://bauval.org/21/${unit.key}"></script>
+        <div id="container-${unit.key}"></div>
+      </aside>`;
+  }
+
+  return `
+    <aside class="ad-placement ad-placement-${unitName}" aria-label="Advertisement">
+      <span class="ad-placement-label">Advertisement</span>
+      <script>
+        atOptions = {
+          'key' : '${unit.key}',
+          'format' : 'iframe',
+          'height' : ${unit.height},
+          'width' : ${unit.width},
+          'params' : {}
+        };
+      </script>
+      <script data-cfasync="false" src="https://bauval.org/22/${unit.key}"></script>
+    </aside>`;
+}
+
 const illustrativePhotos = {
   consultation: {
     url: "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13",
@@ -509,6 +545,7 @@ function renderGuidePage(guide) {
         </aside>
       </div>
       ${renderGuideCards()}
+      ${renderAdSlot("native")}
       ${renderContactSection({ title: "Have a question about your plans?" })}
     </article>`;
 }
@@ -630,6 +667,8 @@ function renderHome() {
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct WhatsApp support</strong><p>Message an adviser any time with questions about your application.</p></div></div>
     </section>
 
+    ${renderAdSlot("banner320x50")}
+
     ${renderPeoplePhotoSection([
       illustrativePhotos.consultation,
       illustrativePhotos.agriculture,
@@ -666,6 +705,8 @@ function renderHome() {
       </div>
     </section>
 
+    ${renderAdSlot("banner300x250")}
+
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
@@ -678,6 +719,8 @@ function renderHome() {
     </section>
 
     ${renderGuideCards()}
+
+    ${renderAdSlot("native")}
 
     <section class="section process-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="how" aria-labelledby="process-title">
       <div class="wrap">
@@ -729,6 +772,8 @@ function renderHome() {
         ${renderFaqs()}
       </div>
     </section>
+
+    ${renderAdSlot("banner160x300")}
 
     ${renderContactSection({
       title: "Speak with the EU Pathfinder team",
@@ -840,6 +885,8 @@ function renderCountryPage(country) {
 
     ${renderVacancySearchSection(country)}
 
+    ${renderAdSlot("banner300x250")}
+
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))}>
       <div class="wrap">
         <h2>Other destinations</h2>
@@ -849,6 +896,7 @@ function renderCountryPage(country) {
     </section>
 
     ${renderGuideCards()}
+    ${renderAdSlot("native")}
     ${renderContactSection({ title: `Ask about work in ${country.name}` })}`;
 }
 
@@ -959,6 +1007,7 @@ function renderWorkerMarketPage(market) {
     </section>
 
     ${renderGuideCards()}
+    ${renderAdSlot("native")}
     ${renderContactSection({
       title: `Start a conversation from ${market.country}`,
       description: "Share your nationality, where you currently live, work experience and the kind of role you are exploring. We can discuss support options and current fees. No job, permit or visa outcome is guaranteed.",
@@ -1273,21 +1322,30 @@ const currentWorkerMarket = workerMarkets.find((market) => market.slug === path)
 const currentGuide = guides.find((guide) => guide.slug === path);
 const main = document.querySelector("#main");
 
+if (!main.dataset.prerendered) {
+  if (!path) {
+    main.innerHTML = renderHome();
+  } else if (currentCountry) {
+    main.innerHTML = renderCountryPage(currentCountry);
+  } else if (currentWorkerMarket) {
+    main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
+  } else if (currentGuide) {
+    main.innerHTML = renderGuidePage(currentGuide);
+  } else {
+    main.innerHTML = renderNotFound();
+  }
+}
+
 if (!path) {
-  main.innerHTML = renderHome();
   updatePageMetadata(null);
   setupHomeInteractions();
 } else if (currentCountry) {
-  main.innerHTML = renderCountryPage(currentCountry);
   updatePageMetadata(currentCountry);
 } else if (currentWorkerMarket) {
-  main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
   updatePageMetadata(null, currentWorkerMarket);
 } else if (currentGuide) {
-  main.innerHTML = renderGuidePage(currentGuide);
   updatePageMetadata(null, null, currentGuide);
 } else {
-  main.innerHTML = renderNotFound();
   updatePageMetadata(null);
 }
 

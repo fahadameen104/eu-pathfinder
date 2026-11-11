@@ -110,7 +110,7 @@ function prerender(pathname) {
     .replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${canonical}">`)
     .replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`)
     .replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${description}">`)
-    .replace(/<main id="main" tabindex="-1">[\s\S]*?<\/main>/, `<main id="main" tabindex="-1">${page.html}</main>`);
+    .replace(/<main id="main" tabindex="-1">[\s\S]*?<\/main>/, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
   return html.replace(/[ \t]+$/gm, "");
 }
 

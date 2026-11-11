@@ -3074,3 +3074,46 @@ svg {
     -webkit-print-color-adjust: exact;
   }
 }
+
+.ad-placement {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  max-width: min(var(--page), calc(100% - 32px));
+  margin: clamp(24px, 4vw, 42px) auto;
+  text-align: center;
+}
+
+.ad-placement-label {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.ad-placement iframe {
+  display: block;
+  max-width: 100%;
+  border: 0;
+}
+
+.ad-placement-banner160x300 {
+  width: min(160px, 100%);
+  min-height: 300px;
+}
+
+.ad-placement-banner300x250 {
+  width: min(300px, 100%);
+  min-height: 250px;
+}
+
+.ad-placement-banner320x50 {
+  width: min(320px, 100%);
+  min-height: 50px;
+}
+
+.ad-placement-native {
+  width: min(100%, 420px);
+}
