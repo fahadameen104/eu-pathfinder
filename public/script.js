@@ -149,6 +149,35 @@ const guides = [
   }
 ];
 
+const publicationPages = [
+  {
+    slug: "adsterra-engine-test",
+    title: "Putting #AdsterraEngine to the test on EU Pathfinder",
+    description: "A brief account of adding compact Adsterra display and native ad placements to the EU Pathfinder website.",
+    intro: "I added Adsterra display and native ad placements to EU Pathfinder, keeping the formats modest and the page layout in mind.",
+    sections: [
+      {
+        heading: "What I added",
+        paragraphs: [
+          "The site now includes 320×50, 300×250 and 160×300 display placements, plus a native banner. The units are spaced through the homepage and relevant destination and guide pages."
+        ]
+      },
+      {
+        heading: "Keeping the experience unobtrusive",
+        paragraphs: [
+          "I reserved space for the placements and left out popunders, Smartlink, Social Bar and the tall 160×600 unit so they do not interrupt visitors or dominate the page."
+        ]
+      },
+      {
+        heading: "What I am checking",
+        paragraphs: [
+          "This post describes the setup, not advertising results or earnings. Ad delivery depends on Adsterra account and site approval, and I will assess how the placements fit once ads are being served."
+        ]
+      }
+    ]
+  }
+];
+
 const countryPhotos = {
   poland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Wawel_%284%29.jpg/1280px-Wawel_%284%29.jpg",
   uk: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg/1280px-Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg",
@@ -547,6 +576,43 @@ function renderGuidePage(guide) {
       ${renderGuideCards()}
       ${renderAdSlot("native")}
       ${renderContactSection({ title: "Have a question about your plans?" })}
+    </article>`;
+}
+
+function renderPublicationPage(publication) {
+  return `
+    <article class="guide-page">
+      <header class="guide-hero" style="--hero-photo:url('${escapeHtml(illustrativePhotoUrl(illustrativePhotos.consultation, 1800))}')">
+        <span class="hero-photo-backdrop" aria-hidden="true"></span>
+        <div class="wrap guide-hero-layout">
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+              <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">AdsterraEngine test</span>
+            </nav>
+            <h1>${escapeHtml(publication.title)}</h1>
+            <p class="guide-intro">${escapeHtml(publication.intro)}</p>
+            <a class="button button-gold" href="/">Visit EU Pathfinder <span aria-hidden="true">↗</span></a>
+          </div>
+          <figure class="guide-art">
+            <img src="/travel-route.svg" alt="" width="400" height="260">
+          </figure>
+        </div>
+      </header>
+      <div class="wrap guide-content-layout">
+        <div class="guide-content">
+          ${publication.sections.map((section) => `
+            <section class="guide-section">
+              <h2>${escapeHtml(section.heading)}</h2>
+              ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+            </section>`).join("")}
+          <p class="guide-disclaimer">This is a setup update only; it does not claim or guarantee advertising performance or earnings.</p>
+        </div>
+        <aside class="guide-aside">
+          <h2>About the test</h2>
+          <p>Compact display and native units are used on the live EU Pathfinder website. The page is kept free of popunders and overlays.</p>
+          <a href="/" class="text-link">Return to EU Pathfinder <span aria-hidden="true">↗</span></a>
+        </aside>
+      </div>
     </article>`;
 }
 
@@ -1032,23 +1098,29 @@ function renderNotFound() {
     </section>`;
 }
 
-function updatePageMetadata(country, market, guide) {
-  const title = guide
-    ? `${guide.title} | EU Pathfinder`
+function updatePageMetadata(country, market, guide, publication) {
+  const title = publication
+    ? `${publication.title} | EU Pathfinder`
+    : guide
+      ? `${guide.title} | EU Pathfinder`
     : market
       ? market.seoTitle
       : country
         ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
         : "Europe Jobs & Work Permits | EU Pathfinder";
-  const description = guide
-    ? guide.description
+  const description = publication
+    ? publication.description
+    : guide
+      ? guide.description
     : market
       ? market.seoDescription
       : country
         ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
         : "European jobs guidance for Pakistan, India, Bangladesh and Nepal applicants, plus South Asian and African workers in the Gulf. Explore destinations and contact EU Pathfinder.";
-  const canonicalPath = guide
-    ? `guides/${guide.slug}`
+  const canonicalPath = publication
+    ? publication.slug
+    : guide
+      ? `guides/${guide.slug}`
     : market
       ? market.slug
       : country?.slug;
@@ -1320,6 +1392,7 @@ const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.tes
 const currentCountry = countries.find((country) => country.slug === path);
 const currentWorkerMarket = workerMarkets.find((market) => market.slug === path);
 const currentGuide = guides.find((guide) => guide.slug === path);
+const currentPublication = publicationPages.find((publication) => publication.slug === path);
 const main = document.querySelector("#main");
 
 if (!main.dataset.prerendered) {
@@ -1331,6 +1404,8 @@ if (!main.dataset.prerendered) {
     main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
   } else if (currentGuide) {
     main.innerHTML = renderGuidePage(currentGuide);
+  } else if (currentPublication) {
+    main.innerHTML = renderPublicationPage(currentPublication);
   } else {
     main.innerHTML = renderNotFound();
   }
@@ -1345,6 +1420,8 @@ if (!path) {
   updatePageMetadata(null, currentWorkerMarket);
 } else if (currentGuide) {
   updatePageMetadata(null, null, currentGuide);
+} else if (currentPublication) {
+  updatePageMetadata(null, null, null, currentPublication);
 } else {
   updatePageMetadata(null);
 }

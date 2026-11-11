@@ -17,8 +17,9 @@ const assetVersion = createHash("sha256")
 const countryData = script.match(/^const countries = \[([\s\S]*?)^\];/m)?.[1];
 const workerMarketData = script.match(/^const workerMarkets = \[([\s\S]*?)^\];/m)?.[1];
 const guideData = script.match(/^const guides = \[([\s\S]*?)^\];/m)?.[1];
-if (!countryData || !workerMarketData || !guideData) {
-  throw new Error("Could not find country, worker-market or guide routes in script.js.");
+const publicationData = script.match(/^const publicationPages = \[([\s\S]*?)^\];/m)?.[1];
+if (!countryData || !workerMarketData || !guideData || !publicationData) {
+  throw new Error("Could not find country, worker-market, guide or publication routes in script.js.");
 }
 const countrySlugs = [...countryData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
   .map((match) => match[1]);
@@ -26,15 +27,18 @@ const workerMarketSlugs = [...workerMarketData.matchAll(/\{\s*slug:\s*"([^"]+)"/
   .map((match) => match[1]);
 const guideSlugs = [...guideData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
   .map((match) => match[1]);
-const routeSlugs = [...countrySlugs, ...workerMarketSlugs, ...guideSlugs];
-if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
-  throw new Error("Country, worker-market or guide slugs are missing or duplicated.");
+const publicationSlugs = [...publicationData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
+  .map((match) => match[1]);
+const routeSlugs = [...countrySlugs, ...workerMarketSlugs, ...guideSlugs, ...publicationSlugs];
+if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || !publicationSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
+  throw new Error("Country, worker-market, guide or publication slugs are missing or duplicated.");
 }
 const paths = [
   "/",
   ...countrySlugs.map((slug) => `/${slug}`),
   ...workerMarketSlugs.map((slug) => `/${slug}`),
-  ...guideSlugs.map((slug) => `/guides/${slug}`)
+  ...guideSlugs.map((slug) => `/guides/${slug}`),
+  ...publicationSlugs.map((slug) => `/${slug}`)
 ];
 
 function createElement() {
@@ -99,6 +103,7 @@ function prerender(pathname) {
   const description = escapeAttribute(page.description);
   const title = escapeAttribute(page.title);
   const canonical = escapeAttribute(page.canonical);
+  const mainPattern = /<main id="main" tabindex="-1"(?: data-prerendered="true")?>[\s\S]*?<\/main>/;
   const html = template
     .replace(/<link\s+rel="stylesheet"\s+href="\/styles\.css(?:\?v=[^"]*)?"[^>]*>/, `<link rel="stylesheet" href="/styles.css?v=${assetVersion}">`)
     .replace(/<script\s+src="\/script\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/script.js?v=${assetVersion}" defer></script>`)
@@ -109,9 +114,12 @@ function prerender(pathname) {
     .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${description}">`)
     .replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${canonical}">`)
     .replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`)
-    .replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${description}">`)
-    .replace(/<main id="main" tabindex="-1">[\s\S]*?<\/main>/, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
-  return html.replace(/[ \t]+$/gm, "");
+    .replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${description}">`);
+  if (!mainPattern.test(html)) {
+    throw new Error(`Could not replace the main content for ${pathname}`);
+  }
+  const prerenderedHtml = html.replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
+  return prerenderedHtml.replace(/[ \t]+$/gm, "");
 }
 
 const titles = new Set();
