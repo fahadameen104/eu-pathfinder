@@ -763,7 +763,10 @@ function renderHome() {
             <input id="country-search" type="search" placeholder="Search countries" autocomplete="off">
           </label>
         </div>
-        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="destination-results-bar">
+          <p class="results-count" id="results-count" aria-live="polite"></p>
+          <button class="clear-destination-filters" id="clear-destination-filters" type="button" hidden>Clear filters</button>
+        </div>
         <div class="destination-grid" id="destination-grid">
           ${countries.map(renderDestinationCard).join("")}
         </div>
@@ -1137,6 +1140,7 @@ function setupHomeInteractions() {
   const search = document.querySelector("#country-search");
   const cards = [...document.querySelectorAll(".destination-card")];
   const count = document.querySelector("#results-count");
+  const clearFilters = document.querySelector("#clear-destination-filters");
   const empty = document.querySelector("#empty-results");
   const filters = [...document.querySelectorAll(".filter-button")];
   const chips = [...document.querySelectorAll(".hero-chip")];
@@ -1155,6 +1159,7 @@ function setupHomeInteractions() {
     });
     count.textContent = `${visible} ${visible === 1 ? "destination" : "destinations"}`;
     empty.hidden = visible !== 0;
+    clearFilters.hidden = activeRegion === "All" && !term;
   };
 
   filters.forEach((filter) => {
@@ -1165,6 +1170,13 @@ function setupHomeInteractions() {
     });
   });
   search.addEventListener("input", filterCountries);
+  clearFilters.addEventListener("click", () => {
+    search.value = "";
+    activeRegion = "All";
+    filters.forEach((item) => item.setAttribute("aria-pressed", String(item.dataset.filter === "All")));
+    filterCountries();
+    search.focus();
+  });
 
   chips.forEach((chip) => {
     chip.addEventListener("click", () => {

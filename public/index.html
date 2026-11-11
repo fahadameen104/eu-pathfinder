@@ -58,8 +58,8 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="/styles.css?v=ac2f1fab77fe">
-    <script src="/script.js?v=ac2f1fab77fe" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=f23a3706bf1d">
+    <script src="/script.js?v=f23a3706bf1d" defer></script>
     <title>Europe Jobs &amp; Work Permits | EU Pathfinder</title>
   </head>
   <body>
@@ -458,7 +458,10 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
             <input id="country-search" type="search" placeholder="Search countries" autocomplete="off">
           </label>
         </div>
-        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="destination-results-bar">
+          <p class="results-count" id="results-count" aria-live="polite"></p>
+          <button class="clear-destination-filters" id="clear-destination-filters" type="button" hidden>Clear filters</button>
+        </div>
         <div class="destination-grid" id="destination-grid">
 
     <a

@@ -939,11 +939,40 @@ svg {
   opacity: 1;
 }
 
+.destination-results-bar {
+  display: flex;
+  min-height: 1.8em;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -5px 0 13px;
+}
+
 .results-count {
   min-height: 1.4em;
-  margin: -5px 0 13px;
+  margin: 0;
   color: var(--muted);
   font-size: 13px;
+}
+
+.clear-destination-filters {
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: #a7e2c4;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.clear-destination-filters:hover {
+  color: #fff;
+}
+
+.clear-destination-filters[hidden] {
+  display: none;
 }
 
 .destination-grid {
