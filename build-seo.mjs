@@ -121,8 +121,8 @@ function prerender(pathname) {
   const prerenderedHtml = html.replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
   const normalizedHtml = prerenderedHtml.replace(/[ \t]+$/gm, "");
   return pathname === "/"
-    ? normalizedHtml.replace("<body>", '<body class="home-page">')
-    : normalizedHtml;
+    ? normalizedHtml
+    : normalizedHtml.replace('<body class="home-page">', "<body>");
 }
 
 const titles = new Set();

@@ -30,3 +30,5 @@ Build settings:
 - **Build output directory:** `public`
 
 The custom domain `eupathfinder.agency` is managed from the Cloudflare Pages project's **Custom domains** tab.
+
+The shared page template includes the Google AdSense Auto ads loader, so Google selects ad placements across generated content pages. Before serving ads to visitors in the EEA, UK or Switzerland, configure a Google-certified consent management platform in AdSense; this site does not currently have a cookie-consent flow.
