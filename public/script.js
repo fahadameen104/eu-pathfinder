@@ -1,8 +1,13 @@
+const privacyPage = { slug: "privacy", title: "Privacy information", description: "How EU Pathfinder enquiry details pass through the website, current advertising settings and how to ask about your information." };
+
 const contactEmail = "info@eupathfinder.agency";
 const whatsappNumber = "+14696268272";
-const callNumber = "+128991443132";
-const whatsappLink = (number = whatsappNumber, message = "Hello EU Pathfinder, I would like guidance about working in Europe.") =>
-  `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
+// Supplied calls number +128991443132 is invalid for +1; no public link until corrected.
+const isValidContactNumber = (number) => /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(number);
+const whatsappLink = (number = whatsappNumber, message = "Hello EU Pathfinder, I would like guidance about working in Europe.") => {
+  if (!isValidContactNumber(number)) throw new Error("Invalid contact number: " + number);
+  return `https://wa.me/${number.slice(1)}?text=${encodeURIComponent(message)}`;
+};
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -151,41 +156,41 @@ const publicationPages = [
 ];
 
 const countryPhotos = {
-  poland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Wawel_%284%29.jpg/1280px-Wawel_%284%29.jpg",
-  uk: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg/1280px-Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg",
-  germany: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/1280px-Brandenburger_Tor_abends.jpg",
-  austria: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/1280px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG",
-  croatia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Dubrovnik_s_24.jpg/1280px-Dubrovnik_s_24.jpg",
-  slovakia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/1280px-Bratislava_-_Burg_%28b%29.JPG",
-  portugal: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Torre_Bel%C3%A9m_April_2009-4a.jpg/1280px-Torre_Bel%C3%A9m_April_2009-4a.jpg",
-  norway: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Geirangerfjord_.jpg/1280px-Geirangerfjord_.jpg",
-  switzerland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Matterhorn_from_Domh%C3%BCtte_-_2.jpg/1280px-Matterhorn_from_Domh%C3%BCtte_-_2.jpg",
-  belgium: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Grand-Place%2C_Brussels_-_panorama%2C_June_2018.jpg/1280px-Grand-Place%2C_Brussels_-_panorama%2C_June_2018.jpg",
-  bulgaria: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Rila_Monastery%2C_August_2013.jpg/1280px-Rila_Monastery%2C_August_2013.jpg",
-  cyprus: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Roca_de_Afrodita%2C_Chipre%2C_2021-12-10%2C_DD_65.jpg/1280px-Roca_de_Afrodita%2C_Chipre%2C_2021-12-10%2C_DD_65.jpg",
-  czechia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/1280px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg",
-  denmark: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/The_Nyhavn_Canal_3.jpg/1280px-The_Nyhavn_Canal_3.jpg",
-  estonia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Old_Town_of_Tallinn%2C_Tallinn%2C_Estonia_-_panoramio_%2858%29.jpg/1280px-Old_Town_of_Tallinn%2C_Tallinn%2C_Estonia_-_panoramio_%2858%29.jpg",
-  finland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Kirkko3.png/1280px-Kirkko3.png",
-  france: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1280px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
-  serbia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg/1280px-P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg",
-  moldova: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Stanca_deasupra_Rautului_Butuceni.jpg/1280px-Stanca_deasupra_Rautului_Butuceni.jpg",
-  ukraine: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg/1280px-80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg",
-  greece: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg/1280px-1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg",
-  ireland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Cliffs-Of-Moher-OBriens-From-South.JPG/1280px-Cliffs-Of-Moher-OBriens-From-South.JPG",
-  romania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/01_Chateau_Peles.jpg/1280px-01_Chateau_Peles.jpg",
-  latvia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg/1280px-House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg",
-  lithuania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Traku_pilis_by_Augustas_Didzgalvis.jpg/1280px-Traku_pilis_by_Augustas_Didzgalvis.jpg",
-  luxembourg: "https://upload.wikimedia.org/wikipedia/commons/5/57/Selig_Luxembourg_from_Paffendall.jpg",
-  netherlands: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/KinderdijkMolens02.jpg/1280px-KinderdijkMolens02.jpg",
-  slovenia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Bled_from_the_Mountain.jpg/1280px-Lake_Bled_from_the_Mountain.jpg",
-  spain: "https://upload.wikimedia.org/wikipedia/commons/e/ef/SF_maig_2_cropped.jpg",
-  sweden: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Gamla_stan_September_2014_01.jpg/1280px-Gamla_stan_September_2014_01.jpg",
-  russia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Basil%27s_Cathedral_in_Moscow.jpg/1280px-Saint_Basil%27s_Cathedral_in_Moscow.jpg",
-  malta: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Prelucrare_3D_pentru_La_Valletta_Harbour.jpg/1280px-Prelucrare_3D_pentru_La_Valletta_Harbour.jpg",
-  belarus: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG/1280px-%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG",
-  hungary: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/1280px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg",
-  italy: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg"
+  poland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Wawel_%284%29.jpg/960px-Wawel_%284%29.jpg",
+  uk: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg/960px-Elizabeth_Tower_and_the_north_front_of_the_Palace_of_Westminster%2C_London.jpg",
+  germany: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Brandenburger_Tor_abends.jpg/960px-Brandenburger_Tor_abends.jpg",
+  austria: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Wien_-_Schloss_Sch%C3%B6nbrunn.JPG/960px-Wien_-_Schloss_Sch%C3%B6nbrunn.JPG",
+  croatia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Dubrovnik_s_24.jpg/960px-Dubrovnik_s_24.jpg",
+  slovakia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Bratislava_-_Burg_%28b%29.JPG/960px-Bratislava_-_Burg_%28b%29.JPG",
+  portugal: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Torre_Bel%C3%A9m_April_2009-4a.jpg/960px-Torre_Bel%C3%A9m_April_2009-4a.jpg",
+  norway: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Geirangerfjord_.jpg/960px-Geirangerfjord_.jpg",
+  switzerland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Matterhorn_from_Domh%C3%BCtte_-_2.jpg/960px-Matterhorn_from_Domh%C3%BCtte_-_2.jpg",
+  belgium: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Grand-Place%2C_Brussels_-_panorama%2C_June_2018.jpg/960px-Grand-Place%2C_Brussels_-_panorama%2C_June_2018.jpg",
+  bulgaria: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Rila_Monastery%2C_August_2013.jpg/960px-Rila_Monastery%2C_August_2013.jpg",
+  cyprus: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Roca_de_Afrodita%2C_Chipre%2C_2021-12-10%2C_DD_65.jpg/960px-Roca_de_Afrodita%2C_Chipre%2C_2021-12-10%2C_DD_65.jpg",
+  czechia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg/960px-Prague_07-2016_view_from_Lesser_Town_Tower_of_Charles_Bridge_img3.jpg",
+  denmark: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/The_Nyhavn_Canal_3.jpg/960px-The_Nyhavn_Canal_3.jpg",
+  estonia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Old_Town_of_Tallinn%2C_Tallinn%2C_Estonia_-_panoramio_%2858%29.jpg/960px-Old_Town_of_Tallinn%2C_Tallinn%2C_Estonia_-_panoramio_%2858%29.jpg",
+  finland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Kirkko3.png/960px-Kirkko3.png",
+  france: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/960px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
+  serbia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg/960px-P037152-661920_-_Belgrade_fortress_stand_at_the_downtown_of_Belgrade.jpg",
+  moldova: "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Stanca_deasupra_Rautului_Butuceni.jpg/960px-Stanca_deasupra_Rautului_Butuceni.jpg",
+  ukraine: "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg/960px-80-391-0151_Kyiv_St.Sophia%27s_Cathedral_RB_18_2_%28cropped%29.jpg",
+  greece: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg/960px-1029_Acropolis_of_Athens_in_Greece_at_night_Photo_by_Giles_Laurent.jpg",
+  ireland: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Cliffs-Of-Moher-OBriens-From-South.JPG/960px-Cliffs-Of-Moher-OBriens-From-South.JPG",
+  romania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/01_Chateau_Peles.jpg/960px-01_Chateau_Peles.jpg",
+  latvia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg/960px-House_of_Blackheads_at_Dusk_3%2C_Riga%2C_Latvia_-_Diliff.jpg",
+  lithuania: "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Traku_pilis_by_Augustas_Didzgalvis.jpg/960px-Traku_pilis_by_Augustas_Didzgalvis.jpg",
+  luxembourg: "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Selig_Luxembourg_from_Paffendall.jpg/960px-Selig_Luxembourg_from_Paffendall.jpg",
+  netherlands: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/KinderdijkMolens02.jpg/960px-KinderdijkMolens02.jpg",
+  slovenia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Lake_Bled_from_the_Mountain.jpg/960px-Lake_Bled_from_the_Mountain.jpg",
+  spain: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/SF_maig_2_cropped.jpg/960px-SF_maig_2_cropped.jpg",
+  sweden: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Gamla_stan_September_2014_01.jpg/960px-Gamla_stan_September_2014_01.jpg",
+  russia: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Saint_Basil%27s_Cathedral_in_Moscow.jpg/960px-Saint_Basil%27s_Cathedral_in_Moscow.jpg",
+  malta: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Prelucrare_3D_pentru_La_Valletta_Harbour.jpg/960px-Prelucrare_3D_pentru_La_Valletta_Harbour.jpg",
+  belarus: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG/960px-%D0%9A%D0%BE%D0%BC%D0%BF%D0%BB%D0%B5%D0%BA%D1%81_%D0%9C%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B3%D0%BE_%D0%B7%D0%B0%D0%BC%D0%BA%D0%B0.JPG",
+  hungary: "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg/960px-Hungarian_Parliament_Building_from_across_the_Danube%2C_2025-01-11.jpg",
+  italy: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/960px-Colosseo_2020.jpg"
 };
 
 const processSteps = [
@@ -269,7 +274,7 @@ const workplacePhotos = {
   consultation: {
     url: "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13",
     alt: "Two professionals greeting with a handshake across a desk",
-    caption: "A personal welcome and a clear next step"
+    caption: "Professionals greeting across a desk"
   },
   agriculture: {
     url: "https://images.unsplash.com/photo-1605000797499-95a51c5269ae",
@@ -311,7 +316,7 @@ function workplacePhotoUrl(photo, width) {
 }
 
 function sectionPhotoStyle(photo) {
-  return `style="--section-photo:url('${escapeHtml(workplacePhotoUrl(photo, 1800))}')"`;
+  return `style="--section-photo:url('${escapeHtml(workplacePhotoUrl(photo, 1440))}');--section-photo-mobile:url('${escapeHtml(workplacePhotoUrl(photo, 640))}')"`;
 }
 
 function renderWorkplacePhoto(photo, sizes) {
@@ -369,24 +374,28 @@ function renderPeoplePhotoSection(
 }
 
 function renderEnquiryForm() {
+  const pagePath = window.location.pathname.replace(/\/index\.html$/, "/");
+  const context = pagePath.endsWith("/") ? pagePath : `${pagePath}/`;
   return `
-    <form class="enquiry-form" action="/api/enquiry" method="post" data-enquiry-form>
+    <form class="enquiry-form" action="/api/enquiry" method="post" data-enquiry-form aria-describedby="enquiry-privacy">
+      <input type="hidden" name="context" value="${escapeHtml(context)}">
+      <p class="enquiry-context">Enquiry page: ${escapeHtml(context)}</p>
       <div class="enquiry-fields">
-        <label>
+        <label for="enquiry-name">
           <span>Your name</span>
-          <input name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
+          <input name="name" id="enquiry-name" type="text" autocomplete="name" minlength="2" maxlength="100" required>
         </label>
-        <label>
+        <label for="enquiry-email">
           <span>Email address</span>
-          <input name="email" type="email" autocomplete="email" maxlength="254" required>
+          <input name="email" id="enquiry-email" type="email" autocomplete="email" maxlength="254" required>
         </label>
-        <label>
+        <label for="enquiry-nationality">
           <span>Nationality</span>
-          <input name="nationality" type="text" autocomplete="country-name" maxlength="80" required>
+          <input name="nationality" id="enquiry-nationality" type="text"  maxlength="80" required>
         </label>
-        <label class="enquiry-topic">
+        <label class="enquiry-topic" for="enquiry-interest">
           <span>What would you like help with?</span>
-          <select name="interest" required>
+          <select name="interest" id="enquiry-interest" required>
             <option value="">Choose a topic</option>
             <option>Hospitality work</option>
             <option>Seasonal or entry-level work</option>
@@ -394,24 +403,24 @@ function renderEnquiryForm() {
             <option>Another question</option>
           </select>
         </label>
-        <label class="enquiry-message">
+        <label class="enquiry-message" for="enquiry-message">
           <span>Message <small>Optional</small></span>
-          <textarea name="message" rows="3" maxlength="1200" placeholder="A short note about your experience or question"></textarea>
+          <textarea name="message" id="enquiry-message" rows="3" maxlength="1200" placeholder="A short note about your experience or question"></textarea>
         </label>
       </div>
-      <label class="enquiry-consent">
-        <input name="consent" type="checkbox" required>
+      <label class="enquiry-consent" for="enquiry-consent">
+        <input name="consent" id="enquiry-consent" type="checkbox" required>
         <span>I agree to be contacted about this enquiry. Please do not include passport scans, payment details or other sensitive documents.</span>
       </label>
-      <label class="enquiry-trap" aria-hidden="true" tabindex="-1">
+      <label class="enquiry-trap" aria-hidden="true" tabindex="-1" for="enquiry-website">
         Leave this field empty
-        <input name="website" type="text" tabindex="-1" autocomplete="off">
+        <input name="website" id="enquiry-website" type="text" tabindex="-1" autocomplete="off">
       </label>
       <div class="enquiry-submit-row">
         <button class="button button-gold enquiry-submit" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
         <p class="enquiry-status" data-form-status role="status" aria-live="polite" hidden></p>
       </div>
-      <p class="enquiry-privacy">We use your name, email, nationality, topic and optional message to respond to your enquiry. Submissions pass through Cloudflare Pages and Resend to <a href="mailto:${contactEmail}">${contactEmail}</a>. Do not include passport scans or payment details.</p>
+      <p class="enquiry-privacy" id="enquiry-privacy">We use your name, email, nationality, topic and optional message to respond to your enquiry. Submissions pass through Cloudflare Pages and Resend to <a href="mailto:${contactEmail}">${contactEmail}</a>. Do not include passport scans or payment details. <a href="/privacy/">Privacy information and data requests</a>.</p>
     </form>`;
 }
 
@@ -426,21 +435,17 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <div class="contact-options" aria-label="Phone and WhatsApp contact options">
+          <div class="contact-options" aria-label="WhatsApp contact option">
             <div class="contact-option">
               <span class="contact-option-label">WhatsApp</span>
               <a class="contact-number" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">${whatsappNumber}</a>
               <a class="contact-option-action" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">Start a conversation <span aria-hidden="true">↗</span></a>
             </div>
-            <div class="contact-option">
-              <span class="contact-option-label">Calls &amp; WhatsApp</span>
-              <a class="contact-number" href="tel:${callNumber}">${callNumber}</a>
-              <div class="contact-option-actions"><a class="contact-option-action" href="tel:${callNumber}">Call us</a><span aria-hidden="true">·</span><a class="contact-option-action" href="${whatsappLink(callNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a></div>
-            </div>
+
           </div>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
-            <img src="/family-airport.svg" alt="A family preparing to travel with generic travel documents." width="700" height="440" loading="lazy" decoding="async">
+            <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional travel documents." width="700" height="440" loading="lazy" decoding="async">
           </figure>
         </div>
         ${renderEnquiryForm()}
@@ -543,11 +548,11 @@ function renderDestinationCard(country) {
       class="destination-card"
       href="/${country.slug}/"
       data-region="${escapeHtml(country.region)}"
-      data-search="${escapeHtml(`${country.name} ${country.region} ${country.landmark}`.toLowerCase())}"
+      data-search="${escapeHtml(`${country.name} ${country.code} ${country.slug === "uk" ? "UK Britain Great Britain" : ""} ${country.region} ${country.landmark}`.toLowerCase())}"
       style="--country-a:${country.colors[0]};--country-b:${country.colors[1]}"
     >
       <span class="destination-art" aria-hidden="true">
-        ${countryPhotos[country.slug] ? `<img class="destination-photo" src="${countryPhotos[country.slug]}" alt="" loading="lazy" decoding="async">` : ""}
+        ${countryPhotos[country.slug] ? `<img class="destination-photo" src="${countryPhotos[country.slug].replace("/960px-", "/330px-")}" srcset="${countryPhotos[country.slug].replace("/960px-", "/330px-")} 330w, ${countryPhotos[country.slug]} 960w" sizes="(max-width:600px) 90vw, (max-width:1000px) 45vw, 280px" width="960" height="640" alt="" loading="lazy" decoding="async">` : ""}
         <img class="destination-flag" src="${getFlag(country, 160)}" alt="" width="80" height="60" loading="lazy" decoding="async">
         <span class="destination-region">${escapeHtml(country.region)}</span>
       </span>
@@ -594,9 +599,9 @@ function renderBankDetails(compact = false) {
 
 function renderHome() {
   const featured = countries[0];
-  const heroPhoto = `${workplacePhotos.consultation.url}?auto=format&fit=crop&w=1800&q=78`;
+  const heroPhoto = `${workplacePhotos.consultation.url}?auto=format&fit=crop&w=1440&q=68`;
   return `
-    <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}')" aria-labelledby="home-title">
+    <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}');--hero-photo-mobile:url('${escapeHtml(workplacePhotoUrl(workplacePhotos.consultation, 640))}')" aria-labelledby="home-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap hero-inner">
         <figure class="hero-travel-art">
@@ -623,7 +628,7 @@ function renderHome() {
             <span class="featured-copy"><strong id="featured-name">${escapeHtml(featured.name)}</strong><span id="featured-landmark">${escapeHtml(featured.landmark)}</span></span>
             <span class="featured-arrow" aria-hidden="true">↗</span>
           </a>
-          <div class="hero-chips" aria-label="Select a destination to preview">
+          <div role="group" class="hero-chips" aria-label="Select a destination to preview">
             ${countries.map((country) => renderCountryChip(country, country.slug === featured.slug)).join("")}
           </div>
         </div>
@@ -659,7 +664,7 @@ function renderHome() {
             <button class="filter-button" type="button" data-filter="Southern" aria-pressed="false">Southern</button>
             <button class="filter-button" type="button" data-filter="Central & Eastern" aria-pressed="false">Central &amp; Eastern</button>
           </div>
-          <label class="destination-search">
+          <label class="destination-search" for="country-search">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
             <span class="sr-only">Search countries</span>
             <input id="country-search" type="search" placeholder="Search countries" autocomplete="off">
@@ -786,10 +791,10 @@ function renderCountryPage(country) {
   const countryPhoto = countryPhotos[country.slug]
     ? `url('${escapeHtml(countryPhotos[country.slug])}')`
     : "none";
-  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(getCountryWorkPhoto(country), 1800))}')`;
+  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(getCountryWorkPhoto(country), 1200))}')`;
 
   return `
-    <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto};--hero-photo:${heroPhoto}" aria-labelledby="country-title">
+    <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto};--hero-photo:${heroPhoto};--hero-photo-mobile:url('${escapeHtml(workplacePhotoUrl(getCountryWorkPhoto(country), 640))}')" aria-labelledby="country-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -866,15 +871,15 @@ function renderWorkerMarketPage(market) {
     workplacePhotos.transport,
     workplacePhotos.construction
   ][marketIndex % 4];
-  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(workerPhoto, 1800))}')`;
+  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(workerPhoto, 1200))}')`;
   const audienceIntro = market.diaspora
     ? `If you are from Pakistan, India, Bangladesh, Nepal or an African country and live or work in ${market.country}, tell us about your occupation and the European destinations you are considering.`
     : `If you are applying from ${market.country}, tell us about your occupation and the European destinations you are considering.`;
 
   return `
-    <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto}" aria-labelledby="worker-market-title">
+    <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto};--hero-photo-mobile:url('${escapeHtml(workplacePhotoUrl(workerPhoto, 640))}')" aria-labelledby="worker-market-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
-      <img class="worker-travel-art" src="/family-airport.svg" alt="A family preparing to travel with generic travel documents." width="700" height="440" fetchpriority="high">
+      <img class="worker-travel-art" src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional travel documents." width="700" height="440" fetchpriority="high">
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-markets">For workers</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(market.country)}</span>
@@ -1037,7 +1042,7 @@ function setupHomeInteractions() {
     let visible = 0;
     cards.forEach((card) => {
       const matchesRegion = activeRegion === "All" || card.dataset.region === activeRegion;
-      const matchesTerm = !term || card.dataset.search.includes(term);
+      const matchesTerm = !term || (term.length <= 2 ? card.dataset.search.split(/\s+/).includes(term) : card.dataset.search.includes(term));
       const isVisible = matchesRegion && matchesTerm;
       card.hidden = !isVisible;
       if (isVisible) visible += 1;
@@ -1124,12 +1129,6 @@ function getAssistantReply(question) {
   const answer = (message, link) => ({ message, link });
   const faqAnswer = (title) => faqs.find(([question]) => question === title)[1];
 
-  if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
-    return answer(
-      `WhatsApp us on ${whatsappNumber}, or call or WhatsApp ${callNumber}. You can also email ${contactEmail}.`,
-      { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
-    );
-  }
 
   if (matches(/\b(price|pricing|fee|fees|cost|costs|payment|pay)\b/)) {
     return answer(faqAnswer("How much do your services cost?"));
@@ -1139,6 +1138,12 @@ function getAssistantReply(question) {
   }
   if (matches(/\b(which countries|what countries|destinations|countries do you|countries can you)\b/)) {
     return answer(faqAnswer("Which destinations are covered?"), { href: "/#destinations", label: "Browse destinations" });
+  }
+  if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
+    return answer(
+      `WhatsApp us on ${whatsappNumber}. You can also email ${contactEmail}. Telephone contact is awaiting number confirmation.`,
+      { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
+    );
   }
   if (matches(/\b(get started|start|begin|apply|application process)\b/)) {
     return answer(faqAnswer("How do I get started?"), { href: whatsappLink(), label: "Chat with our team on WhatsApp" });
@@ -1290,7 +1295,8 @@ function setupWebsiteAssistant() {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
-const pathname = decodeURIComponent(window.location.pathname)
+function decodePath(value) { try { return decodeURIComponent(value); } catch { return value; } }
+const pathname = decodePath(window.location.pathname)
   .replace(/(?:^|\/)index\.html$/i, "")
   .replace(/^\/+|\/+$/g, "");
 const path = window.location.protocol === "file:"
@@ -1304,6 +1310,8 @@ const main = document.querySelector("#main");
 if (!main.dataset.prerendered) {
   if (!path) {
     main.innerHTML = renderHome();
+  } else if (pathname === "privacy") {
+    main.innerHTML = renderPrivacyPage();
   } else if (currentCountry) {
     main.innerHTML = renderCountryPage(currentCountry);
   } else if (currentWorkerMarket) {
@@ -1318,6 +1326,8 @@ if (!main.dataset.prerendered) {
 if (!path) {
   updatePageMetadata(null);
   setupHomeInteractions();
+} else if (pathname === "privacy") {
+  updatePageMetadata(null, null, null, privacyPage);
 } else if (currentCountry) {
   updatePageMetadata(currentCountry);
 } else if (currentWorkerMarket) {
@@ -1333,3 +1343,13 @@ setupEnquiryForms();
 document.querySelectorAll(fallbackImageSelector).forEach((image) => {
   if (image.complete && image.naturalWidth === 0) image.hidden = true;
 });
+
+function renderPrivacyPage() {
+  return `<article class="wrap guide-section privacy-page"><h1>Privacy and contact information</h1>
+  <p>EU Pathfinder uses the details you submit to respond to your enquiry. Contact <a href="mailto:${contactEmail}">${contactEmail}</a> with questions about your information or requests to access, correct or delete enquiry details. Do not send identity documents with a request; the team can discuss an appropriate way to verify it.</p>
+  <h2>Enquiry information</h2><p>The form collects your name, email, nationality, chosen topic, page context and optional message, together with your permission to reply. It sends these details through Cloudflare Pages and Resend to our email inbox. Requests to the website also pass through Cloudflare, which may process connection and security information. Do not submit passport scans, payment details or sensitive documents.</p>
+  <h2>Advertising and external services</h2><p>Advertising scripts are disabled on this version of the site. There is no optional advertising consent to grant or withdraw here. Images and fonts may load from Unsplash, Wikimedia, FlagCDN and Google Fonts; your browser connects to those providers when loading their resources. Opening WhatsApp or email links uses the service or app you choose.</p>
+  <h2>Retention and further questions</h2><p>A retention period and further operator-specific privacy terms have not yet been published. Ask the team how long your enquiry will be kept before submitting if this affects your decision.</p>
+  <h2>Before agreeing to a service</h2><p>Request the contracting party's details, written scope, itemized fees, third-party costs, cancellation and refund terms, and complaint contact before agreeing or paying. No job, permit or visa outcome is guaranteed.</p>
+  <p><a href="/#contact">Contact the team</a> · <a href="/">Return home</a></p></article>`;
+}

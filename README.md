@@ -1,6 +1,6 @@
 # EU Pathfinder
 
-A responsive website for EU Pathfinder with European destination guides and worker-market landing pages for applicants in Pakistan, India, Bangladesh and Nepal, plus South Asian and African workers in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. It includes work-route guidance, document checklists, support services, pricing information, FAQs, phone and WhatsApp contacts, email, and an enquiry form. WhatsApp: `+14696268272`. Calls and WhatsApp: `+128991443132` (displayed exactly as supplied).
+A responsive website for EU Pathfinder with European destination guides and worker-market landing pages for applicants in Pakistan, India, Bangladesh and Nepal, plus South Asian and African workers in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. It includes work-route guidance, document checklists, support services, pricing information, FAQs, phone and WhatsApp contacts, email, and an enquiry form. WhatsApp: `+14696268272`. Supplied calls/WhatsApp number `+128991443132` fails NANP length validation (11 digits after +1); it is withheld from public links pending correction. WhatsApp format validation does not verify account registration or ownership.
 
 Destination, worker-market and guide content live in `public\script.js`; `build-seo.mjs` prerenders the homepage and all routes into HTML with page-specific titles, descriptions, canonical URLs, and social metadata. It also generates the sitemap. Destination photos are from Wikipedia and Wikimedia Commons and are credited in the site footer; flag artwork supplies a fallback for destinations without a thumbnail. The original travel illustrations use fictional, non-official documents.
 
@@ -31,4 +31,8 @@ Build settings:
 
 The custom domain `eupathfinder.agency` is managed from the Cloudflare Pages project's **Custom domains** tab.
 
-The shared page template includes the Google AdSense Auto ads loader, so Google selects ad placements across generated content pages. Before serving ads to visitors in the EEA, UK or Switzerland, configure a Google-certified consent management platform in AdSense; this site does not currently have a cookie-consent flow.
+Advertising initialization is disabled. The persistent Privacy & advertising settings link explains this state. Do not restore ad scripts until the owner configures and verifies the appropriate Google-certified consent management platform and actual ads.txt account records. No optional ad storage is enabled by this build. See EU-5-READINESS.md for owner/account blockers and verification limits.
+
+## Verification
+
+Run `node build-seo.mjs` and `node tests/audit.mjs`. Backend cases mock email delivery and do not send real enquiries. Deploy the generated public files and Pages Functions together; old forms without page context remain accepted.

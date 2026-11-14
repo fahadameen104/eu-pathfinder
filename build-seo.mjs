@@ -35,6 +35,7 @@ if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || n
 }
 const paths = [
   "/",
+  "/privacy",
   ...countrySlugs.map((slug) => `/${slug}`),
   ...workerMarketSlugs.map((slug) => `/${slug}`),
   ...guideSlugs.map((slug) => `/guides/${slug}`),

@@ -1,3 +1,4 @@
+const allowedContexts = new Set(["/guides/europe-hospitality-jobs/", "/guides/europe-entry-level-seasonal-work-guide/", "/", "/privacy/", "/poland/", "/uk/", "/germany/", "/austria/", "/croatia/", "/slovakia/", "/portugal/", "/norway/", "/switzerland/", "/belgium/", "/bulgaria/", "/cyprus/", "/czechia/", "/denmark/", "/estonia/", "/finland/", "/france/", "/serbia/", "/moldova/", "/ukraine/", "/greece/", "/ireland/", "/romania/", "/latvia/", "/lithuania/", "/luxembourg/", "/netherlands/", "/slovenia/", "/spain/", "/sweden/", "/russia/", "/malta/", "/belarus/", "/hungary/", "/italy/", "/europe-jobs-from-pakistan/", "/europe-jobs-from-india/", "/europe-jobs-from-bangladesh/", "/europe-jobs-from-malaysia/", "/europe-jobs-from-nepal/", "/europe-jobs-from-saudi-arabia/", "/europe-jobs-from-uae/", "/europe-jobs-from-oman/", "/europe-jobs-from-qatar/", "/europe-jobs-from-kuwait/", "/europe-jobs-from-bahrain/"]);
 const recipient = "info@eupathfinder.agency";
 const allowedInterests = new Set([
   "Hospitality work",
@@ -60,9 +61,27 @@ export async function onRequestPost({ request, env }) {
     return response(request, 415, "This form submission format is not supported.", false);
   }
 
+  const reader = request.body?.getReader();
+  const chunks = [];
+  let size = 0;
+  if (reader) {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 8192) {
+        await reader.cancel();
+        return response(request, 413, "The enquiry is too large. Please shorten your message.", false);
+      }
+      chunks.push(value);
+    }
+  }
+  const body = new Uint8Array(size);
+  let offset = 0;
+  for (const chunk of chunks) { body.set(chunk, offset); offset += chunk.byteLength; }
   let formData;
   try {
-    formData = await request.formData();
+    formData = await new Response(body, { headers: { "Content-Type": contentType } }).formData();
   } catch {
     return response(request, 400, "The form could not be read. Please check the fields and try again.", false);
   }
@@ -78,6 +97,10 @@ export async function onRequestPost({ request, env }) {
     interest: readField(formData, "interest", 80),
     message: readField(formData, "message", 1200)
   };
+  const context = readField(formData, "context", 200);
+  if (context && !allowedContexts.has(context)) {
+    return response(request, 400, "Please reload the enquiry page and try again.", false);
+  }
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (fields.name.length < 2 || /[\r\n]/.test(fields.name)) {
@@ -106,6 +129,7 @@ export async function onRequestPost({ request, env }) {
     ["Email", fields.email],
     ["Nationality", fields.nationality],
     ["Topic", fields.interest],
+    ["Enquiry page", context || "Not provided (older form)"],
     ["Message", fields.message || "(No message provided)"]
   ];
   const html = `<h1>New website enquiry</h1>${entries.map(([label, value]) => `<p><strong>${label}:</strong> ${escapeHtml(value)}</p>`).join("")}`;

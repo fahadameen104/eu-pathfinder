@@ -3489,3 +3489,12 @@ svg {
     min-width: min(245px, 100%);
   }
 }
+
+.section-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:.5rem 1.4rem; padding:1rem; background:#10221e; }
+.section-nav a { color:#f1f6f1; padding:.35rem; text-decoration:underline; text-underline-offset:4px; }
+.privacy-page { max-width:52rem; padding:3rem 1.25rem; }
+.privacy-page h2 { margin-top:2rem; }
+.enquiry-context { overflow-wrap:anywhere; }
+@media(max-width:760px) { .photo-backed-section { --section-photo:var(--section-photo-mobile, none) !important; } .brand-watermark { display:none; } }
+
+@media(max-width:760px) { .home-hero,.country-hero { --hero-photo:var(--hero-photo-mobile, none) !important; } }
