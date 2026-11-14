@@ -276,17 +276,6 @@ svg {
   box-shadow: 0 7px 0 #b85c48, 0 17px 32px rgba(241, 132, 108, 0.28);
 }
 
-.button-whatsapp {
-  background: var(--green);
-  color: #fff;
-  box-shadow: 0 5px 0 #04563e, 0 12px 26px rgba(8, 124, 90, 0.3);
-}
-
-.button-whatsapp:hover {
-  background: var(--green-hover);
-  box-shadow: 0 7px 0 #04563e, 0 0 28px rgba(77, 227, 164, 0.34);
-}
-
 .nav-contact {
   min-height: 48px;
   padding-inline: 20px;
@@ -1790,22 +1779,6 @@ svg {
   max-width: 720px;
 }
 
-.contact-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  color: #ffb39e;
-  font-size: 14px;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.contact-whatsapp:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
 .contact-travel-art {
   max-width: 390px;
   margin: 38px 0 0;
@@ -2555,7 +2528,7 @@ svg {
   font-size: 14px;
 }
 
-.side-phone {
+.side-email {
   margin: 16px 0 0 !important;
   color: var(--ink) !important;
   font-weight: 800;
@@ -3377,49 +3350,6 @@ svg {
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
-}
-
-.ad-placement {
-  display: grid;
-  justify-items: center;
-  gap: 5px;
-  max-width: min(var(--page), calc(100% - 32px));
-  margin: clamp(24px, 4vw, 42px) auto;
-  text-align: center;
-}
-
-.ad-placement-label {
-  color: var(--muted);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.ad-placement iframe {
-  display: block;
-  max-width: 100%;
-  border: 0;
-}
-
-.ad-placement-banner160x300 {
-  width: min(160px, 100%);
-  min-height: 300px;
-}
-
-.ad-placement-banner300x250 {
-  width: min(300px, 100%);
-  min-height: 250px;
-}
-
-.ad-placement-banner320x50 {
-  width: min(320px, 100%);
-  min-height: 50px;
-}
-
-.ad-placement-native {
-  width: min(100%, 420px);
 }
 
 /* Homepage visual refresh: richer ambient light, editorial scale, and a glassy 3D hero card. */

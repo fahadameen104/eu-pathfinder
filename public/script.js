@@ -1,8 +1,4 @@
 const contactEmail = "info@eupathfinder.agency";
-const contactPhoneNumber = "+12899143132";
-const contactPhoneDisplay = "+1 289 914 3132";
-const whatsappNumber = "14696268272";
-const whatsappDisplay = "+1 469 626 8272";
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -98,7 +94,6 @@ const guides = [
       }
     ],
     resources: [
-      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" },
       { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" }
     ]
   },
@@ -143,39 +138,12 @@ const guides = [
       }
     ],
     resources: [
-      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" },
-      { label: "EURES — European Job Mobility Portal", url: "https://eures.europa.eu/" }
+      { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" }
     ]
   }
 ];
 
 const publicationPages = [
-  {
-    slug: "adsterra-engine-test",
-    title: "Putting #AdsterraEngine to the test on EU Pathfinder",
-    description: "A brief account of adding compact Adsterra display and native ad placements to the EU Pathfinder website.",
-    intro: "I added Adsterra display and native ad placements to EU Pathfinder, keeping the formats modest and the page layout in mind.",
-    sections: [
-      {
-        heading: "What I added",
-        paragraphs: [
-          "The site now includes 320×50, 300×250 and 160×300 display placements, plus a native banner. The units are spaced through the homepage and relevant destination and guide pages."
-        ]
-      },
-      {
-        heading: "Keeping the experience unobtrusive",
-        paragraphs: [
-          "I reserved space for the placements and left out popunders, Smartlink, Social Bar and the tall 160×600 unit so they do not interrupt visitors or dominate the page."
-        ]
-      },
-      {
-        heading: "What I am checking",
-        paragraphs: [
-          "This post describes the setup, not advertising results or earnings. Ad delivery depends on Adsterra account and site approval, and I will assess how the placements fit once ads are being served."
-        ]
-      }
-    ]
-  }
 ];
 
 const countryPhotos = {
@@ -216,12 +184,6 @@ const countryPhotos = {
   italy: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Colosseo_2020.jpg/1280px-Colosseo_2020.jpg"
 };
 
-const euresCountryCodes = new Set([
-  "at", "be", "bg", "hr", "cy", "cz", "dk", "ee", "fi", "fr",
-  "de", "gr", "hu", "ie", "it", "lv", "lt", "lu", "mt", "nl",
-  "pl", "pt", "ro", "sk", "si", "es", "se", "no", "ch"
-]);
-
 const processSteps = [
   ["Consultation and agreement", "We learn about your skills and goals, review your eligibility and agree on the service together."],
   ["Document collection and permit filing", "We help you gather and check your documents, then support the work permit application."],
@@ -245,7 +207,7 @@ const services = [
 ];
 
 const faqs = [
-  ["How do I get started?", "Choose a destination and contact us on WhatsApp. An adviser can ask about your skills, experience and goals, explain the available support, and outline possible next steps before you decide whether to proceed."],
+  ["How do I get started?", "Choose a destination and email us about your skills, experience and goals. Our team can explain the support available and outline possible next steps before you decide whether to proceed."],
   ["Which destinations are covered?", "The site currently has guidance for 35 European destinations. Open a destination page to review general information about sectors, common documents and the process. Availability and requirements depend on the country, role and employer."],
   ["What does the process involve?", "The site outlines a typical seven-stage process, from an initial consultation and document preparation through permit and visa applications, travel preparation and arrival support. The exact steps vary by destination and case; the relevant authorities make all permit and visa decisions."],
   ["What documents might I need?", "A valid passport, an updated CV, education or professional certificates, and evidence of work experience are common starting points. The destination authority and employer set the actual requirements, so confirm the current checklist for your case before arranging documents."],
@@ -253,9 +215,9 @@ const faqs = [
   ["How much do your services cost?", "Fees depend on the destination, role and level of support. Contact us for current rates and a clear breakdown of service fees and any separate costs before you agree to proceed."],
   ["Can I apply from a Gulf country?", "Some destination authorities accept applications from people who legally reside in a Gulf country, but rules vary. Your nationality and residence status may affect where you can apply. Check the destination's official embassy or visa authority before making plans."],
   ["How can I check that a job offer is genuine?", "Ask for the employer's full legal name, the specific role and written terms. Verify the employer and vacancy independently, and confirm immigration requirements through official government sources. Do not rely on promises of guaranteed approval."],
-  ["How do I ask about current fees or my situation?", "Send EU Pathfinder a message on WhatsApp using the contact link on this site. Share only the information needed for an initial enquiry; do not send passport scans or other sensitive documents until you have confirmed how they will be handled."],
+  ["How do I ask about current fees or my situation?", "Email EU Pathfinder using the contact link on this site. Share only the information needed for an initial enquiry; do not send passport scans or other sensitive documents until you have confirmed how they will be handled."],
   ["How should I handle payment requests?", "Ask for written service terms, an itemized fee breakdown and an invoice before paying. Confirm the beneficiary and payment instructions through a contact method you independently verified. Do not pay anyone who promises a guaranteed job, permit or visa."],
-  ["Should I send my passport or bank details by WhatsApp?", "Do not send passport scans, bank logins, card details, passwords or one-time codes in an initial chat. First confirm who will receive any documents, why they are needed and how they will be handled."]
+  ["Should I send my passport or bank details by email?", "Do not send passport scans, bank logins, card details, passwords or one-time codes in an initial enquiry. First confirm who will receive any documents, why they are needed and how they will be handled."]
 ];
 
 const documents = [
@@ -284,47 +246,14 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => (
 
 const getFlag = (country, size = 80) => `https://flagcdn.com/w${size}/${country.code}.png`;
 
-const whatsAppLink = (message, number = whatsappNumber) =>
-  `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+const emailLink = (subject, body = "") =>
+  `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
 
-const generalWhatsAppMessage =
-  "Hello EU Pathfinder, I would like to know more about your services and current fees.";
-
-const adUnits = {
-  banner160x300: { key: "9f5d961df72d84207a7c585fcd9bafd0", width: 160, height: 300 },
-  banner300x250: { key: "68ae835ab078cbe5e6ff5fc70ed08248", width: 300, height: 250 },
-  banner320x50: { key: "7f1535800958512c257f0442f1b03040", width: 320, height: 50 },
-  native: { key: "ef9f0d6ccc74f609b9c9c30847a270be" }
-};
-
-function renderAdSlot(unitName) {
-  const unit = adUnits[unitName];
-  if (!unit) throw new Error(`Unknown ad unit: ${unitName}`);
-
-  if (unitName === "native") {
-    return `
-      <aside class="ad-placement ad-placement-native" aria-label="Advertisement">
-        <span class="ad-placement-label">Advertisement</span>
-        <script async="async" data-cfasync="false" src="https://bauval.org/21/${unit.key}"></script>
-        <div id="container-${unit.key}"></div>
-      </aside>`;
+document.addEventListener("error", (event) => {
+  if (event.target?.matches?.(".flag, .destination-flag, .destination-photo")) {
+    event.target.hidden = true;
   }
-
-  return `
-    <aside class="ad-placement ad-placement-${unitName}" aria-label="Advertisement">
-      <span class="ad-placement-label">Advertisement</span>
-      <script>
-        atOptions = {
-          'key' : '${unit.key}',
-          'format' : 'iframe',
-          'height' : ${unit.height},
-          'width' : ${unit.width},
-          'params' : {}
-        };
-      </script>
-      <script data-cfasync="false" src="https://bauval.org/22/${unit.key}"></script>
-    </aside>`;
-}
+}, true);
 
 const illustrativePhotos = {
   consultation: {
@@ -448,9 +377,6 @@ function renderEnquiryForm() {
           <input name="nationality" type="text" autocomplete="country-name" maxlength="80" required>
         </label>
         <label>
-          <span>WhatsApp number</span>
-          <input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="32" placeholder="Include country code" required>
-        </label>
         <label class="enquiry-topic">
           <span>What would you like help with?</span>
           <select name="interest" required>
@@ -478,7 +404,7 @@ function renderEnquiryForm() {
         <button class="button button-gold enquiry-submit" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
         <p class="enquiry-status" data-form-status role="status" aria-live="polite" hidden></p>
       </div>
-      <p class="enquiry-privacy">Your details are sent through Cloudflare Pages and Resend to <a href="mailto:${contactEmail}">${contactEmail}</a> so the team can reply.</p>
+      <p class="enquiry-privacy">We use your name, email, nationality, topic and optional message to respond to your enquiry. Submissions pass through Cloudflare Pages and Resend to <a href="mailto:${contactEmail}">${contactEmail}</a>. Do not include passport scans or payment details.</p>
     </form>`;
 }
 
@@ -493,8 +419,6 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <a class="contact-whatsapp" href="tel:${contactPhoneNumber}">Call us: ${contactPhoneDisplay}</a>
-          <a class="contact-whatsapp" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">WhatsApp us: ${whatsappDisplay} <span aria-hidden="true">↗</span></a>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
@@ -574,45 +498,7 @@ function renderGuidePage(guide) {
         </aside>
       </div>
       ${renderGuideCards()}
-      ${renderAdSlot("native")}
       ${renderContactSection({ title: "Have a question about your plans?" })}
-    </article>`;
-}
-
-function renderPublicationPage(publication) {
-  return `
-    <article class="guide-page">
-      <header class="guide-hero" style="--hero-photo:url('${escapeHtml(illustrativePhotoUrl(illustrativePhotos.consultation, 1800))}')">
-        <span class="hero-photo-backdrop" aria-hidden="true"></span>
-        <div class="wrap guide-hero-layout">
-          <div>
-            <nav class="breadcrumbs" aria-label="Breadcrumb">
-              <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">AdsterraEngine test</span>
-            </nav>
-            <h1>${escapeHtml(publication.title)}</h1>
-            <p class="guide-intro">${escapeHtml(publication.intro)}</p>
-            <a class="button button-gold" href="/">Visit EU Pathfinder <span aria-hidden="true">↗</span></a>
-          </div>
-          <figure class="guide-art">
-            <img src="/travel-route.svg" alt="" width="400" height="260">
-          </figure>
-        </div>
-      </header>
-      <div class="wrap guide-content-layout">
-        <div class="guide-content">
-          ${publication.sections.map((section) => `
-            <section class="guide-section">
-              <h2>${escapeHtml(section.heading)}</h2>
-              ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
-            </section>`).join("")}
-          <p class="guide-disclaimer">This is a setup update only; it does not claim or guarantee advertising performance or earnings.</p>
-        </div>
-        <aside class="guide-aside">
-          <h2>About the test</h2>
-          <p>Compact display and native units are used on the live EU Pathfinder website. The page is kept free of popunders and overlays.</p>
-          <a href="/" class="text-link">Return to EU Pathfinder <span aria-hidden="true">↗</span></a>
-        </aside>
-      </div>
     </article>`;
 }
 
@@ -645,7 +531,7 @@ function renderDestinationCard(country) {
     >
       <span class="destination-art" aria-hidden="true">
         ${countryPhotos[country.slug] ? `<img class="destination-photo" src="${countryPhotos[country.slug]}" alt="" loading="lazy" decoding="async">` : ""}
-        <img src="${getFlag(country, 160)}" alt="" width="80" height="60" loading="lazy" decoding="async">
+        <img class="destination-flag" src="${getFlag(country, 160)}" alt="" width="80" height="60" loading="lazy" decoding="async">
         <span class="destination-region">${escapeHtml(country.region)}</span>
       </span>
       <span class="destination-card-copy">
@@ -705,9 +591,9 @@ function renderHome() {
           <p class="hero-intro">Job opportunities, work-permit guidance and relocation support across 35 destinations, with an adviser beside you from first message to arrival.</p>
           <div class="hero-actions">
             <a class="button button-gold" href="/#destinations">Explore destinations</a>
-            <a class="button hero-secondary" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">
+            <a class="button hero-secondary" href="${emailLink("Ask EU Pathfinder about work in Europe")}">
               <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
-              Contact us on WhatsApp
+              Email our team
             </a>
           </div>
           <a
@@ -728,12 +614,11 @@ function renderHome() {
     </section>
 
     <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} aria-label="How EU Pathfinder supports you">
-      <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Employer and document review</strong><p>Opportunities and paperwork are reviewed carefully as part of our support.</p></div></div>
+      <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Practical document guidance</strong><p>We explain common document steps and what to confirm for your situation.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>
-      <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct WhatsApp support</strong><p>Message an adviser any time with questions about your application.</p></div></div>
+      <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct email support</strong><p>Send your questions to our team and we will reply with next steps.</p></div></div>
     </section>
 
-    ${renderAdSlot("banner320x50")}
 
     ${renderPeoplePhotoSection([
       illustrativePhotos.consultation,
@@ -747,7 +632,7 @@ function renderHome() {
     <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Open any country to see typical sectors, commonly requested documents and how our process works there.</p></div>
+          <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Browse 35 European destinations. Work authorization and application rules vary by country; each guide provides general information and a way to ask us about current vacancies.</p></div>
         </div>
         <div class="destination-controls">
           <div class="region-filters" role="group" aria-label="Filter countries by region">
@@ -774,7 +659,6 @@ function renderHome() {
       </div>
     </section>
 
-    ${renderAdSlot("banner300x250")}
 
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
@@ -789,12 +673,11 @@ function renderHome() {
 
     ${renderGuideCards()}
 
-    ${renderAdSlot("native")}
 
     <section class="section process-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="how" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="process-title">A clear path from first message to arrival</h2><p class="section-lead">Seven stages, each explained before you begin.</p></div>
+          <div><h2 id="process-title">How we may support your next steps</h2><p class="section-lead">The process depends on the destination, role and your circumstances. We explain the service scope before you decide whether to proceed.</p></div>
         </div>
         ${renderProcessSteps()}
       </div>
@@ -813,8 +696,8 @@ function renderHome() {
 
     <section class="pricing-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="pricing" aria-labelledby="pricing-title">
       <div class="wrap pricing-layout">
-        <div><h2 id="pricing-title">Fees and pricing</h2><p>Our fees vary by destination, role and the level of support you need. For current rates and a clear breakdown, contact us on WhatsApp and an adviser will share the details with you directly.</p></div>
-        <a class="button button-gold" href="${whatsAppLink("Hello EU Pathfinder, I would like to know about current fees and pricing.")}" target="_blank" rel="noopener noreferrer">Ask about pricing <span aria-hidden="true">↗</span></a>
+        <div><h2 id="pricing-title">Fees and pricing</h2><p>Fees vary by destination, role and the level of support you need. Email us for current rates and an itemized breakdown before you agree to a service.</p></div>
+        <a class="button button-gold" href="${emailLink("Ask about EU Pathfinder fees")}">Ask about pricing <span aria-hidden="true">↗</span></a>
       </div>
       <div class="wrap">${renderBankDetails()}</div>
     </section>
@@ -842,7 +725,6 @@ function renderHome() {
       </div>
     </section>
 
-    ${renderAdSlot("banner160x300")}
 
     ${renderContactSection({
       title: "Speak with the EU Pathfinder team",
@@ -863,8 +745,7 @@ function renderDestinationPills(currentSlug) {
 
 function renderVacancySearchSection(country) {
   const photo = getCountryWorkPhoto(country);
-  const supportsCountrySearch = euresCountryCodes.has(country.code);
-  const euresSearchUrl = `https://europa.eu/eures/portal/jv-se/search?page=1&resultsPerPage=10&orderBy=BEST_MATCH&locationCodes=${encodeURIComponent(country.code.toUpperCase())}&previousPageType=findJob&lang=en`;
+  const vacancyEmail = emailLink(`Ask about current vacancies in ${country.name}`, `Hello EU Pathfinder, please tell me about current vacancies in ${country.name}.`);
 
   return `
     <section class="section vacancy-section photo-backed-section" ${sectionPhotoStyle(photo)} aria-labelledby="vacancies-title">
@@ -874,13 +755,10 @@ function renderVacancySearchSection(country) {
           <figcaption>Illustrative stock photo; not tied to a specific vacancy.</figcaption>
         </figure>
         <div class="vacancy-copy">
-          <h2 id="vacancies-title">Current job listings in ${escapeHtml(country.name)}</h2>
-          <p>Search live vacancies published through EURES, the European job mobility portal. Open each listing to check the employer, location, requirements, contract and salary where provided.</p>
-          ${supportsCountrySearch
-            ? `<a class="button button-gold" href="${euresSearchUrl}" target="_blank" rel="noopener noreferrer">Browse ${escapeHtml(country.name)} vacancies on EURES <span aria-hidden="true">↗</span></a>`
-            : `<p class="vacancy-availability">A destination-filtered EURES search is not available here for ${escapeHtml(country.name)}. Check the portal's country coverage and job-search guidance before relying on listings.</p>
-              <a class="text-link" href="https://eures.europa.eu/jobseekers_en" target="_blank" rel="noopener noreferrer">EURES jobseeker information <span aria-hidden="true">↗</span></a>`}
-          <p class="vacancy-disclaimer">Vacancies can close or change without notice. EU Pathfinder does not verify or guarantee third-party job offers; confirm details directly with the employer and relevant authorities.</p>
+          <h2 id="vacancies-title">Ask about current vacancies in ${escapeHtml(country.name)}</h2>
+          <p>Email EU Pathfinder to ask about current vacancies in ${escapeHtml(country.name)}. Our team will share the opportunities available and explain role details and next steps directly.</p>
+          <a class="button button-gold" href="${vacancyEmail}">Email us about vacancies <span aria-hidden="true">↗</span></a>
+          <p class="vacancy-disclaimer">Availability and eligibility depend on the role and can change. Ask for the employer, written job terms and any fees before making a decision or payment.</p>
         </div>
       </div>
     </section>`;
@@ -888,7 +766,7 @@ function renderVacancySearchSection(country) {
 
 function renderCountryPage(country) {
   const contactMessage = `Hello EU Pathfinder, I would like information about working in ${country.name}, including current fees.`;
-  const contactUrl = whatsAppLink(contactMessage);
+  const contactUrl = emailLink(`Work in ${country.name}`, contactMessage);
   const countryPhoto = countryPhotos[country.slug]
     ? `url('${escapeHtml(countryPhotos[country.slug])}')`
     : "none";
@@ -907,9 +785,8 @@ function renderCountryPage(country) {
         </div>
         <p class="country-intro">${escapeHtml(country.intro)}</p>
         <p class="country-landmark">${escapeHtml(country.landmark)}</p>
-        <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
-          Contact us about ${escapeHtml(country.name)}
+        <a class="button button-gold" href="${contactUrl}">
+          Email us about ${escapeHtml(country.name)}
         </a>
       </div>
     </section>
@@ -940,12 +817,8 @@ function renderCountryPage(country) {
         <aside class="country-sidebar">
           <div class="side-card">
             <h2>Fees and pricing for ${escapeHtml(country.name)}</h2>
-            <p>For current rates and a clear breakdown, contact us on WhatsApp. An adviser will share the details with you directly.</p>
-            <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
-              Message us on WhatsApp
-            </a>
-            <p class="side-phone"><a href="tel:${contactPhoneNumber}">${contactPhoneDisplay}</a></p>
+            <p>For current rates and an itemized breakdown, email our team before agreeing to a service.</p>
+            <a class="button button-gold" href="${contactUrl}">Email us about work in ${escapeHtml(country.name)}</a>
             ${renderBankDetails(true)}
           </div>
         </aside>
@@ -954,7 +827,6 @@ function renderCountryPage(country) {
 
     ${renderVacancySearchSection(country)}
 
-    ${renderAdSlot("banner300x250")}
 
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))}>
       <div class="wrap">
@@ -965,13 +837,12 @@ function renderCountryPage(country) {
     </section>
 
     ${renderGuideCards()}
-    ${renderAdSlot("native")}
     ${renderContactSection({ title: `Ask about work in ${country.name}` })}`;
 }
 
 function renderWorkerMarketPage(market) {
   const contactMessage = `Hello EU Pathfinder, I am looking for information about legal work in Europe from ${market.country}. Please share the current destinations, requirements and fees.`;
-  const contactUrl = whatsAppLink(contactMessage);
+  const contactUrl = emailLink(`Work guidance from ${market.country}`, contactMessage);
   const marketIndex = workerMarkets.findIndex(({ slug }) => slug === market.slug);
   const workerPhoto = [
     illustrativePhotos.agriculture,
@@ -1066,9 +937,8 @@ function renderWorkerMarketPage(market) {
           <div class="side-card">
             <h2>Ask about working in Europe from ${escapeHtml(market.country)}</h2>
             <p>Tell us your experience and the destinations you are considering. We will explain what can be discussed and share current fees before you decide.</p>
-              <a class="button button-whatsapp" href="${contactUrl}" target="_blank" rel="noopener noreferrer">WhatsApp us: ${whatsappDisplay}</a>
-              <p class="side-phone"><a href="tel:${contactPhoneNumber}">Call us: ${contactPhoneDisplay}</a></p>
-            <p class="side-phone"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
+              <a class="button button-gold" href="${contactUrl}">Email our team</a>
+            <p class="side-email"><a href="mailto:${contactEmail}">${contactEmail}</a></p>
             ${renderBankDetails(true)}
           </div>
         </aside>
@@ -1076,7 +946,6 @@ function renderWorkerMarketPage(market) {
     </section>
 
     ${renderGuideCards()}
-    ${renderAdSlot("native")}
     ${renderContactSection({
       title: `Start a conversation from ${market.country}`,
       description: "Share your nationality, where you currently live, work experience and the kind of role you are exploring. We can discuss support options and current fees. No job, permit or visa outcome is guaranteed.",
@@ -1248,7 +1117,7 @@ function getAssistantReply(question) {
     return answer(faqs[2][1], { href: "/#destinations", label: "Browse destinations" });
   }
   if (matches(/\b(get started|start|begin|apply|application process)\b/)) {
-    return answer(faqs[3][1], { href: whatsAppLink(generalWhatsAppMessage), label: "Message an adviser on WhatsApp" });
+    return answer(faqs[3][1], { href: emailLink("Ask EU Pathfinder a question"), label: "Email our team" });
   }
   if (matches(/\b(full cost|full costs|before i commit|before committing|hidden cost|hidden fee)\b/)) {
     return answer(faqs[4][1]);
@@ -1327,7 +1196,7 @@ function setupWebsiteAssistant() {
       <button class="assistant-send" type="submit">Send</button>
     </form>
     <p class="assistant-note">Answers use this website's information, not legal or visa advice. Please don't enter passport or payment details.</p>
-    <a class="assistant-contact" href="${whatsAppLink(generalWhatsAppMessage)}" target="_blank" rel="noopener noreferrer">Ask an adviser on WhatsApp</a>`;
+    <a class="assistant-contact" href="${emailLink("Ask EU Pathfinder a question")}">Email our team</a>`;
 
   originalLauncher.replaceWith(launcher);
   document.body.append(panel);
@@ -1374,7 +1243,7 @@ function setupWebsiteAssistant() {
     launcher.focus();
   };
 
-  addMessage("Hello! Ask me about destinations, documents, services or how to get started. For individual advice, you can message our team on WhatsApp.", "bot");
+  addMessage("Hello! Ask me about destinations, documents, services or how to get started. For individual advice, email our team at info@eupathfinder.agency.", "bot");
   launcher.addEventListener("click", () => {
     panel.hidden = !panel.hidden;
     launcher.setAttribute("aria-expanded", String(!panel.hidden));
@@ -1404,7 +1273,6 @@ const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.tes
 const currentCountry = countries.find((country) => country.slug === path);
 const currentWorkerMarket = workerMarkets.find((market) => market.slug === path);
 const currentGuide = guides.find((guide) => guide.slug === path);
-const currentPublication = publicationPages.find((publication) => publication.slug === path);
 const main = document.querySelector("#main");
 
 if (!main.dataset.prerendered) {
@@ -1416,8 +1284,6 @@ if (!main.dataset.prerendered) {
     main.innerHTML = renderWorkerMarketPage(currentWorkerMarket);
   } else if (currentGuide) {
     main.innerHTML = renderGuidePage(currentGuide);
-  } else if (currentPublication) {
-    main.innerHTML = renderPublicationPage(currentPublication);
   } else {
     main.innerHTML = renderNotFound();
   }
@@ -1432,8 +1298,6 @@ if (!path) {
   updatePageMetadata(null, currentWorkerMarket);
 } else if (currentGuide) {
   updatePageMetadata(null, null, currentGuide);
-} else if (currentPublication) {
-  updatePageMetadata(null, null, null, currentPublication);
 } else {
   updatePageMetadata(null);
 }
