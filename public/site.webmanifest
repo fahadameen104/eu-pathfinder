@@ -1,0 +1,12 @@
+{
+  "name": "EU Pathfinder Agency",
+  "short_name": "EU Pathfinder",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#10221e",
+  "theme_color": "#10221e",
+  "icons": [
+    { "src": "/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

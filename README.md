@@ -1,8 +1,10 @@
 # EU Pathfinder
 
-A responsive website for EU Pathfinder with European destination guides and worker-market landing pages for applicants in Pakistan, India, Bangladesh and Nepal, plus South Asian and African workers in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. It includes work-route guidance, document checklists, support services, pricing information, FAQs, email contact, and an enquiry form. Visitors can email EU Pathfinder to ask about current vacancies for each destination.
+A responsive website for EU Pathfinder with European destination guides and worker-market landing pages for applicants in Pakistan, India, Bangladesh and Nepal, plus South Asian and African workers in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. It includes work-route guidance, document checklists, support services, pricing information, FAQs, phone and WhatsApp contacts, email, and an enquiry form. WhatsApp: `+14696268272`. Calls and WhatsApp: `+128991443132` (displayed exactly as supplied).
 
 Destination, worker-market and guide content live in `public\script.js`; `build-seo.mjs` prerenders the homepage and all routes into HTML with page-specific titles, descriptions, canonical URLs, and social metadata. It also generates the sitemap. Destination photos are from Wikipedia and Wikimedia Commons and are credited in the site footer; flag artwork supplies a fallback for destinations without a thumbnail. The original travel illustrations use fictional, non-official documents.
+
+The shared template declares stable ICO/PNG/SVG favicons, an Apple touch icon, social logo metadata and an Organization logo. Brand assets are served from `public/`; robots.txt allows crawling them. Google controls when its search results pick up favicon changes after recrawling.
 
 The enquiry form posts to a Cloudflare Pages Function at `functions\api\enquiry.js`. The function validates submissions and uses the Resend email API to deliver them to `info@eupathfinder.agency`. Before enabling the form in Cloudflare Pages:
 

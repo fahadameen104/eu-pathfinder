@@ -1,4 +1,8 @@
 const contactEmail = "info@eupathfinder.agency";
+const whatsappNumber = "+14696268272";
+const callNumber = "+128991443132";
+const whatsappLink = (number = whatsappNumber, message = "Hello EU Pathfinder, I would like guidance about working in Europe.") =>
+  `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;
 
 const countries = [
   { slug: "poland", name: "Poland", code: "pl", region: "Central & Eastern", landmark: "Wawel Castle, Krakow", intro: "A large Central European economy with a wide range of employers in industry, logistics and construction.", sectors: ["Manufacturing", "Logistics and warehousing", "Construction", "Food processing", "Agriculture"], colors: ["#dc143c", "#8e0f28"] },
@@ -249,13 +253,19 @@ const getFlag = (country, size = 80) => `https://flagcdn.com/w${size}/${country.
 const emailLink = (subject, body = "") =>
   `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}${body ? `&body=${encodeURIComponent(body)}` : ""}`;
 
+const fallbackImageSelector = ".flag, .destination-flag, .destination-photo, #featured-flag";
 document.addEventListener("error", (event) => {
-  if (event.target?.matches?.(".flag, .destination-flag, .destination-photo")) {
+  if (event.target?.matches?.(fallbackImageSelector)) {
     event.target.hidden = true;
   }
 }, true);
+document.addEventListener("load", (event) => {
+  if (event.target?.matches?.(fallbackImageSelector)) {
+    event.target.hidden = false;
+  }
+}, true);
 
-const illustrativePhotos = {
+const workplacePhotos = {
   consultation: {
     url: "https://images.unsplash.com/photo-1672380135241-c024f7fbfa13",
     alt: "Two professionals greeting with a handshake across a desk",
@@ -295,16 +305,16 @@ const illustrativePhotos = {
   }
 };
 
-function illustrativePhotoUrl(photo, width) {
+function workplacePhotoUrl(photo, width) {
   if (!photo.url.startsWith("https://images.unsplash.com/")) return photo.url;
   return `${photo.url}?auto=format&fit=crop&w=${width}&q=68`;
 }
 
 function sectionPhotoStyle(photo) {
-  return `style="--section-photo:url('${escapeHtml(illustrativePhotoUrl(photo, 1800))}')"`;
+  return `style="--section-photo:url('${escapeHtml(workplacePhotoUrl(photo, 1800))}')"`;
 }
 
-function renderIllustrativePhoto(photo, sizes) {
+function renderWorkplacePhoto(photo, sizes) {
   const photoBrand = photo.imageOnly
     ? ""
     : `
@@ -313,15 +323,14 @@ function renderIllustrativePhoto(photo, sizes) {
             <svg viewBox="0 0 40 40"><path d="M20 5 31 27l-11-6-11 6L20 5Z"></path><path class="brand-stem" d="M20 21v13"></path></svg>
           </span>
           <span>EU Pathfinder</span>
-        </span>
-        <span class="people-photo-label">Illustrative photo</span>`;
+        </span>`;
 
   return `
     <figure class="people-photo">
       <div class="people-photo-frame">
         <img
-          src="${escapeHtml(illustrativePhotoUrl(photo, 720))}"
-          srcset="${escapeHtml(illustrativePhotoUrl(photo, 480))} 480w, ${escapeHtml(illustrativePhotoUrl(photo, 900))} 900w"
+          src="${escapeHtml(workplacePhotoUrl(photo, 720))}"
+          srcset="${escapeHtml(workplacePhotoUrl(photo, 480))} 480w, ${escapeHtml(workplacePhotoUrl(photo, 900))} 900w"
           sizes="${sizes}"
           alt="${escapeHtml(photo.alt)}"
           width="900"
@@ -339,7 +348,7 @@ function renderIllustrativePhoto(photo, sizes) {
 function renderPeoplePhotoSection(
   photos,
   heading = "People, planning, and work in motion",
-  backdropPhoto = illustrativePhotos.transport
+  backdropPhoto = workplacePhotos.transport
 ) {
   const imageSizes = photos.length > 2
     ? "(max-width: 500px) calc(50vw - 22px), (max-width: 760px) calc(50vw - 28px), 25vw"
@@ -353,9 +362,8 @@ function renderPeoplePhotoSection(
           <p>Talk through your goals with an adviser, then explore the kinds of workplaces that may fit your experience.</p>
         </div>
         <div class="people-photo-grid">
-          ${photos.map((photo) => renderIllustrativePhoto(photo, imageSizes)).join("")}
+          ${photos.map((photo) => renderWorkplacePhoto(photo, imageSizes)).join("")}
         </div>
-        <p class="people-photo-disclosure">Illustrative stock photos only. The people shown are not EU Pathfinder staff or clients, and the images do not represent specific vacancies or job placements.</p>
       </div>
     </section>`;
 }
@@ -376,7 +384,6 @@ function renderEnquiryForm() {
           <span>Nationality</span>
           <input name="nationality" type="text" autocomplete="country-name" maxlength="80" required>
         </label>
-        <label>
         <label class="enquiry-topic">
           <span>What would you like help with?</span>
           <select name="interest" required>
@@ -414,15 +421,26 @@ function renderContactSection({
   id = "contact"
 } = {}) {
   return `
-    <section class="contact-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
+    <section class="contact-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} id="${escapeHtml(id)}" aria-labelledby="${escapeHtml(id)}-title">
       <div class="wrap contact-layout">
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
+          <div class="contact-options" aria-label="Phone and WhatsApp contact options">
+            <div class="contact-option">
+              <span class="contact-option-label">WhatsApp</span>
+              <a class="contact-number" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">${whatsappNumber}</a>
+              <a class="contact-option-action" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">Start a conversation <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="contact-option">
+              <span class="contact-option-label">Calls &amp; WhatsApp</span>
+              <a class="contact-number" href="tel:${callNumber}">${callNumber}</a>
+              <div class="contact-option-actions"><a class="contact-option-action" href="tel:${callNumber}">Call us</a><span aria-hidden="true">·</span><a class="contact-option-action" href="${whatsappLink(callNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a></div>
+            </div>
+          </div>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
           <figure class="contact-travel-art">
-            <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" loading="lazy" decoding="async">
-            <figcaption>Illustration · travel documents shown are fictional</figcaption>
+            <img src="/family-airport.svg" alt="A family preparing to travel with generic travel documents." width="700" height="440" loading="lazy" decoding="async">
           </figure>
         </div>
         ${renderEnquiryForm()}
@@ -432,7 +450,7 @@ function renderContactSection({
 
 function renderGuideCards() {
   return `
-    <section class="section guide-library photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="worker-guides" aria-labelledby="worker-guides-title">
+    <section class="section guide-library photo-backed-section" ${sectionPhotoStyle(workplacePhotos.transport)} id="worker-guides" aria-labelledby="worker-guides-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="worker-guides-title">Useful guides for your next step</h2><p class="section-lead">Practical guidance on hospitality work, entry-level roles and checking an offer before you commit.</p></div>
@@ -458,7 +476,7 @@ function renderGuideCards() {
 function renderGuidePage(guide) {
   return `
     <article class="guide-page">
-      <header class="guide-hero" style="--hero-photo:url('${escapeHtml(illustrativePhotoUrl(illustrativePhotos.consultation, 1800))}')">
+      <header class="guide-hero" style="--hero-photo:url('${escapeHtml(workplacePhotoUrl(workplacePhotos.consultation, 1800))}')">
         <span class="hero-photo-backdrop" aria-hidden="true"></span>
         <div class="wrap guide-hero-layout">
           <div>
@@ -470,20 +488,19 @@ function renderGuidePage(guide) {
             <a class="button button-gold" href="/#contact">Ask a question <span aria-hidden="true">↗</span></a>
           </div>
           <figure class="guide-art">
-            <img src="${guide.image}" alt="Illustration of travel planning with generic, fictional travel documents." width="700" height="440" fetchpriority="high">
-            <figcaption>Illustration · not an official passport, visa or travel booking</figcaption>
+            <img src="${guide.image}" alt="Travel planning with a route map and generic travel documents." width="700" height="440" fetchpriority="high">
           </figure>
         </div>
       </header>
       <div class="wrap guide-content-layout">
         <div class="guide-content">
           ${guide.sections.map((section) => `
-            <section class="guide-section photo-backed-section" ${sectionPhotoStyle(guide.slug === "europe-hospitality-jobs" ? illustrativePhotos.logistics : illustrativePhotos.agriculture)}>
+            <section class="guide-section photo-backed-section" ${sectionPhotoStyle(guide.slug === "europe-hospitality-jobs" ? workplacePhotos.logistics : workplacePhotos.agriculture)}>
               <h2>${escapeHtml(section.heading)}</h2>
               ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
               ${section.bullets ? `<ul class="check-list">${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
             </section>`).join("")}
-          <section class="guide-resources photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} aria-labelledby="guide-resources-title">
+          <section class="guide-resources photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-labelledby="guide-resources-title">
             <h2 id="guide-resources-title">Official starting points</h2>
             <p>Rules change and depend on the destination. Check current details directly with official sources.</p>
             <ul>${guide.resources.map((resource) => `<li><a href="${escapeHtml(resource.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(resource.label)} <span aria-hidden="true">↗</span></a></li>`).join("")}</ul>
@@ -505,11 +522,11 @@ function renderGuidePage(guide) {
 function getCountryWorkPhoto(country) {
   const sectors = country.sectors.join(" ").toLowerCase();
   if (/agriculture|horticulture|forestry|agri-food|food processing/.test(sectors)) {
-    return illustrativePhotos.agriculture;
+    return workplacePhotos.agriculture;
   }
-  if (/transport/.test(sectors)) return illustrativePhotos.transport;
-  if (/logistics|warehousing|shipping/.test(sectors)) return illustrativePhotos.logistics;
-  return illustrativePhotos.construction;
+  if (/transport/.test(sectors)) return workplacePhotos.transport;
+  if (/logistics|warehousing|shipping/.test(sectors)) return workplacePhotos.logistics;
+  return workplacePhotos.construction;
 }
 
 function renderCountryChip(country, selected = false) {
@@ -577,7 +594,7 @@ function renderBankDetails(compact = false) {
 
 function renderHome() {
   const featured = countries[0];
-  const heroPhoto = `${illustrativePhotos.consultation.url}?auto=format&fit=crop&w=1800&q=78`;
+  const heroPhoto = `${workplacePhotos.consultation.url}?auto=format&fit=crop&w=1800&q=78`;
   return `
     <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}')" aria-labelledby="home-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
@@ -591,9 +608,9 @@ function renderHome() {
           <p class="hero-intro">Job opportunities, work-permit guidance and relocation support across 35 destinations, with an adviser beside you from first message to arrival.</p>
           <div class="hero-actions">
             <a class="button button-gold" href="/#destinations">Explore destinations</a>
-            <a class="button hero-secondary" href="${emailLink("Ask EU Pathfinder about work in Europe")}">
+            <a class="button hero-secondary" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
-              Email our team
+              Chat on WhatsApp
             </a>
           </div>
           <a
@@ -613,7 +630,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} aria-label="How EU Pathfinder supports you">
+    <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-label="How EU Pathfinder supports you">
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Practical document guidance</strong><p>We explain common document steps and what to confirm for your situation.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct email support</strong><p>Send your questions to our team and we will reply with next steps.</p></div></div>
@@ -621,15 +638,15 @@ function renderHome() {
 
 
     ${renderPeoplePhotoSection([
-      illustrativePhotos.consultation,
-      illustrativePhotos.agriculture,
-      illustrativePhotos.logistics,
-      illustrativePhotos.transport,
-      illustrativePhotos.teamPlanning,
-      illustrativePhotos.teamCollaboration
-    ], "A human conversation. A clearer path to work.", illustrativePhotos.construction)}
+      workplacePhotos.consultation,
+      workplacePhotos.agriculture,
+      workplacePhotos.logistics,
+      workplacePhotos.transport,
+      workplacePhotos.teamPlanning,
+      workplacePhotos.teamCollaboration
+    ], "A human conversation. A clearer path to work.", workplacePhotos.construction)}
 
-    <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">
+    <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Browse 35 European destinations. Work authorization and application rules vary by country; each guide provides general information and a way to ask us about current vacancies.</p></div>
@@ -660,7 +677,7 @@ function renderHome() {
     </section>
 
 
-    <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
+    <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(workplacePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU Pathfinder to discuss support and current fees.</p></div>
@@ -674,7 +691,7 @@ function renderHome() {
     ${renderGuideCards()}
 
 
-    <section class="section process-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)} id="how" aria-labelledby="process-title">
+    <section class="section process-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} id="how" aria-labelledby="process-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="process-title">How we may support your next steps</h2><p class="section-lead">The process depends on the destination, role and your circumstances. We explain the service scope before you decide whether to proceed.</p></div>
@@ -683,7 +700,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="section services-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.construction)} id="services" aria-labelledby="services-title">
+    <section class="section services-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.construction)} id="services" aria-labelledby="services-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="services-title">Support beyond the core process</h2><p class="section-lead">Add the help you need, when you need it.</p></div>
@@ -694,7 +711,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="pricing-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.logistics)} id="pricing" aria-labelledby="pricing-title">
+    <section class="pricing-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.logistics)} id="pricing" aria-labelledby="pricing-title">
       <div class="wrap pricing-layout">
         <div><h2 id="pricing-title">Fees and pricing</h2><p>Fees vary by destination, role and the level of support you need. Email us for current rates and an itemized breakdown before you agree to a service.</p></div>
         <a class="button button-gold" href="${emailLink("Ask about EU Pathfinder fees")}">Ask about pricing <span aria-hidden="true">↗</span></a>
@@ -702,7 +719,7 @@ function renderHome() {
       <div class="wrap">${renderBankDetails()}</div>
     </section>
 
-    <section class="section candidate-review photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.transport)} id="candidate-review" aria-labelledby="candidate-review-title">
+    <section class="section candidate-review photo-backed-section" ${sectionPhotoStyle(workplacePhotos.transport)} id="candidate-review" aria-labelledby="candidate-review-title">
       <div class="wrap">
         <div class="section-heading">
           <div><h2 id="candidate-review-title">Review an opportunity before you commit</h2><p class="section-lead">A few independent checks can help you make a more informed decision about a job, an intermediary and the next step.</p></div>
@@ -718,7 +735,7 @@ function renderHome() {
       </div>
     </section>
 
-    <section class="section faq-section photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.agriculture)} id="faq" aria-labelledby="faq-title">
+    <section class="section faq-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.agriculture)} id="faq" aria-labelledby="faq-title">
       <div class="wrap">
         <div class="section-heading"><div><h2 id="faq-title">Questions before you start</h2></div></div>
         ${renderFaqs()}
@@ -751,8 +768,7 @@ function renderVacancySearchSection(country) {
     <section class="section vacancy-section photo-backed-section" ${sectionPhotoStyle(photo)} aria-labelledby="vacancies-title">
       <div class="wrap vacancy-layout">
         <figure class="vacancy-photo">
-          <img src="${escapeHtml(illustrativePhotoUrl(photo, 1000))}" alt="${escapeHtml(`Illustrative stock image: ${photo.alt}.`)}" width="1000" height="700" loading="lazy" decoding="async">
-          <figcaption>Illustrative stock photo; not tied to a specific vacancy.</figcaption>
+          <img src="${escapeHtml(workplacePhotoUrl(photo, 1000))}" alt="${escapeHtml(photo.alt)}" width="1000" height="700" loading="lazy" decoding="async">
         </figure>
         <div class="vacancy-copy">
           <h2 id="vacancies-title">Ask about current vacancies in ${escapeHtml(country.name)}</h2>
@@ -770,7 +786,7 @@ function renderCountryPage(country) {
   const countryPhoto = countryPhotos[country.slug]
     ? `url('${escapeHtml(countryPhotos[country.slug])}')`
     : "none";
-  const heroPhoto = `url('${escapeHtml(illustrativePhotoUrl(getCountryWorkPhoto(country), 1800))}')`;
+  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(getCountryWorkPhoto(country), 1800))}')`;
 
   return `
     <section class="country-hero" style="--country-a:${country.colors[0]};--country-b:${country.colors[1]};--country-photo:${countryPhoto};--hero-photo:${heroPhoto}" aria-labelledby="country-title">
@@ -792,7 +808,7 @@ function renderCountryPage(country) {
     </section>
 
     ${renderPeoplePhotoSection([
-      illustrativePhotos.consultation,
+      workplacePhotos.consultation,
       getCountryWorkPhoto(country)
     ], `People and work in ${country.name}`, getCountryWorkPhoto(country))}
 
@@ -845,12 +861,12 @@ function renderWorkerMarketPage(market) {
   const contactUrl = emailLink(`Work guidance from ${market.country}`, contactMessage);
   const marketIndex = workerMarkets.findIndex(({ slug }) => slug === market.slug);
   const workerPhoto = [
-    illustrativePhotos.agriculture,
-    illustrativePhotos.logistics,
-    illustrativePhotos.transport,
-    illustrativePhotos.construction
+    workplacePhotos.agriculture,
+    workplacePhotos.logistics,
+    workplacePhotos.transport,
+    workplacePhotos.construction
   ][marketIndex % 4];
-  const heroPhoto = `url('${escapeHtml(illustrativePhotoUrl(workerPhoto, 1800))}')`;
+  const heroPhoto = `url('${escapeHtml(workplacePhotoUrl(workerPhoto, 1800))}')`;
   const audienceIntro = market.diaspora
     ? `If you are from Pakistan, India, Bangladesh, Nepal or an African country and live or work in ${market.country}, tell us about your occupation and the European destinations you are considering.`
     : `If you are applying from ${market.country}, tell us about your occupation and the European destinations you are considering.`;
@@ -858,7 +874,7 @@ function renderWorkerMarketPage(market) {
   return `
     <section class="country-hero worker-hero" style="--country-a:#0b2a57;--country-b:#0c356c;--country-photo:none;--hero-photo:${heroPhoto}" aria-labelledby="worker-market-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
-      <img class="worker-travel-art" src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional tickets and travel documents." width="700" height="440" fetchpriority="high">
+      <img class="worker-travel-art" src="/family-airport.svg" alt="A family preparing to travel with generic travel documents." width="700" height="440" fetchpriority="high">
       <div class="wrap">
         <nav class="breadcrumbs" aria-label="Breadcrumb">
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-markets">For workers</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(market.country)}</span>
@@ -870,7 +886,7 @@ function renderWorkerMarketPage(market) {
     </section>
 
     ${renderPeoplePhotoSection([
-      illustrativePhotos.consultation,
+      workplacePhotos.consultation,
       workerPhoto
     ], "Plan with care. Explore work with confidence.", workerPhoto)}
 
@@ -963,7 +979,7 @@ function renderWorkerMarketPage(market) {
 
 function renderNotFound() {
   return `
-    <section class="not-found wrap photo-backed-section" ${sectionPhotoStyle(illustrativePhotos.consultation)}>
+    <section class="not-found wrap photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)}>
       <h1>We couldn't find that destination.</h1>
       <p>Choose from our 35 destination guides to explore typical sectors, documents and next steps.</p>
       <a class="button button-gold" href="/#destinations">Browse destinations</a>
@@ -1106,21 +1122,29 @@ function getAssistantReply(question) {
   const text = question.trim().toLocaleLowerCase();
   const matches = (pattern) => pattern.test(text);
   const answer = (message, link) => ({ message, link });
+  const faqAnswer = (title) => faqs.find(([question]) => question === title)[1];
+
+  if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
+    return answer(
+      `WhatsApp us on ${whatsappNumber}, or call or WhatsApp ${callNumber}. You can also email ${contactEmail}.`,
+      { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
+    );
+  }
 
   if (matches(/\b(price|pricing|fee|fees|cost|costs|payment|pay)\b/)) {
-    return answer(faqs[0][1]);
+    return answer(faqAnswer("How much do your services cost?"));
   }
   if (matches(/\b(guarantee|guaranteed|approval|approved)\b/)) {
-    return answer(faqs[1][1]);
+    return answer(faqAnswer("Can you guarantee a job, visa or work permit?"));
   }
   if (matches(/\b(which countries|what countries|destinations|countries do you|countries can you)\b/)) {
-    return answer(faqs[2][1], { href: "/#destinations", label: "Browse destinations" });
+    return answer(faqAnswer("Which destinations are covered?"), { href: "/#destinations", label: "Browse destinations" });
   }
   if (matches(/\b(get started|start|begin|apply|application process)\b/)) {
-    return answer(faqs[3][1], { href: emailLink("Ask EU Pathfinder a question"), label: "Email our team" });
+    return answer(faqAnswer("How do I get started?"), { href: whatsappLink(), label: "Chat with our team on WhatsApp" });
   }
   if (matches(/\b(full cost|full costs|before i commit|before committing|hidden cost|hidden fee)\b/)) {
-    return answer(faqs[4][1]);
+    return answer(faqAnswer("How much do your services cost?"));
   }
   if (matches(/\b(document|documents|paperwork|checklist)\b/)) {
     return answer(
@@ -1198,7 +1222,7 @@ function setupWebsiteAssistant() {
     <p class="assistant-note">Answers use this website's information, not legal or visa advice. Please don't enter passport or payment details.</p>
     <a class="assistant-contact" href="${emailLink("Ask EU Pathfinder a question")}">Email our team</a>`;
 
-  originalLauncher.replaceWith(launcher);
+  document.body.append(launcher);
   document.body.append(panel);
 
   const hero = document.querySelector(".home-hero");
@@ -1266,13 +1290,15 @@ function setupWebsiteAssistant() {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
-const pathname = decodeURIComponent(window.location.pathname).replace(/^\/+|\/+$/g, "");
-const path = window.location.protocol === "file:" || /(?:^|\/)index\.html$/i.test(pathname)
+const pathname = decodeURIComponent(window.location.pathname)
+  .replace(/(?:^|\/)index\.html$/i, "")
+  .replace(/^\/+|\/+$/g, "");
+const path = window.location.protocol === "file:"
   ? ""
   : pathname.split("/").pop();
-const currentCountry = countries.find((country) => country.slug === path);
-const currentWorkerMarket = workerMarkets.find((market) => market.slug === path);
-const currentGuide = guides.find((guide) => guide.slug === path);
+const currentCountry = countries.find((country) => country.slug === pathname);
+const currentWorkerMarket = workerMarkets.find((market) => market.slug === pathname);
+const currentGuide = guides.find((guide) => `guides/${guide.slug}` === pathname);
 const main = document.querySelector("#main");
 
 if (!main.dataset.prerendered) {
@@ -1304,3 +1330,6 @@ if (!path) {
 
 setupWebsiteAssistant();
 setupEnquiryForms();
+document.querySelectorAll(fallbackImageSelector).forEach((image) => {
+  if (image.complete && image.naturalWidth === 0) image.hidden = true;
+});
