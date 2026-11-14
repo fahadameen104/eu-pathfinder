@@ -3498,3 +3498,33 @@ svg {
 @media(max-width:760px) { .photo-backed-section { --section-photo:var(--section-photo-mobile, none) !important; } .brand-watermark { display:none; } }
 
 @media(max-width:760px) { .home-hero,.country-hero { --hero-photo:var(--hero-photo-mobile, none) !important; } }
+/* Preview refresh: rich emerald, midnight blue and warm gold over soft photography. */
+:root { --navy:#102f42; --navy-deep:#061b2c; --paper:#071e2d; --mist:#103b43; --coral:#ffb66b; --ink:#f4fcff; --muted:#c4dce0; --line:rgba(94,222,208,.24); }
+.page-theme { position:relative; isolation:isolate; overflow:clip; background:#071e2d; }
+.page-theme::before { content:""; position:absolute; inset:-24px; z-index:-2; background-image:linear-gradient(145deg,rgba(4,22,44,.84),rgba(1,73,76,.68) 52%,rgba(36,24,72,.85)),var(--page-photo),var(--page-photo-secondary); background-size:cover; background-position:center,var(--page-position) top,right center; background-blend-mode:normal,screen,normal; filter:blur(14px) saturate(1.55); opacity:.9; pointer-events:none; }
+.page-theme > section,.page-theme > article { position:relative; }
+.page-theme .hero-photo-backdrop { background-image:linear-gradient(100deg,rgba(3,22,40,.83),rgba(5,49,57,.38) 65%,rgba(14,24,59,.58)),var(--page-photo),var(--page-photo-secondary); background-size:cover; background-position:center,var(--page-position) center,right center; background-blend-mode:normal,screen,normal; filter:blur(9px) saturate(1.55); opacity:.9; }
+.page-theme .photo-backed-section::before { background-image:linear-gradient(120deg,rgba(5,28,44,.72),rgba(5,59,63,.52)),var(--page-photo-secondary),var(--page-photo); background-blend-mode:normal,soft-light,normal; filter:blur(12px) saturate(1.5); opacity:.42; }
+.page-globe { position:absolute; top:48rem; right:-12rem; width:min(850px,90vw); z-index:-1; opacity:.16; pointer-events:none; filter:blur(3px) saturate(1.45); }
+.page-globe img { display:block; width:100%; height:auto; }
+.hero-travel-art { border:1px solid rgba(123,255,233,.55); background:linear-gradient(145deg,rgba(23,123,146,.24),rgba(22,40,86,.3)); box-shadow:0 24px 90px rgba(2,12,28,.45),0 0 75px rgba(35,244,208,.18); }
+.hero-travel-art img { filter:blur(1.5px) saturate(1.35) drop-shadow(0 18px 26px rgba(3,18,35,.2)); }
+.brand-watermark { filter:blur(2.5px) saturate(1.35); }
+.site-header { background:rgba(5,23,42,.96); border-bottom:1px solid rgba(86,220,202,.2); }
+.section-nav { background:#09323c; }
+.hero-copy h1 em,.hero-copy h1 span { color:#79f4d5; }
+.button-gold { background:linear-gradient(135deg,#ffe0a1,#ffb56e); color:#082b36; box-shadow:0 4px 0 #bd784d,0 10px 28px rgba(248,173,84,.14); }
+.button-whatsapp,.floating-chat:not(.assistant-launcher) { background:linear-gradient(135deg,#00b58c,#008e7b); color:#fff; }
+.side-card,.enquiry-form,.proof-item { border-color:rgba(99,224,212,.3); box-shadow:0 12px 42px rgba(0,12,29,.18); }
+.ceo-contact { display:block; margin-top:.6rem; overflow-wrap:anywhere; }
+.privacy-page { border-radius:24px; background:rgba(5,24,40,.83); margin-block:2rem; }
+@media(max-width:760px) { .page-theme::before { filter:blur(10px) saturate(1.45); } .page-globe { top:60rem; right:-6rem; opacity:.13; } .hero-travel-art img { filter:blur(1px) saturate(1.35); } .header-contact-links { flex-wrap:wrap; } }
+
+.page-theme::before { filter:blur(14px) saturate(1.55) hue-rotate(var(--page-hue,0deg)); }
+.page-globe { top:12rem; right:-6rem; width:min(760px,66vw); opacity:.2; }
+.page-theme[data-background-key="home"] .page-globe { top:60rem; }
+@media(max-width:760px) { .page-globe { top:24rem; right:-7rem; width:95vw; opacity:.13; } }
+
+.route-globe { position:absolute; right:-4rem; top:1rem; width:min(620px,55vw); opacity:.25; filter:blur(2.5px) saturate(1.35); pointer-events:none; z-index:1; }
+.route-globe img { width:100%; height:auto; }
+@media(max-width:760px) { .route-globe { width:95vw; right:-10rem; top:5rem; opacity:.16; } }

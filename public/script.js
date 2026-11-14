@@ -2,7 +2,8 @@ const privacyPage = { slug: "privacy", title: "Privacy information", description
 
 const contactEmail = "info@eupathfinder.agency";
 const whatsappNumber = "+14696268272";
-// Supplied calls number +128991443132 is invalid for +1; no public link until corrected.
+const callNumber = "+12899143132";
+const ceoEmail = "Eupathfinder@gmail.com";
 const isValidContactNumber = (number) => /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(number);
 const whatsappLink = (number = whatsappNumber, message = "Hello EU Pathfinder, I would like guidance about working in Europe.") => {
   if (!isValidContactNumber(number)) throw new Error("Invalid contact number: " + number);
@@ -373,6 +374,27 @@ function renderPeoplePhotoSection(
     </section>`;
 }
 
+
+function pageVisualTheme() {
+  const route = window.location.pathname.replace(/\/index\.html$/, "/").replace(/^\/+|\/+$/g, "");
+  const routes = ["", ...countries.map(c => c.slug), ...workerMarkets.map(m => m.slug), ...guides.map(g => `guides/${g.slug}`), "privacy"];
+  const index = Math.max(0, routes.indexOf(route));
+  const references = ["europe-banner1", "europe-banner2", "travel", "planning"];
+  const country = countries.find(c => c.slug === route);
+  const primary = country ? countryPhotos[country.slug] : index === 0 ? "/images/reference/europe-banner1.jpg" : index === 48 ? "/images/reference/planning.jpg" : countryPhotos[countries[(index * 7) % countries.length].slug];
+  const secondary = `/images/reference/${references[(index + 1) % references.length]}.jpg`;
+  return { route, index, primary, secondary };
+}
+function renderPageAtmosphere(content) {
+  const theme = pageVisualTheme();
+  if (theme.route) {
+    const globe = '<div class="route-globe" aria-hidden="true"><img src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div>';
+    content = content.replace('<span class="hero-photo-backdrop" aria-hidden="true"></span>', '<span class="hero-photo-backdrop" aria-hidden="true"></span>' + globe);
+  }
+  return `<div class="page-theme" data-background-key="${escapeHtml(theme.route || "home")}" style="--page-photo:url('${escapeHtml(theme.primary)}');--page-photo-secondary:url('${escapeHtml(theme.secondary)}');--page-hue:${(theme.index * 19) % 65}deg;--page-position:${30 + theme.index % 5 * 10}%">
+    <div class="page-globe" aria-hidden="true"><img src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div>${content}</div>`;
+}
+
 function renderEnquiryForm() {
   const pagePath = window.location.pathname.replace(/\/index\.html$/, "/");
   const context = pagePath.endsWith("/") ? pagePath : `${pagePath}/`;
@@ -435,15 +457,20 @@ function renderContactSection({
         <div class="contact-copy">
           <h2 id="${escapeHtml(id)}-title">${escapeHtml(title)}</h2>
           <p>${escapeHtml(description)}</p>
-          <div class="contact-options" aria-label="WhatsApp contact option">
+          <div class="contact-options" aria-label="Call and WhatsApp contact options">
             <div class="contact-option">
               <span class="contact-option-label">WhatsApp</span>
               <a class="contact-number" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">${whatsappNumber}</a>
               <a class="contact-option-action" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">Start a conversation <span aria-hidden="true">↗</span></a>
             </div>
-
+            <div class="contact-option">
+              <span class="contact-option-label">Calls &amp; WhatsApp</span>
+              <a class="contact-number" href="tel:${callNumber}">+1 289 914 3132</a>
+              <div class="contact-option-actions"><a class="contact-option-action" href="tel:${callNumber}">Call us</a><span aria-hidden="true"> · </span><a class="contact-option-action" href="${whatsappLink(callNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+            </div>
           </div>
           <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
+          <a class="contact-email ceo-contact" href="mailto:${ceoEmail}">CEO email: ${ceoEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional travel documents." width="700" height="440" loading="lazy" decoding="async">
           </figure>
@@ -1141,7 +1168,7 @@ function getAssistantReply(question) {
   }
   if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
     return answer(
-      `WhatsApp us on ${whatsappNumber}. You can also email ${contactEmail}. Telephone contact is awaiting number confirmation.`,
+      `WhatsApp us on ${whatsappNumber}, or call or WhatsApp ${callNumber}. Email ${contactEmail}; CEO enquiries can be sent to ${ceoEmail}.`,
       { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
     );
   }
@@ -1323,6 +1350,8 @@ if (!main.dataset.prerendered) {
   }
 }
 
+if (!main.dataset.prerendered) main.innerHTML = renderPageAtmosphere(main.innerHTML);
+
 if (!path) {
   updatePageMetadata(null);
   setupHomeInteractions();
@@ -1349,7 +1378,7 @@ function renderPrivacyPage() {
   <p>EU Pathfinder uses the details you submit to respond to your enquiry. Contact <a href="mailto:${contactEmail}">${contactEmail}</a> with questions about your information or requests to access, correct or delete enquiry details. Do not send identity documents with a request; the team can discuss an appropriate way to verify it.</p>
   <h2>Enquiry information</h2><p>The form collects your name, email, nationality, chosen topic, page context and optional message, together with your permission to reply. It sends these details through Cloudflare Pages and Resend to our email inbox. Requests to the website also pass through Cloudflare, which may process connection and security information. Do not submit passport scans, payment details or sensitive documents.</p>
   <h2>Advertising and external services</h2><p>Advertising scripts are disabled on this version of the site. There is no optional advertising consent to grant or withdraw here. Images and fonts may load from Unsplash, Wikimedia, FlagCDN and Google Fonts; your browser connects to those providers when loading their resources. Opening WhatsApp or email links uses the service or app you choose.</p>
-  <h2>Retention and further questions</h2><p>A retention period and further operator-specific privacy terms have not yet been published. Ask the team how long your enquiry will be kept before submitting if this affects your decision.</p>
-  <h2>Before agreeing to a service</h2><p>Request the contracting party's details, written scope, itemized fees, third-party costs, cancellation and refund terms, and complaint contact before agreeing or paying. No job, permit or visa outcome is guaranteed.</p>
+  <h2>Retention and further questions</h2><p>For questions about how long enquiry details are kept, or to request access, correction or deletion, contact the team before submitting if this affects your decision.</p>
+  <h2>Before agreeing to a service</h2><p>Contact us for current pricing and rates. Request a written service scope, itemized fees, third-party costs, cancellation and refund terms, and complaint contact before agreeing or paying. No job, permit or visa outcome is guaranteed.</p>
   <p><a href="/#contact">Contact the team</a> · <a href="/">Return home</a></p></article>`;
 }
