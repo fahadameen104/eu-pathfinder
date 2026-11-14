@@ -18,7 +18,7 @@ const countryData = script.match(/^const countries = \[([\s\S]*?)^\];/m)?.[1];
 const workerMarketData = script.match(/^const workerMarkets = \[([\s\S]*?)^\];/m)?.[1];
 const guideData = script.match(/^const guides = \[([\s\S]*?)^\];/m)?.[1];
 const publicationData = script.match(/^const publicationPages = \[([\s\S]*?)^\];/m)?.[1];
-if (!countryData || !workerMarketData || !guideData || !publicationData) {
+if (!countryData || !workerMarketData || !guideData || publicationData === undefined) {
   throw new Error("Could not find country, worker-market, guide or publication routes in script.js.");
 }
 const countrySlugs = [...countryData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
@@ -30,7 +30,7 @@ const guideSlugs = [...guideData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
 const publicationSlugs = [...publicationData.matchAll(/\{\s*slug:\s*"([^"]+)"/g)]
   .map((match) => match[1]);
 const routeSlugs = [...countrySlugs, ...workerMarketSlugs, ...guideSlugs, ...publicationSlugs];
-if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || !publicationSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
+if (!countrySlugs.length || !workerMarketSlugs.length || !guideSlugs.length || new Set(routeSlugs).size !== routeSlugs.length) {
   throw new Error("Country, worker-market, guide or publication slugs are missing or duplicated.");
 }
 const paths = [
@@ -63,6 +63,7 @@ function renderPage(pathname) {
   const canonical = createElement();
   const main = createElement();
   const document = {
+    addEventListener() {},
     querySelector(selector) {
       if (selector === 'meta[name="description"]') return description;
       if (selector === 'link[rel="canonical"]') return canonical;

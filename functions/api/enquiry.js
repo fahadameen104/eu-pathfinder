@@ -75,12 +75,10 @@ export async function onRequestPost({ request, env }) {
     name: readField(formData, "name", 100),
     email: readField(formData, "email", 254),
     nationality: readField(formData, "nationality", 80),
-    whatsapp: readField(formData, "whatsapp", 32),
     interest: readField(formData, "interest", 80),
     message: readField(formData, "message", 1200)
   };
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const whatsappPattern = /^\+?[0-9().\s-]{7,32}$/;
 
   if (fields.name.length < 2 || /[\r\n]/.test(fields.name)) {
     return response(request, 400, "Enter your name using at least two characters.", false);
@@ -91,9 +89,6 @@ export async function onRequestPost({ request, env }) {
   if (!fields.nationality || /[\r\n]/.test(fields.nationality)) {
     return response(request, 400, "Enter your nationality.", false);
   }
-  if (!whatsappPattern.test(fields.whatsapp)) {
-    return response(request, 400, "Enter a WhatsApp number with its country code.", false);
-  }
   if (!allowedInterests.has(fields.interest)) {
     return response(request, 400, "Choose the kind of guidance you need.", false);
   }
@@ -103,14 +98,13 @@ export async function onRequestPost({ request, env }) {
 
   if (!env.RESEND_API_KEY || !env.RESEND_FROM_EMAIL) {
     console.error("Enquiry email is not configured: add RESEND_API_KEY and RESEND_FROM_EMAIL secrets.");
-    return response(request, 503, "The enquiry form is not configured yet. Please contact info@eupathfinder.agency or use WhatsApp.", false);
+    return response(request, 503, "The enquiry form is not configured yet. Please email info@eupathfinder.agency.", false);
   }
 
   const entries = [
     ["Name", fields.name],
     ["Email", fields.email],
     ["Nationality", fields.nationality],
-    ["WhatsApp", fields.whatsapp],
     ["Topic", fields.interest],
     ["Message", fields.message || "(No message provided)"]
   ];
