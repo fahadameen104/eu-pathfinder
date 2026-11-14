@@ -384,20 +384,26 @@ function pageVisualTheme() {
   const route = window.location.pathname.replace(/\/index\.html$/, "/").replace(/^\/+|\/+$/g, "");
   const routes = ["", ...countries.map(c => c.slug), ...workerMarkets.map(m => m.slug), ...guides.map(g => `guides/${g.slug}`), "privacy"];
   const index = Math.max(0, routes.indexOf(route));
-  const references = ["europe-banner1", "europe-banner2", "travel", "planning"];
   const country = countries.find(c => c.slug === route);
-  const primary = country ? countryPhotos[country.slug] : index === 0 ? "/images/reference/europe-banner1.jpg" : index === 48 ? "/images/reference/planning.jpg" : countryPhotos[countries[(index * 7) % countries.length].slug];
-  const secondary = `/images/reference/${references[(index + 1) % references.length]}.jpg`;
+  const extraPhotos = [
+    "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=960&q=70",
+    "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=960&q=70",
+    "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?auto=format&fit=crop&w=960&q=70",
+    "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=960&q=70"
+  ];
+  const marketPhotos = [...Object.values(workplacePhotos).map(photo => workplacePhotoUrl(photo, 960)), "/images/reference/europe-banner2.jpg", "/images/reference/travel.jpg", "/images/reference/planning.jpg", extraPhotos[0]];
+  const marketIndex = workerMarkets.findIndex(m => m.slug === route);
+  const guideIndex = guides.findIndex(g => `guides/${g.slug}` === route);
+  const primary = !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? extraPhotos[guideIndex + 1] : extraPhotos[3];
+  const secondary = primary;
   return { route, index, primary, secondary };
 }
 function renderPageAtmosphere(content) {
   const theme = pageVisualTheme();
-  if (theme.route) {
-    const globe = '<div class="route-globe" aria-hidden="true"><img src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div>';
-    content = content.replace('<span class="hero-photo-backdrop" aria-hidden="true"></span>', '<span class="hero-photo-backdrop" aria-hidden="true"></span>' + globe);
-  }
   return `<div class="page-theme" data-background-key="${escapeHtml(theme.route || "home")}" style="--page-photo:url('${escapeHtml(theme.primary)}');--page-photo-secondary:url('${escapeHtml(theme.secondary)}');--page-hue:${(theme.index * 19) % 65}deg;--page-position:${30 + theme.index % 5 * 10}%">
-    <div class="page-globe" aria-hidden="true"><img src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div>${content}</div>`;
+    <div class="page-photo-layer" aria-hidden="true"></div>
+    <div class="page-identity-layer" aria-hidden="true"><img class="ambient-globe" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"><div class="ambient-logo"><img src="/favicon.svg" alt="" width="100" height="100"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
+    <div class="page-content-layer">${content}</div></div>`;
 }
 
 function renderEnquiryForm() {
