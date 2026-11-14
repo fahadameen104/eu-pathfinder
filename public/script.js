@@ -317,6 +317,11 @@ function workplacePhotoUrl(photo, width) {
 }
 
 function sectionPhotoStyle(photo) {
+  if (/^\/(?:index\.html)?$/.test(window.location.pathname)) {
+    const photos = Object.values(workplacePhotos);
+    const index = Math.max(0, photos.indexOf(photo));
+    photo = { url: `/images/reference/${["travel", "europe-banner2", "europe-banner1", "planning"][index % 4]}.jpg` };
+  }
   return `style="--section-photo:url('${escapeHtml(workplacePhotoUrl(photo, 1440))}');--section-photo-mobile:url('${escapeHtml(workplacePhotoUrl(photo, 640))}')"`;
 }
 

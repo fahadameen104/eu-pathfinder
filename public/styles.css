@@ -3528,3 +3528,42 @@ svg {
 .route-globe { position:absolute; right:-4rem; top:1rem; width:min(620px,55vw); opacity:.25; filter:blur(2.5px) saturate(1.35); pointer-events:none; z-index:1; }
 .route-globe img { width:100%; height:auto; }
 @media(max-width:760px) { .route-globe { width:95vw; right:-10rem; top:5rem; opacity:.16; } }
+/* Glossy foreground, crisp reading layer, and photography at 40% opacity. */
+.page-theme { --photo-visibility:.4; }
+.page-theme::before { opacity:0; }
+.page-theme .hero-photo-backdrop { background-image:var(--page-photo); background-blend-mode:normal; filter:blur(6px) saturate(1.35); opacity:var(--photo-visibility); }
+.page-theme .photo-backed-section { background:#071d2d; color:#f4fbff; border-top:1px solid rgba(159,245,236,.12); }
+.page-theme .photo-backed-section::before { background-image:var(--section-photo,var(--page-photo-secondary)); background-blend-mode:normal; background-position:center; filter:blur(6px) saturate(1.35); opacity:var(--photo-visibility); }
+.page-theme .photo-backed-section::after { background:linear-gradient(135deg,rgba(181,249,255,.06),transparent 38%,rgba(2,16,35,.12)); }
+.page-theme .photo-backed-section :is(h2,h3,strong,summary,label,figcaption) { color:#f2fbff; }
+.page-theme .photo-backed-section :is(p,li,.section-lead,.guide-card-copy p) { color:#e2eff6; text-shadow:0 2px 7px rgba(0,8,20,.8); }
+.page-theme :is(h1,h2) { text-shadow:0 2px 1px rgba(255,255,255,.07),0 5px 22px rgba(0,9,24,.55); }
+@supports(background-clip:text) {
+  .page-theme :is(h1,h2) { background-image:linear-gradient(175deg,#fff 12%,#dcf8ff 42%,#97d9e6 50%,#f3ffff 57%,#c5f5ec 90%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .page-theme .hero-copy h1 span { background:linear-gradient(175deg,#e4fff6 5%,#83ffda 44%,#3fcbb3 51%,#baffed 61%,#77f1d2 95%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+}
+.page-theme :is(.service-item,.process-step,.proof-item,.guide-card,.enquiry-form,.contact-option,.review-checks li,.faq-item,.side-card) { background:linear-gradient(155deg,rgba(223,255,255,.13),rgba(8,36,55,.88) 38%,rgba(6,24,43,.91)); border:1px solid rgba(176,249,241,.26); border-radius:20px; box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 0 rgba(0,10,27,.4),0 14px 35px rgba(0,9,23,.22); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); }
+.page-theme :is(.service-item,.process-step,.proof-item,.review-checks li,.faq-item) { padding:24px; }
+.page-theme .faq-item + .faq-item { margin-top:12px; }
+.page-theme .faq-item summary { text-shadow:0 2px 7px rgba(0,0,0,.5); }
+.page-theme :is(.destination-card,.worker-market-card,.featured-place) { border:1px solid rgba(179,255,245,.34); box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 12px 30px rgba(0,10,27,.3); background:linear-gradient(145deg,rgba(150,237,234,.18),rgba(5,28,47,.9)); }
+.page-theme .destination-card-copy { background:linear-gradient(150deg,rgba(50,103,116,.9),rgba(7,30,48,.98)); color:#f4fcff; }
+.page-theme :is(.destination-name,.destination-landmark) { color:#f1faff; }
+.page-theme :is(input,textarea,select) { background:#0a263a; color:#f6fcff; border-color:#71979f; box-shadow:inset 0 2px 6px rgba(0,9,20,.3),0 1px 0 rgba(255,255,255,.1); }
+.page-theme :is(input,textarea)::placeholder { color:#bacdd6; opacity:1; }
+.page-theme .button { box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 4px 0 rgba(2,16,29,.35),0 10px 25px rgba(0,12,29,.22); }
+.page-theme .button-gold { color:#082936; background:linear-gradient(175deg,#fff0c8,#ffd58d 44%,#f3b66d 51%,#ffe0a3 63%,#ffc17e); }
+.page-theme .button-whatsapp { color:#fff; background:linear-gradient(175deg,#2bdab0,#00a886 48%,#008971 52%,#08b495); }
+.page-theme .filter-button { color:#edfaff; background:rgba(8,36,55,.85); }
+.page-theme .filter-button[aria-pressed="true"] { color:#052734; background:linear-gradient(#c2ffed,#65d9c0); }
+.page-theme .review-note { border-radius:16px; padding:20px; background:rgba(5,25,44,.86); }
+.page-theme .guide-card-copy h3 a { color:#b7fff0; }
+.page-theme .hero-copy { text-shadow:0 3px 15px rgba(0,10,26,.8); }
+@media(max-width:760px) { .page-theme .photo-backed-section::before,.page-theme .hero-photo-backdrop { filter:blur(5px) saturate(1.3); } .page-theme :is(.service-item,.process-step,.proof-item,.review-checks li,.faq-item) { padding:20px; } }
+.page-theme .services-grid { gap:16px; }
+.page-theme :is(.service-item,.process-step,.proof-item,.review-checks li) p { font-size:16px; line-height:1.65; }
+.page-theme :is(.service-item,.process-step) h3 { font-size:18px; line-height:1.4; }
+.page-theme .proof-item strong { font-size:16px; }
+.page-theme .service-item { align-items:start; }
+.site-footer { background:linear-gradient(150deg,#153c4c 0%,#071e32 40%,#0a293b 100%); border-top:1px solid rgba(190,255,243,.3); box-shadow:inset 0 1px 0 rgba(255,255,255,.16); }
+.site-footer :is(h2,strong) { color:#e3fff7; text-shadow:0 1px 0 rgba(255,255,255,.15),0 3px 16px rgba(0,12,29,.5); }
