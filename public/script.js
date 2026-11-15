@@ -446,7 +446,7 @@ function renderPageAtmosphere(content) {
   const theme = pageVisualTheme();
   return `<div class="page-theme" data-background-key="${escapeHtml(theme.route || "home")}" style="--page-photo:url('${escapeHtml(theme.primary)}');--page-photo-secondary:url('${escapeHtml(theme.secondary)}');--page-hue:${(theme.index * 19) % 65}deg;--page-position:${30 + theme.index % 5 * 10}%">
     <div class="page-photo-layer" aria-hidden="true"></div>
-    <div class="page-identity-layer" aria-hidden="true"><img class="ambient-globe" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"><div class="ambient-logo"><img src="/brand-emblem-3d.svg" alt="" width="240" height="260"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
+    <div class="page-identity-layer" aria-hidden="true"><div class="ambient-globe globe-host" data-globe-host><img class="globe-poster" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div><div class="ambient-logo"><img src="/brand-emblem-3d.svg" alt="" width="240" height="260"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
     <div class="page-content-layer">${content}${theme.route === "privacy" ? "" : `<aside class="advertisement wrap" aria-label="Advertisement"><h2>Advertisement</h2><p>Third-party advertising is separate from EU Pathfinder services.</p><div id="adsterra-slot" class="advertisement-slot"><p data-ad-status>Advertising is optional.</p><button type="button" data-ad-settings>Advertising preferences</button></div></aside>`}</div></div>`;
 }
 

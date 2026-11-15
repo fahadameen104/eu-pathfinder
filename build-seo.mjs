@@ -9,6 +9,7 @@ const publicDir = new URL("public/", root);
 const script = (await readFile(new URL("script.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const stylesheet = (await readFile(new URL("styles.css", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const analytics = (await readFile(new URL("analytics.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
+const globe = (await readFile(new URL("globe.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const advertising = (await readFile(new URL("advertising.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const template = await readFile(new URL("index.html", publicDir), "utf8");
 const assetVersion = createHash("sha256")
@@ -16,6 +17,7 @@ const assetVersion = createHash("sha256")
   .update(stylesheet)
   .update(analytics)
   .update(advertising)
+  .update(globe)
   .digest("hex")
   .slice(0, 12);
 const countryData = script.match(/^const countries = \[([\s\S]*?)^\];/m)?.[1];
@@ -153,6 +155,7 @@ function prerender(pathname) {
   const prerenderedHtml = cleanHtml
     .replace("</head>", `${schemaMarkup}\n  </head>`)
     .replace(/<script\s+src="\/?advertising\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/advertising.js?v=${assetVersion}" defer></script>`)
+    .replace(/<script\s+src="\/?globe\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/globe.js?v=${assetVersion}" defer></script>`)
     .replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
   const normalizedHtml = prerenderedHtml.replace(/[ \t]+$/gm, "");
   return pathname === "/"

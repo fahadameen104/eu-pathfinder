@@ -74,10 +74,11 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
     </script>
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/styles.css?v=f33b0ff8b867">
-    <script src="/analytics.js?v=f33b0ff8b867" defer></script>
-    <script src="/script.js?v=f33b0ff8b867" defer></script>
-    <script src="/advertising.js?v=f33b0ff8b867" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=cd3a68250a68">
+    <script src="/analytics.js?v=cd3a68250a68" defer></script>
+    <script src="/script.js?v=cd3a68250a68" defer></script>
+    <script src="/globe.js?v=cd3a68250a68" defer></script>
+    <script src="/advertising.js?v=cd3a68250a68" defer></script>
     <title>Privacy information | EU Pathfinder</title>
   <script type="application/ld+json" id="page-schema">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://eupathfinder.agency/privacy/#webpage","url":"https://eupathfinder.agency/privacy/","name":"Privacy information | EU Pathfinder","description":"How EU Pathfinder enquiry details pass through the website, current advertising settings and how to ask about your information.","inLanguage":"en","isPartOf":{"@id":"https://eupathfinder.agency/#website"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://eupathfinder.agency/"},{"@type":"ListItem","position":2,"name":"Privacy information","item":"https://eupathfinder.agency/privacy/"}]}]}</script>
   </head>
@@ -112,7 +113,7 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
 
     <main id="main" tabindex="-1" data-prerendered="true"><div class="page-theme" data-background-key="privacy" style="--page-photo:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&amp;fit=crop&amp;w=960&amp;q=70');--page-photo-secondary:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&amp;fit=crop&amp;w=960&amp;q=70');--page-hue:13deg;--page-position:50%">
     <div class="page-photo-layer" aria-hidden="true"></div>
-    <div class="page-identity-layer" aria-hidden="true"><img class="ambient-globe" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"><div class="ambient-logo"><img src="/brand-emblem-3d.svg" alt="" width="240" height="260"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
+    <div class="page-identity-layer" aria-hidden="true"><div class="ambient-globe globe-host" data-globe-host><img class="globe-poster" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div><div class="ambient-logo"><img src="/brand-emblem-3d.svg" alt="" width="240" height="260"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
     <div class="page-content-layer"><article class="wrap guide-section privacy-page"><h1>Privacy and contact information</h1>
   <p>EU Pathfinder uses the details you submit to respond to your enquiry. Contact <a href="mailto:info@eupathfinder.agency">info@eupathfinder.agency</a> with questions about your information or requests to access, correct or delete enquiry details. Do not send identity documents with a request; the team can discuss an appropriate way to verify it.</p>
   <h2>Enquiry information</h2><p>The form collects your name, email, nationality, chosen topic, page context and optional message, together with your permission to reply. It sends these details through Cloudflare Pages and Resend to our email inbox. Requests to the website also pass through Cloudflare, which may process connection and security information. Do not submit passport scans, payment details or sensitive documents.</p>
@@ -146,6 +147,7 @@ FORM: Keep the destination-led homepage and country guides responsive, with key 
           <h2>Explore</h2>
           <a href="/privacy/">Privacy information</a>
           <button type="button" data-analytics-settings>Analytics preferences</button>
+            <button type="button" data-globe-toggle hidden aria-pressed="false">Pause globe rotation</button>
             <button type="button" data-ad-settings>Advertising preferences</button>
           <a href="/#destinations">Destinations</a>
           <a href="/#how">How it works</a>
