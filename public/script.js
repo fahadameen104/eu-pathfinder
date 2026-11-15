@@ -197,6 +197,7 @@ const guides = [
 ];
 
 const publicationPages = [
+  { slug: "services", title: "Work and Relocation Support Services", description: "Explore EU Pathfinder consultation, document preparation, application guidance and relocation planning. Understand your part and contact us for current pricing." }
 ];
 
 const countryPhotos = {
@@ -425,7 +426,7 @@ function renderPeoplePhotoSection(
 
 function pageVisualTheme() {
   const route = window.location.pathname.replace(/\/index\.html$/, "/").replace(/^\/+|\/+$/g, "");
-  const routes = ["", ...countries.map(c => c.slug), ...workerMarkets.map(m => m.slug), ...guides.map(g => `guides/${g.slug}`), "privacy"];
+  const routes = ["", ...publicationPages.map(p => p.slug), ...countries.map(c => c.slug), ...workerMarkets.map(m => m.slug), ...guides.map(g => `guides/${g.slug}`), "privacy"];
   const index = Math.max(0, routes.indexOf(route));
   const country = countries.find(c => c.slug === route);
   const extraPhotos = [
@@ -437,7 +438,7 @@ function pageVisualTheme() {
   const marketPhotos = [...Object.values(workplacePhotos).map(photo => workplacePhotoUrl(photo, 960)), "/images/reference/europe-banner2.jpg", "/images/reference/travel.jpg", "/images/reference/planning.jpg", extraPhotos[0]];
   const marketIndex = workerMarkets.findIndex(m => m.slug === route);
   const guideIndex = guides.findIndex(g => `guides/${g.slug}` === route);
-  const primary = !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? (guides[guideIndex].background || extraPhotos[guideIndex + 1]) : extraPhotos[3];
+  const primary = route === "services" ? "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=960&q=68" : !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? (guides[guideIndex].background || extraPhotos[guideIndex + 1]) : extraPhotos[3];
   const secondary = primary;
   return { route, index, primary, secondary };
 }
@@ -559,6 +560,7 @@ function renderGuideCards() {
     </section>`;
 }
 
+function guideSectionId(index) { return `guide-section-${index + 1}`; }
 function renderGuidePage(guide) {
   return `
     <article class="guide-page">
@@ -580,13 +582,17 @@ function renderGuidePage(guide) {
       </header>
       <div class="wrap guide-content-layout">
         <div class="guide-content">
-          ${guide.sections.map((section) => `
-            <section class="guide-section photo-backed-section" ${sectionPhotoStyle(guide.slug === "europe-hospitality-jobs" ? workplacePhotos.logistics : workplacePhotos.agriculture)}>
+          <nav class="guide-toc reading-card" aria-label="On this page">
+            <h2>On this page</h2><ol>${guide.sections.map((section, index) => `<li><a href="#${guideSectionId(index)}">${escapeHtml(section.heading)}</a></li>`).join("")}<li><a href="#guide-preparation">Your preparation checklist</a></li><li><a href="#guide-resources-title">Official starting points</a></li></ol>
+          </nav>
+          ${guide.sections.map((section, index) => `
+            <section id="${guideSectionId(index)}" class="guide-section photo-backed-section" ${sectionPhotoStyle(guide.slug === "europe-hospitality-jobs" ? workplacePhotos.logistics : workplacePhotos.agriculture)}>
               <h2>${escapeHtml(section.heading)}</h2>
               ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
               ${section.bullets ? `<ul class="check-list">${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
               ${section.links ? `<ul class="check-list">${section.links.map(link => `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a></li>`).join("")}</ul>` : ""}
             </section>`).join("")}
+          <section id="guide-preparation" class="guide-section reading-card" aria-labelledby="guide-preparation-title"><h2 id="guide-preparation-title">Your preparation checklist</h2><p>Use this before your first conversation. It is a planning aid, not a visa application checklist.</p><ul class="check-list"><li>Note your nationality, current residence and one or two destinations.</li><li>Summarise your occupation, experience, training and languages.</li><li>Write down questions about the employer, role, pay and total costs.</li><li>Identify the official authority for your destination and any departure requirements.</li><li>Request the service scope and current fees in writing. Keep sensitive documents out of your initial message.</li></ul><a class="text-link" href="/services/">See how our support is scoped</a></section>
           <section class="guide-resources photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-labelledby="guide-resources-title">
             <h2 id="guide-resources-title">Official starting points</h2>
             <p>Rules change and depend on the destination. Check current details directly with official sources.</p>
@@ -791,7 +797,7 @@ function renderHome() {
     <section class="section services-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.construction)} id="services" aria-labelledby="services-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="services-title">Support beyond the core process</h2><p class="section-lead">Add the help you need, when you need it.</p></div>
+          <div><h2 id="services-title">Support beyond the core process</h2><p class="section-lead">Add the help you need, when you need it.</p><a class="text-link" href="/services/">Explore services and what to prepare <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="services-grid">
           ${services.map(([title, detail]) => `<article class="service-item"><span class="service-symbol" aria-hidden="true">+</span><div><h3>${escapeHtml(title)}</h3><p>${escapeHtml(detail)}</p></div></article>`).join("")}
@@ -942,6 +948,20 @@ function renderCountryPage(country) {
 
     ${renderGuideCards()}
     ${renderContactSection({ title: `Ask about work in ${country.name}` })}`;
+}
+
+function renderServicesPage() {
+  const support = [
+    { title: "Consultation and planning", output: "Discuss your work history, goals and destinations, and identify questions to resolve before you proceed.", input: "A summary of your occupation, experience, nationality, current residence and preferred destinations.", next: "Ask which support fits your situation and request its scope and current fees in writing." },
+    { title: "Document preparation guidance", output: "Discuss the documents relevant to your proposed route and the preparation support available. Confirm any review or translation arrangements in your agreement.", input: "An accurate CV and a list of records you already hold. Send copies only when requested through an agreed method.", next: "Check the receiving employer or authority's current checklist before arranging certificates, translations or medical checks." },
+    { title: "Work-permit and visa process guidance", output: "Discuss the steps, responsibilities and preparation involved in the destination's application process. The agreed scope determines what assistance is included.", input: "The destination, any named employer or offer, and accurate information about your circumstances.", next: "Confirm who submits each application, which charges are separate and which official authority makes the decision." },
+    { title: "Travel and relocation planning", output: "Discuss practical preparation for travel, accommodation and arrival. Confirm which arrangements, if any, the team will assist with before paying.", input: "Your destination, expected dates, household needs and any approvals already received.", next: "Check the required approvals before booking non-refundable travel, and confirm third-party costs and responsibilities." }
+  ];
+  return `<article class="services-page"><header class="guide-hero"><div class="wrap services-intro"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Services</span></nav><p class="eyebrow">Support with a clear next step</p><h1>Plan your move with clarity.</h1><p class="guide-intro">Understand the support you are discussing, what you need to prepare and what happens next. Your written agreement defines the services included in your case.</p><a class="button button-gold" href="#services-contact">Contact us for current pricing <span aria-hidden="true">↗</span></a></div></header>
+  <div class="wrap services-body"><section aria-labelledby="support-options-title"><div class="section-heading"><h2 id="support-options-title">Choose the support you need</h2><p>Start with your situation. Confirm the scope before committing.</p></div><div class="service-detail-grid">${support.map((item,index)=>`<section class="service-detail reading-card"><span class="service-number" aria-hidden="true">0${index+1}</span><h3>${escapeHtml(item.title)}</h3><dl><dt>Support to discuss</dt><dd>${escapeHtml(item.output)}</dd><dt>What you provide</dt><dd>${escapeHtml(item.input)}</dd><dt>Your next step</dt><dd>${escapeHtml(item.next)}</dd></dl></section>`).join("")}</div></section>
+  <section class="reading-card service-agreement" aria-labelledby="service-agreement-title"><h2 id="service-agreement-title">Know what you are agreeing to</h2><ul class="check-list"><li>Request the deliverables, responsibilities and communication arrangements in writing.</li><li>Separate service fees from government charges, translations, travel and other third-party costs.</li><li>Ask about payment stages, cancellation and refund terms before paying.</li><li>Employers decide hiring; authorities decide permits, visas and appointments. No outcome is guaranteed.</li></ul><p><strong>Contact us for current pricing.</strong> Rates depend on the destination and agreed support. A discussion or quote is not a job offer.</p></section>
+  <section class="reading-card" aria-labelledby="service-start-title"><h2 id="service-start-title">Start with a short introduction</h2><p>Tell us where you live, your nationality, your occupation and the destinations you are exploring. We can discuss support options and fees before you decide whether to proceed.</p><p>Do not send passport scans, payment details or sensitive records in your first message.</p><nav class="regional-links" aria-label="Prepare for your enquiry"><a href="/guides/europe-work-guidance-from-africa/">Africa planning guide</a><a href="/guides/europe-work-guidance-from-gulf/">Gulf planning guide</a></nav></section></div>
+  ${renderContactSection({id:"services-contact",title:"Contact us for current pricing"})}</article>`;
 }
 
 function renderPriorityPlanning(market) {
@@ -1416,6 +1436,7 @@ const path = window.location.protocol === "file:"
 const currentCountry = countries.find((country) => country.slug === pathname);
 const currentWorkerMarket = workerMarkets.find((market) => market.slug === pathname);
 const currentGuide = guides.find((guide) => `guides/${guide.slug}` === pathname);
+const currentPublication = publicationPages.find(page => page.slug === pathname);
 const main = document.querySelector("#main");
 
 if (!main.dataset.prerendered) {
@@ -1423,6 +1444,8 @@ if (!main.dataset.prerendered) {
     main.innerHTML = renderHome();
   } else if (pathname === "privacy") {
     main.innerHTML = renderPrivacyPage();
+  } else if (currentPublication) {
+    main.innerHTML = renderServicesPage();
   } else if (currentCountry) {
     main.innerHTML = renderCountryPage(currentCountry);
   } else if (currentWorkerMarket) {
@@ -1441,6 +1464,8 @@ if (!path) {
   setupHomeInteractions();
 } else if (pathname === "privacy") {
   updatePageMetadata(null, null, null, privacyPage);
+} else if (currentPublication) {
+  updatePageMetadata(null, null, null, currentPublication);
 } else if (currentCountry) {
   updatePageMetadata(currentCountry);
 } else if (currentWorkerMarket) {

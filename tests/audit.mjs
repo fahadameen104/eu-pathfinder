@@ -30,7 +30,7 @@ for(const img of html.matchAll(/<img\b[^>]*>/g))assert.match(img[0],/\balt="[^"]
 for(const json of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(json[1]);
 }}
 await scan(new URL('../public',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1'));
-assert.equal(backgrounds.size,52);assert.equal(primaryPhotos.size,52);
+assert.equal(backgrounds.size,53);assert.equal(primaryPhotos.size,53);
 assert.equal(runInNewContext('isValidContactNumber("+12899143132")',scope),true);
 const {onRequestPost}=await import('../functions/api/enquiry.js');
 let sent=0,lastPayload;
@@ -49,3 +49,4 @@ assert.equal((await submit({}, {env:{}})).status,503);
 assert.equal((await submit({context:"/guides/europe-hospitality-jobs/"})).status,200);
 assert.equal(sent,3);globalThis.fetch=originalFetch;
 console.log(`Passed assistant routing, contact guard, ${pages} HTML pages, and 10 mocked enquiry cases; no real delivery.`);
+
