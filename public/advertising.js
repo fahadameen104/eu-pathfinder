@@ -1,6 +1,8 @@
 /* Advertising consent is independent of optional analytics consent. */
 (() => {
   "use strict";
+  // Delivery paused after the live browser failed during banner verification.
+  const servingEnabled = false;
   const preferenceKey = "eu-pathfinder-advertising-v1";
   const lifetime = 180 * 24 * 60 * 60 * 1000;
   const production = /^(www\.)?eupathfinder\.agency$/.test(location.hostname);
@@ -13,7 +15,7 @@
   } catch { /* Advertising remains off without a valid choice. */ }
 
   function loadBanner() {
-    if (!production || choice !== "accepted" || !slot || loaded) return;
+    if (!servingEnabled || !production || choice !== "accepted" || !slot || loaded) return;
     loaded = true;
     slot.querySelector("[data-ad-status]").textContent = "Advertisement provided by Adsterra.";
     const frame = document.createElement("iframe");
@@ -66,5 +68,6 @@
     panel.querySelector("[data-ad-accept]").focus();
   }));
   if (slot && choice === "rejected") slot.querySelector("[data-ad-status]").textContent = "Advertising is off.";
+  if (slot && !servingEnabled) slot.querySelector("[data-ad-status]").textContent = "Advertising is currently unavailable.";
   scheduleBanner();
 })();
