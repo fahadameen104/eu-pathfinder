@@ -36,3 +36,9 @@ Advertising initialization is disabled. The persistent Privacy & advertising set
 ## Verification
 
 Run `node build-seo.mjs` and `node tests/audit.mjs`. Backend cases mock email delivery and do not send real enquiries. Deploy the generated public files and Pages Functions together; old forms without page context remain accepted.
+
+## Optional GA4 measurement
+
+GA4 property 564401731, web stream 16343592666, measurement ID `G-672X9VRT2X` are configured under the owner's account. `public/analytics.js` loads the Google tag only after analytics acceptance, remembers the choice for 180 days and exposes a footer/notice preference control. Rejecting prevents loading; withdrawing disables collection, clears first-party GA cookies and reloads. Advertising consent remains denied; Signals and ad personalization are disabled. Automatic form, site-search and video events are disabled in the stream. Successful form responses emit only `generate_lead` with `method: enquiry_form`; no submitted fields are used. Page/referrer URLs omit query strings and fragments. Consent changes browser coverage: GA4 counts consenting visitors, not all site requests.
+
+Run `node tests/analytics.mjs`, `node tests/audit.mjs` and `node tests/seo.mjs` before deployment. Localhost never loads GA4. `?ga_debug=1` on production enables debug mode for an explicit test after consent, while the reported page URL excludes that query. Real lead delivery must not be fabricated for testing. Analytics cannot recover past unmeasured sessions.
