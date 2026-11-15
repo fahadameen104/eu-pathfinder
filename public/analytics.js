@@ -64,7 +64,7 @@
   panel.setAttribute("aria-labelledby", "analytics-choice-title");
   panel.setAttribute("aria-describedby", "analytics-choice-description");
   panel.innerHTML = `<h2 id="analytics-choice-title">Optional website analytics</h2>
-    <p id="analytics-choice-description">May we use Google Analytics cookies to understand visits and improve this website? Your choice does not affect enquiries. Advertising stays off.</p>
+    <p id="analytics-choice-description">May we use Google Analytics cookies to understand visits and improve this website? Your choice does not affect enquiries. Advertising has a separate choice.</p>
     <div class="analytics-choice-actions"><button type="button" data-analytics-accept>Accept analytics</button><button type="button" data-analytics-reject>Reject analytics</button></div>
     <p><a href="/privacy/">Privacy information</a> · <button type="button" data-analytics-close hidden>Close settings</button></p>`;
   document.body.append(panel);

@@ -3714,3 +3714,11 @@ svg {
 .site-footer [data-analytics-settings],.privacy-page [data-analytics-settings] { display:block; width:fit-content; padding:8px 0; border:0; background:transparent; color:#caffed; text-decoration:underline; font:inherit; cursor:pointer; }
 .privacy-page [data-analytics-settings] { display:inline; padding:0; }
 @media(max-width:500px) { .analytics-choice { bottom:82px; padding:18px; } .analytics-choice-actions { display:grid; grid-template-columns:1fr 1fr; } }
+.advertisement { margin-block:40px; padding:28px 12px; text-align:center; border-top:1px solid #75cdb555; }
+.advertisement h2 { font-size:14px; letter-spacing:.12em; text-transform:uppercase; }
+.advertisement > p,.advertisement-slot > p { font-size:13px; color:#c4d9df; }
+.advertisement-slot { min-height:320px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+.advertisement-slot iframe { display:block; width:300px; height:250px; border:0; max-width:100%; }
+[data-ad-settings] { padding:10px 14px; border:1px solid #75cdb5; border-radius:10px; background:#092b40; color:#caffed; font:inherit; cursor:pointer; }
+[data-ad-settings]:focus-visible { outline:3px solid #ffd798; outline-offset:3px; }
+.site-footer [data-ad-settings],.privacy-page [data-ad-settings] { display:block; width:fit-content; padding:8px 0; border:0; background:transparent; color:#caffed; text-decoration:underline; }
