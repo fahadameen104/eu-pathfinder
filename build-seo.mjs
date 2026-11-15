@@ -6,8 +6,8 @@ import { runInNewContext } from "node:vm";
 
 const root = new URL(".", import.meta.url);
 const publicDir = new URL("public/", root);
-const script = await readFile(new URL("script.js", publicDir), "utf8");
-const stylesheet = await readFile(new URL("styles.css", publicDir), "utf8");
+const script = (await readFile(new URL("script.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
+const stylesheet = (await readFile(new URL("styles.css", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const template = await readFile(new URL("index.html", publicDir), "utf8");
 const assetVersion = createHash("sha256")
   .update(script)
@@ -120,7 +120,34 @@ function prerender(pathname) {
   if (!mainPattern.test(html)) {
     throw new Error(`Could not replace the main content for ${pathname}`);
   }
-  const prerenderedHtml = html.replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
+  const countryNames = pathname.includes("from-africa")
+    ? ["Nigeria", "Ghana", "Kenya", "Uganda", "Tanzania", "Ethiopia", "Egypt", "South Africa"]
+    : pathname.includes("from-gulf")
+      ? ["Saudi Arabia", "United Arab Emirates", "Qatar", "Oman", "Kuwait", "Bahrain"]
+      : [];
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage", "@id": `${page.canonical}#webpage`,
+        url: page.canonical, name: page.title, description: page.description,
+        inLanguage: "en", isPartOf: { "@id": "https://eupathfinder.agency/#website" },
+        ...(countryNames.length ? { about: countryNames.map(name => ({ "@type": "Country", name })) } : {})
+      },
+      ...(pathname === "/" ? [] : [{
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://eupathfinder.agency/" },
+          { "@type": "ListItem", position: 2, name: page.title.replace(/ \| EU Pathfinder$/, ""), item: page.canonical }
+        ]
+      }])
+    ]
+  };
+  const schemaMarkup = `<script type="application/ld+json" id="page-schema">${JSON.stringify(pageSchema).replaceAll("<", "\\u003c")}</script>`;
+  const cleanHtml = html.replace(/\s*<script type="application\/ld\+json" id="page-schema">[\s\S]*?<\/script>/g, "");
+  const prerenderedHtml = cleanHtml
+    .replace("</head>", `${schemaMarkup}\n  </head>`)
+    .replace(mainPattern, `<main id="main" tabindex="-1" data-prerendered="true">${page.html}</main>`);
   const normalizedHtml = prerenderedHtml.replace(/[ \t]+$/gm, "");
   return pathname === "/"
     ? normalizedHtml

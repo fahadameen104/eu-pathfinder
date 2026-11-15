@@ -150,6 +150,45 @@ const guides = [
     resources: [
       { label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/" }
     ]
+  },
+  {
+  slug: "europe-work-guidance-from-africa",
+  title: "Europe Work Guidance for African Applicants",
+  description: "Europe work planning for Nigeria, Ghana, Kenya, Uganda, Tanzania, Ethiopia, Egypt and South Africa: employer checks, documents and costs.",
+  summary: "Prepare a work enquiry from eight African countries, verify an employer and compare written terms before paying.",
+  image: "/travel-planning.svg",
+  background: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=960&q=70",
+  intro: "Considering work in Europe from Nigeria, Ghana, Kenya, Uganda, Tanzania, Ethiopia, Egypt or South Africa? Start with your occupation, nationality, current residence and a specific destination. This guide helps prepare an enquiry; it does not advertise vacancies or confirm eligibility.",
+  sections: [
+    { heading: "Choose a destination and verify the employer", paragraphs: ["Compare the destination guides, identify the legal employer and exact role, and check the current route with the destination government or embassy. There is no single work-permit process for every European destination."], links: [{label: "Compare European destinations", url: "/#destinations"}] },
+    { heading: "Nigeria: explain your employment history", paragraphs: ["List employment, self-employment and practical experience separately, including dates, duties and references you can verify. Ask the employer what evidence it accepts before paying for additional certificates."] },
+    { heading: "Ghana: describe your trade and training", paragraphs: ["Explain the tasks you perform, equipment you use and training you have completed. A certificate and a job offer are different documents; confirm what qualifications the destination employer requires."] },
+    { heading: "Kenya: check occupation requirements", paragraphs: ["Identify the exact occupation before comparing destinations. If a role requires professional recognition, ask the relevant destination authority about that process before assuming experience alone is sufficient."] },
+    { heading: "Uganda: check the employer and intermediary separately", paragraphs: ["Request the employer name, workplace and written job terms. Verify independently who is providing each service, what is included and who receives each payment."] },
+    { heading: "Tanzania: plan document language and consistency", paragraphs: ["Check names and dates across your CV and supporting records. Ask the destination authority whether translations or certification are needed before arranging them; requirements depend on the destination."] },
+    { heading: "Ethiopia: explain differences in your records", paragraphs: ["Use consistent names and dates in your enquiry. If documents use different spellings, explain the difference and ask the receiving employer or authority how to document it. Do not alter official records yourself."] },
+    { heading: "Egypt: compare the offer with total costs", paragraphs: ["Request salary, hours, deductions, accommodation arrangements and the work location in writing. Separate employer terms from adviser fees, travel and application costs when comparing a proposal."] },
+    { heading: "South Africa: distinguish nationality and residence", paragraphs: ["Tell the adviser both your nationality and where you currently live. Residence in South Africa and holding a South African passport are different circumstances; verify the correct application location with the destination authority."] },
+    { heading: "African nationals living in the Gulf", paragraphs: ["Make your current country of residence clear when enquiring. Do not assume that another person's route or application location applies to your circumstances."], links: [{label: "Planning from Gulf countries", url: "/guides/europe-work-guidance-from-gulf/"}] },
+    { heading: "Prepare your first enquiry", bullets: ["Share your nationality, current residence, occupation, experience and preferred destination.", "Ask for current rates, a written service scope and itemized costs.", "Do not include passport scans, payment credentials or sensitive documents in an initial message."], links: [{label: "Contact EU Pathfinder", url: "/#contact"}] }
+  ],
+  resources: [{label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/index_en"}]
+}, {
+  slug: "europe-work-guidance-from-gulf",
+  title: "Europe Work Guidance from Gulf Countries",
+  description: "Plan a Europe work enquiry from Saudi Arabia, UAE, Qatar, Oman, Kuwait or Bahrain. Compare employer terms, document preparation and service costs.",
+  summary: "A planning checklist for residents of the six Gulf countries, with direct links to each country guide.",
+  image: "/travel-route.svg",
+  background: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=960&q=70",
+  intro: "Planning European work from Saudi Arabia, the United Arab Emirates, Qatar, Oman, Kuwait or Bahrain? Start with your nationality, current residence and occupation. This guide helps prepare questions without assuming a vacancy, appointment or application route is available.",
+  sections: [
+    { heading: "Nationality and current residence are separate", paragraphs: ["Workers from Pakistan, India, Nepal, Bangladesh and African countries can have different circumstances even when they work for the same Gulf employer. Share both nationality and residence when enquiring.", "Verify the application location and required residence evidence with the destination authority. A current Gulf residence permit should not be treated as permission to work in Europe."] },
+    { heading: "Choose the country where you live", paragraphs: ["Use your current residence guide to prepare the enquiry, then compare European destinations. These guides do not confirm current vacancies or appointments."], links: [{label: "Saudi Arabia", url: "/europe-jobs-from-saudi-arabia/"}, {label: "United Arab Emirates (UAE)", url: "/europe-jobs-from-uae/"}, {label: "Qatar", url: "/europe-jobs-from-qatar/"}, {label: "Oman", url: "/europe-jobs-from-oman/"}, {label: "Kuwait", url: "/europe-jobs-from-kuwait/"}, {label: "Bahrain", url: "/europe-jobs-from-bahrain/"}] },
+    { heading: "Prepare before making commitments", bullets: ["Record your job duties, dates, training and language skills accurately.", "Ask the destination employer what references and qualifications it requires.", "Check current employment and residence obligations with the relevant official services before arranging a move.", "Avoid resigning, booking travel or paying based only on an unverified message."] },
+    { heading: "Separate employer terms from adviser fees", paragraphs: ["Ask for the employer, role, location, pay, hours, deductions and accommodation terms in writing. Separately request the service scope, current rates, third-party costs and cancellation terms.", "EU Pathfinder pricing is available by contacting the team. A consultation or quote is not a promise of a job, permit or visa."], links: [{label: "Ask about pricing", url: "/#pricing"}, {label: "Contact the team", url: "/#contact"}] },
+    { heading: "Planning from your country of origin", paragraphs: ["If you are comparing enquiries from home and from your current Gulf residence, use the relevant guide and make your residence clear."], links: [{label: "Pakistan", url: "/europe-jobs-from-pakistan/"}, {label: "India", url: "/europe-jobs-from-india/"}, {label: "Nepal", url: "/europe-jobs-from-nepal/"}, {label: "Bangladesh", url: "/europe-jobs-from-bangladesh/"}, {label: "African applicants", url: "/guides/europe-work-guidance-from-africa/"}] }
+  ],
+  resources: [{label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/index_en"}]
   }
 ];
 
@@ -394,7 +433,7 @@ function pageVisualTheme() {
   const marketPhotos = [...Object.values(workplacePhotos).map(photo => workplacePhotoUrl(photo, 960)), "/images/reference/europe-banner2.jpg", "/images/reference/travel.jpg", "/images/reference/planning.jpg", extraPhotos[0]];
   const marketIndex = workerMarkets.findIndex(m => m.slug === route);
   const guideIndex = guides.findIndex(g => `guides/${g.slug}` === route);
-  const primary = !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? extraPhotos[guideIndex + 1] : extraPhotos[3];
+  const primary = !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? (guides[guideIndex].background || extraPhotos[guideIndex + 1]) : extraPhotos[3];
   const secondary = primary;
   return { route, index, primary, secondary };
 }
@@ -542,6 +581,7 @@ function renderGuidePage(guide) {
               <h2>${escapeHtml(section.heading)}</h2>
               ${(section.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
               ${section.bullets ? `<ul class="check-list">${section.bullets.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
+              ${section.links ? `<ul class="check-list">${section.links.map(link => `<li><a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a></li>`).join("")}</ul>` : ""}
             </section>`).join("")}
           <section class="guide-resources photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-labelledby="guide-resources-title">
             <h2 id="guide-resources-title">Official starting points</h2>
@@ -723,7 +763,8 @@ function renderHome() {
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(workplacePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU Pathfinder to discuss support and current fees.</p></div>
+          <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia, Africa or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU Pathfinder to discuss support and current fees. Our Africa guide covers Nigeria, Ghana, Kenya, Uganda, Tanzania, Ethiopia, Egypt and South Africa.</p>
+        <nav class="regional-links" aria-label="Regional work guides"><a href="/guides/europe-work-guidance-from-africa/">Europe work guidance from Africa</a><a href="/guides/europe-work-guidance-from-gulf/">Europe work guidance from the Gulf</a></nav></div>
         </div>
         <div class="destination-pills">
           ${workerMarkets.map((market) => `<a class="destination-pill" href="/${market.slug}/"><span>Europe work guidance: ${escapeHtml(market.country)}</span></a>`).join("")}
@@ -952,6 +993,7 @@ function renderWorkerMarketPage(market) {
             <li>Contact EU Pathfinder to discuss your work background and the support options available.</li>
           </ul>
 
+          <nav class="regional-links" aria-label="Related regional guides"><a href="/guides/europe-work-guidance-from-africa/">African applicant planning guide</a><a href="/guides/europe-work-guidance-from-gulf/">Gulf resident planning guide</a></nav>
           <h2>Applying from ${escapeHtml(market.country)}</h2>
           <p>Your nationality and your current country of residence can both matter. If you live in a different country from the one that issued your passport, check with the destination country's embassy or official visa service where you are allowed to submit an application. Do this before making travel plans or paying anyone.</p>
           <p>${escapeHtml(market.planningNote)}</p>
@@ -1038,7 +1080,7 @@ function updatePageMetadata(country, market, guide, publication) {
       ? market.seoTitle
       : country
         ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
-        : "Europe Jobs & Work Permits | EU Pathfinder";
+        : "Europe Work Guidance: South Asia, Africa & Gulf | EU Pathfinder";
   const description = publication
     ? publication.description
     : guide
@@ -1047,7 +1089,7 @@ function updatePageMetadata(country, market, guide, publication) {
       ? market.seoDescription
       : country
         ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
-        : "European jobs guidance for Pakistan, India, Bangladesh and Nepal applicants, plus South Asian and African workers in the Gulf. Explore destinations and contact EU Pathfinder.";
+        : "Europe work guidance for Pakistan, India, Nepal, Bangladesh and African applicants, plus workers in Saudi Arabia, UAE, Qatar, Oman, Kuwait and Bahrain.";
   const canonicalPath = publication
     ? publication.slug
     : guide

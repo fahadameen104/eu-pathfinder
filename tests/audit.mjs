@@ -27,10 +27,10 @@ if(!path.endsWith('404.html')){assert.ok(html.includes('https://wa.me/1289914313
 const context=html.match(/name="context" value="([^"]+)"/);if(context)assert.ok(allowedContexts.includes(context[1]),path);
 const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(new Set(ids).size,ids.length,path);
 for(const img of html.matchAll(/<img\b[^>]*>/g))assert.match(img[0],/\balt="[^"]*"/,path);
-for(const json of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g))JSON.parse(json[1]);
+for(const json of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(json[1]);
 }}
 await scan(new URL('../public',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1'));
-assert.equal(backgrounds.size,50);assert.equal(primaryPhotos.size,50);
+assert.equal(backgrounds.size,52);assert.equal(primaryPhotos.size,52);
 assert.equal(runInNewContext('isValidContactNumber("+12899143132")',scope),true);
 const {onRequestPost}=await import('../functions/api/enquiry.js');
 let sent=0,lastPayload;

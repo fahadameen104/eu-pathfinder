@@ -3599,3 +3599,6 @@ svg {
 @media(prefers-reduced-motion:reduce) { .section-nav a { transition:none; } }
 .section-nav { position:relative; z-index:10; }
 @media(max-width:760px) { .site-header { position:relative; z-index:20; } }
+.regional-links { display:flex; flex-wrap:wrap; gap:12px; margin:24px 0; }
+.regional-links a { display:inline-block; padding:12px 18px; border:1px solid #75cdb5; border-radius:14px; background:rgba(5,27,46,.88); color:#caffed; font-weight:700; }
+.regional-links a:focus-visible { outline:3px solid #ffe0a4; outline-offset:4px; }
