@@ -107,7 +107,18 @@
   if (stored?.choice === "accepted") start();
   else window[`ga-disable-${measurementId}`] = true;
 
-  // Only a successful server response triggers this event. No field values are used.
+  // Measure contact intent without transmitting numbers, link text or WhatsApp messages.
+  document.addEventListener("click", (event) => {
+    if (!accepted || !production) return;
+    const link = event.target?.closest?.("a[href]");
+    if (!link) return;
+    let url;
+    try { url = new URL(link.href); } catch { return; }
+    const method = url.protocol === "tel:" ? "call" :
+      url.protocol === "https:" && url.hostname === "wa.me" ? "whatsapp" : null;
+    if (method) gtag("event", `${method}_click`, { contact_method: method, transport_type: "beacon" });
+  });
+  // Only a successful server response triggers generate_lead. No field values are used.
   window.euAnalytics = {
     recordEnquirySuccess() {
       if (accepted && production) gtag("event", "generate_lead", { method: "enquiry_form" });

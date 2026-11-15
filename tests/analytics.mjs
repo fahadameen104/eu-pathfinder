@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { runInNewContext } from "node:vm";
 const source = await readFile(new URL("../public/analytics.js", import.meta.url), "utf8");
 function setup(saved, hostname = "eupathfinder.agency") {
-  const scripts = [], buttons = new Map(), cookies = [], settings = { focus() {} };
+  const listeners = {}, scripts = [], buttons = new Map(), cookies = [], settings = { focus() {} };
   let reloads = 0, stored = saved;
   function button(key) {
     if (!buttons.has(key)) buttons.set(key, { addEventListener(_type, handler) { this.click = handler; }, focus() {}, hidden: true });
@@ -11,6 +11,7 @@ function setup(saved, hostname = "eupathfinder.agency") {
   }
   const panel = { setAttribute() {}, querySelector: button, hidden: false };
   const document = {
+    addEventListener(type, handler) { listeners[type] = handler; },
     referrer: "https://www.google.com/search?q=private-query",
     createElement(type) { return type === "section" ? panel : {}; },
     head: { append(tag) { scripts.push(tag); } }, body: { append() {} },
@@ -25,7 +26,7 @@ function setup(saved, hostname = "eupathfinder.agency") {
     localStorage: { getItem() { return stored; }, setItem(_key, value) { stored = value; } },
     URL, URLSearchParams, Date
   });
-  return { window, panel, scripts, cookies, settings, buttons, reloads: () => reloads, stored: () => JSON.parse(stored), click: key => button(key).click() };
+  return { listeners, window, panel, scripts, cookies, settings, buttons, reloads: () => reloads, stored: () => JSON.parse(stored), click: key => button(key).click() };
 }
 const fresh = setup();
 assert.equal(fresh.scripts.length, 0);
@@ -60,3 +61,28 @@ assert.equal(setup(JSON.stringify({ choice: "accepted", time: 1 })).scripts.leng
 assert.equal(setup("not-json").scripts.length, 0);
 assert.equal(setup(JSON.stringify({ choice: "accepted", time: Date.now() }), "localhost").scripts.length, 0);
 console.log("Analytics checks passed: consent gating, reject/withdrawal, single initialization, sanitized URLs, expiry, production host and field-free lead event.");
+
+function contactClick(app, href) {
+  app.listeners.click({ target: { closest() { return { href }; } } });
+}
+const consent = setup();
+contactClick(consent, "https://wa.me/14696268272?text=private-message");
+assert.equal(consent.window.dataLayer.filter(e => ["whatsapp_click", "call_click"].includes(e[1])).length, 0);
+consent.click("[data-analytics-accept]");
+contactClick(consent, "https://wa.me/14696268272?text=private-message");
+contactClick(consent, "tel:+12899143132");
+contactClick(consent, "https://wa.me.evil.test/private");
+contactClick(consent, "mailto:private@example.test");
+consent.listeners.click({ target: {} });
+const clicks = consent.window.dataLayer.filter(e => ["whatsapp_click", "call_click"].includes(e[1]));
+assert.equal(clicks.length, 2);
+assert.deepEqual(Array.from(clicks, e => e[1]), ["whatsapp_click", "call_click"]);
+assert.deepEqual(Array.from(clicks, e => e[2].contact_method), ["whatsapp", "call"]);
+assert.ok(clicks.every(e => JSON.stringify(e[2]) === JSON.stringify({contact_method:e[2].contact_method,transport_type:"beacon"})));
+consent.click("[data-analytics-reject]");
+contactClick(consent, "tel:+12899143132");
+assert.equal(consent.window.dataLayer.filter(e => ["whatsapp_click", "call_click"].includes(e[1])).length, 2);
+const preview = setup(JSON.stringify({choice:"accepted",time:Date.now()}), "localhost");
+contactClick(preview, "tel:+12899143132");
+assert.equal(preview.window.dataLayer.filter(e => ["whatsapp_click", "call_click"].includes(e[1])).length, 0);
+console.log("Contact click checks passed: both channels, consent, withdrawal, production-only and no contact/message data.");
