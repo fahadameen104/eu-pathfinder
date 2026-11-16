@@ -6,7 +6,7 @@ import { runInNewContext } from "node:vm";
 
 const root = new URL(".", import.meta.url);
 const publicDir = new URL("public/", root);
-const script = (await readFile(new URL("script.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
+const script = (await Promise.all(["editorial-content.js", "editorial-renderers.js", "script.js"].map(file => readFile(new URL(file, publicDir), "utf8")))).join("\n").replace(/\r\n/g, "\n");
 const stylesheet = (await readFile(new URL("styles.css", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const analytics = (await readFile(new URL("analytics.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
 const globe = (await readFile(new URL("globe.js", publicDir), "utf8")).replace(/\r\n/g, "\n");
@@ -116,6 +116,8 @@ function prerender(pathname) {
     .replace(/<link\s+rel="stylesheet"\s+href="\/?styles\.css(?:\?v=[^"]*)?"[^>]*>/, `<link rel="stylesheet" href="/styles.css?v=${assetVersion}">`)
     .replace(/<script\s+src="\/?script\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/script.js?v=${assetVersion}" defer></script>`)
     .replace(/<script\s+src="\/?analytics\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/analytics.js?v=${assetVersion}" defer></script>`)
+    .replace(/<script\s+src="\/?editorial-content\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/editorial-content.js?v=${assetVersion}" defer></script>`)
+    .replace(/<script\s+src="\/?editorial-renderers\.js(?:\?v=[^"]*)?"\s+defer><\/script>/, `<script src="/editorial-renderers.js?v=${assetVersion}" defer></script>`)
     .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
     .replace(/<meta\s+name="description"[\s\S]*?>/, `<meta name="description" content="${description}">`)
     .replace(/<link\s+rel="canonical"[^>]*>/, `<link rel="canonical" href="${canonical}">`)

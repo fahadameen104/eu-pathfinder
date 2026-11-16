@@ -1,4 +1,4 @@
-const privacyPage = { slug: "privacy", title: "Privacy information", description: "How EU Pathfinder enquiry details pass through the website, current advertising settings and how to ask about your information." };
+const privacyPage = { slug: "privacy", title: "Privacy Policy", description: "How EU PathFinder handles website enquiries, agreed service information, analytics and advertising choices, retention and privacy requests." };
 
 const contactEmail = "info@eupathfinder.agency";
 const whatsappNumber = "+14696268272";
@@ -197,7 +197,20 @@ const guides = [
 ];
 
 const publicationPages = [
-  { slug: "services", title: "Work and Relocation Support Services", description: "Explore EU Pathfinder consultation, document preparation, application guidance and relocation planning. Understand your part and contact us for current pricing." }
+  { slug:"services","title":"Guidance, Employer Matching and Relocation Services","description":"Explore EU PathFinder guidance, employer-matching and relocation support. Understand deliverables, your preparation and next steps. Contact us for pricing."},
+  { slug:"insights","title":"Insights and Resources for Work in Europe","description":"Explore EU PathFinder articles about international hiring, work visas, residence permits, employer checks and preparation for life in Europe."},
+  { slug:"gdpr","title":"GDPR Notice and Data Rights","description":"Read EU PathFinder’s GDPR notice, processing information and contact route for access, correction, deletion and other applicable privacy rights."},
+  { slug:"refund-policy","title":"Refund and Cancellation Policy","description":"Read EU PathFinder’s cancellation and refund terms, how requests are assessed and how to contact the refund and customer support teams."},
+  { slug:"insights/why-european-employers-look-for-international-workers","title":"Why European employers look for international workers","description":"Understand labour shortages without confusing a market trend with a confirmed job offer."},
+  { slug:"insights/understanding-european-work-visas","title":"Understanding European work visas: a beginner’s guide","description":"Separate the job offer, work authorisation, visa and residence questions before applying."},
+  { slug:"insights/industries-to-research-for-work-in-europe","title":"Industries to research for work in Europe","description":"Compare roles in construction, production, logistics, agriculture and hospitality against your experience."},
+  { slug:"insights/common-mistakes-in-european-job-applications","title":"Common mistakes in European job applications","description":"Avoid incomplete records, unverified employers and promises of guaranteed outcomes."},
+  { slug:"insights/how-transparent-recruitment-protects-workers-and-employers","title":"How transparent recruitment protects workers and employers","description":"Clear responsibilities, verifiable offers and written terms support more informed hiring decisions."},
+  { slug:"insights/life-after-arrival-in-europe","title":"Life after arrival: preparing for work in Europe","description":"Plan for workplace expectations, language, accommodation and practical arrival questions."},
+  { slug:"insights/construction-work-in-europe-preparation","title":"Preparing for construction work in Europe","description":"Explain your trade, training and practical experience before comparing a construction role."},
+  { slug:"insights/residence-permits-for-foreign-employees","title":"Residence permits for foreign employees","description":"Questions about residence, permission to work, validity and renewal to check with the destination authority."},
+  { slug:"insights/employer-matching-from-south-asia","title":"Employer matching from India, Bangladesh, Nepal and Pakistan","description":"Match the requirements of a role with an individual candidate’s skills and experience."},
+  { slug:"insights/building-a-long-term-career-in-europe","title":"Building a long-term career in Europe","description":"Think beyond arrival: skills, communication, workplace performance and lawful status."}
 ];
 
 const countryPhotos = {
@@ -438,7 +451,8 @@ function pageVisualTheme() {
   const marketPhotos = [...Object.values(workplacePhotos).map(photo => workplacePhotoUrl(photo, 960)), "/images/reference/europe-banner2.jpg", "/images/reference/travel.jpg", "/images/reference/planning.jpg", extraPhotos[0]];
   const marketIndex = workerMarkets.findIndex(m => m.slug === route);
   const guideIndex = guides.findIndex(g => `guides/${g.slug}` === route);
-  const primary = route === "services" ? "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=960&q=68" : !route ? "/images/reference/europe-banner1.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? (guides[guideIndex].background || extraPhotos[guideIndex + 1]) : extraPhotos[3];
+  const articlePhoto = editorialContent.articles.find(a => `insights/${a.slug}` === route);
+  const primary = route === "insights" ? editorialContent.photos.team.src : articlePhoto ? editorialContent.photos[articlePhoto.image].src : route === "gdpr" ? editorialContent.photos.logistics.src : route === "refund-policy" ? editorialContent.photos.family.src : route === "services" ? "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=960&q=68" : !route ? "/images/editorial/airport-family.jpg" : country ? countryPhotos[country.slug] : marketIndex >= 0 ? marketPhotos[marketIndex] : guideIndex >= 0 ? (guides[guideIndex].background || extraPhotos[guideIndex + 1]) : extraPhotos[3];
   const secondary = primary;
   return { route, index, primary, secondary };
 }
@@ -687,9 +701,9 @@ function renderBankDetails(compact = false) {
 
 function renderHome() {
   const featured = countries[0];
-  const heroPhoto = `${workplacePhotos.consultation.url}?auto=format&fit=crop&w=1440&q=68`;
+  const heroPhoto = "/images/editorial/airport-family.jpg";
   return `
-    <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}');--hero-photo-mobile:url('${escapeHtml(workplacePhotoUrl(workplacePhotos.consultation, 640))}')" aria-labelledby="home-title">
+    <section class="home-hero" style="--hero-photo:url('${escapeHtml(heroPhoto)}');--hero-photo-mobile:url('/images/editorial/airport-family.jpg')" aria-labelledby="home-title">
       <span class="hero-photo-backdrop" aria-hidden="true"></span>
       <div class="wrap hero-inner">
         <figure class="hero-travel-art">
@@ -697,8 +711,8 @@ function renderHome() {
           <figcaption>A luminous route toward Europe</figcaption>
         </figure>
         <div class="hero-copy">
-          <h1 id="home-title">Your path to legal work in Europe,<span>planned with you</span></h1>
-          <p class="hero-intro">Job opportunities, work-permit guidance and relocation support across 35 destinations, with an adviser beside you from first message to arrival.</p>
+          <p class="eyebrow">EU PathFinder Agency</p><h1 id="home-title">Genuine opportunities in Europe,<span>guidance for every step</span></h1>
+          <p class="hero-intro">At <strong>EU PathFinder Agency</strong>, we help workers from <strong>India, Bangladesh, Nepal, and Pakistan</strong> find genuine job opportunities across Europe.</p><p class="hero-supporting">From work visa and residence permit guidance to employer matching and relocation support, we’re with you at every step of your journey. By connecting qualified candidates with European employers facing labour shortages, we create opportunities that benefit both workers and businesses.</p><p class="hero-scope">Guidance and employer-matching support. Recruitment or placement only under a separate written agreement.</p>
           <div class="hero-actions">
             <a class="button button-gold" href="/#destinations">Explore destinations</a>
             <a class="button hero-secondary" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">
@@ -1484,7 +1498,7 @@ if (!main.dataset.prerendered) {
   } else if (pathname === "privacy") {
     main.innerHTML = renderPrivacyPage();
   } else if (currentPublication) {
-    main.innerHTML = renderServicesPage();
+    main.innerHTML = renderEditorialPublication(currentPublication);
   } else if (currentCountry) {
     main.innerHTML = renderCountryPage(currentCountry);
   } else if (currentWorkerMarket) {
@@ -1517,18 +1531,9 @@ if (!path) {
 
 setupWebsiteAssistant();
 setupEnquiryForms();
+setupInsightFilters();
 document.querySelectorAll(fallbackImageSelector).forEach((image) => {
   if (image.complete && image.naturalWidth === 0) image.hidden = true;
 });
 
-function renderPrivacyPage() {
-  return `<article class="wrap guide-section privacy-page"><h1>Privacy and contact information</h1>
-  <p>EU Pathfinder uses the details you submit to respond to your enquiry. Contact <a href="mailto:${contactEmail}">${contactEmail}</a> with questions about your information or requests to access, correct or delete enquiry details. Do not send identity documents with a request; the team can discuss an appropriate way to verify it.</p>
-  <h2>Enquiry information</h2><p>The form collects your name, email, nationality, chosen topic, page context and optional message, together with your permission to reply. It sends these details through Cloudflare Pages and Resend to our email inbox. Requests to the website also pass through Cloudflare, which may process connection and security information. Do not submit passport scans, payment details or sensitive documents.</p>
-  <h2>Optional Google Analytics</h2><p>If you accept analytics, Google Analytics 4 uses cookies to measure visits, traffic sources and interactions such as page views, scrolls, WhatsApp or call-link clicks and a successful enquiry event. Contact clicks measure intent, not a completed conversation. Contact numbers, WhatsApp message text and enquiry field values are not included in our custom events. We do not send enquiry field values to Google Analytics. Google receives visit and device information and cookie identifiers. The Google tag is not loaded until you accept. Advertising personalization and Google Signals are disabled.</p>
-  <p>You can reject analytics without affecting enquiries, or change your choice using <button type="button" data-analytics-settings>Analytics preferences</button>. Your choice is remembered for up to 180 days; Google Analytics cookies are configured for up to 180 days. Withdrawing stops further GA4 collection and clears its first-party analytics cookies in this browser; it does not delete previously collected information. Read <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">how Google uses information from sites using its services</a>.</p>
-  <h2>Optional advertising</h2><p>Adsterra display advertising loads only after you accept advertising, separately from analytics. Adsterra and its advertising partners may receive your IP address, browser and device information and use cookies or similar identifiers to deliver and measure advertisements. Our advertising code does not send enquiry form fields. Ads are third-party promotions, not EU Pathfinder offers or endorsements. Read <a href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener noreferrer">Adsterra's privacy policy</a>.</p><p>Use <button type="button" data-ad-settings>Advertising preferences</button> to accept, reject or withdraw. Your choice is stored in this browser for up to 180 days. Withdrawal reloads the page to stop further ad-script activity; it does not delete information already received by third parties or their cookies. AdSense ownership verification is installed, but Google ad serving remains disabled while site approval and advertising-consent setup are pending.</p><h2>External services</h2><p> Cloudflare also provides site analytics independently of this optional Google Analytics choice. Images may load from Unsplash, Wikimedia and FlagCDN; your browser connects to those providers when loading their resources. Opening WhatsApp or email links uses the service or app you choose.</p>
-  <h2>Retention and further questions</h2><p>For questions about how long enquiry details are kept, or to request access, correction or deletion, contact the team before submitting if this affects your decision.</p>
-  <h2>Before agreeing to a service</h2><p>Contact us for current pricing and rates. Request a written service scope, itemized fees, third-party costs, cancellation and refund terms, and complaint contact before agreeing or paying. No job, permit or visa outcome is guaranteed.</p>
-  <p><a href="/#contact">Contact the team</a> · <a href="/">Return home</a></p></article>`;
-}
+function renderPrivacyPage() { return renderPolicyPage("privacy"); }
