@@ -699,6 +699,14 @@ function renderBankDetails(compact = false) {
     </section>`;
 }
 
+function renderClientStart() {
+  const audiences = [
+    {name: "Workers", title: "Plan your next step in Europe", intro: "Discuss your experience, destination and questions about employer matching, documents or relocation.", items: ["Nationality and current country", "Occupation, experience and training", "Preferred destination and main question"], action: "Discuss my work plans", message: "Hello EU Pathfinder, I am a worker seeking guidance.\nNationality: \nCurrent country: \nOccupation and experience: \nPreferred destination: \nMy question: "},
+    {name: "Employers", title: "Discuss your workforce needs", intro: "Tell us about your business and roles to discuss candidate requirements and employer-matching support.", items: ["Company website and work location", "Roles, skills and number of workers", "Proposed pay, hours and start date"], action: "Discuss workforce needs", message: "Hello EU Pathfinder, I represent an employer and would like to discuss employer-matching support.\nCompany name and website: \nWork location: \nRoles and number of workers: \nProposed pay, hours and start date: \nMy question: "}
+  ];
+  return `<section class="section client-start wrap" id="start-here" aria-labelledby="client-start-title"><h2 id="client-start-title">Workers and employers: start here</h2><p class="section-lead">Tell us what you need so we can discuss the relevant support, scope and current pricing.</p><div class="client-start-grid">${audiences.map(a=>`<article class="reading-card"><p class="eyebrow">For ${a.name.toLowerCase()}</p><h3>${a.title}</h3><p>${a.intro}</p><ul class="check-list">${a.items.map(i=>`<li>${i}</li>`).join("")}</ul><a class="button button-gold" href="${whatsappLink(whatsappNumber,a.message)}" target="_blank" rel="noopener noreferrer">${a.action}</a><a class="text-link" href="${emailLink(a.name + ' enquiry',a.message)}">Prefer email? Send an enquiry</a></article>`).join("")}</div><p class="client-start-note">Opening WhatsApp or email prepares a message for you to review and send. Share a short summary only; keep passport scans and sensitive documents out of your first enquiry. Recruitment or placement requires a separate written agreement. Jobs and visas are not guaranteed.</p><a class="text-link" href="/services/">What support is included?</a></section>`;
+}
+
 function renderHome() {
   const featured = countries[0];
   const heroPhoto = "/images/editorial/airport-family.jpg";
@@ -714,7 +722,7 @@ function renderHome() {
           <p class="eyebrow">EU PathFinder Agency</p><h1 id="home-title">Genuine opportunities in Europe,<span>guidance for every step</span></h1>
           <p class="hero-intro">At <strong>EU PathFinder Agency</strong>, we help workers from <strong>India, Bangladesh, Nepal, and Pakistan</strong> find genuine job opportunities across Europe.</p><p class="hero-supporting">From work visa and residence permit guidance to employer matching and relocation support, we’re with you at every step of your journey. By connecting qualified candidates with European employers facing labour shortages, we create opportunities that benefit both workers and businesses.</p><p class="hero-scope">Guidance and employer-matching support. Recruitment or placement only under a separate written agreement.</p>
           <div class="hero-actions">
-            <a class="button button-gold" href="/#destinations">Explore destinations</a>
+            <a class="button button-gold" href="/#start-here">Workers &amp; employers: start here</a>
             <a class="button hero-secondary" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5a12 12 0 0 0-10.3 18.2L4 28l6.5-1.7A12 12 0 1 0 16 3.5Zm0 21.8a9.7 9.7 0 0 1-4.9-1.3l-.4-.2-3.8 1 1-3.7-.3-.4A9.7 9.7 0 1 1 16 25.3Zm5.3-7.3c-.3-.2-1.7-.9-2-.9s-.5-.2-.7.2c-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.2-.6l.5-.6.3-.5c.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.5Z"></path></svg>
               Chat on WhatsApp
@@ -737,6 +745,7 @@ function renderHome() {
       </div>
     </section>
 
+    ${renderClientStart()}
     <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-label="How EU Pathfinder supports you">
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Practical document guidance</strong><p>We explain common document steps and what to confirm for your situation.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>

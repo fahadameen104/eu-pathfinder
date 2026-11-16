@@ -3864,3 +3864,5 @@ body { background:#100f30; }
  .page-theme .insight-card { padding:0; }
 }
 @media(prefers-reduced-motion:reduce) { .insight-card-image img { transition:none; } }
+
+.client-start-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:24px 0}.client-start-grid .reading-card{display:flex;flex-direction:column;gap:14px}.client-start-grid h3{font-size:clamp(1.4rem,3vw,2rem);margin:0}.client-start-grid .button{margin-top:auto;align-self:flex-start}.client-start-note{max-width:78ch;line-height:1.7}@media(max-width:760px){.client-start-grid{grid-template-columns:1fr}.client-start-grid .button{width:100%;text-align:center}}
