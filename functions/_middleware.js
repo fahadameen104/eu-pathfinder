@@ -3,6 +3,12 @@
 export async function onRequest(context) {
   const { request } = context;
   const url = new URL(request.url);
+  // Retire the legacy Latvia guide URL reported as 404 in Search Console.
+  if (["GET", "HEAD"].includes(request.method) && /^\/countries\/latvia\/?$/.test(url.pathname)) {
+    url.hostname = "eupathfinder.agency";
+    url.pathname = "/latvia/";
+    return Response.redirect(url.toString(), 301);
+  }
   if (url.hostname === "www.eupathfinder.agency" &&
       ["GET", "HEAD"].includes(request.method) &&
       !url.pathname.startsWith("/api/")) {
