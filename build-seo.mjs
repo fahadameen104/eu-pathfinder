@@ -147,7 +147,7 @@ function prerender(pathname) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: "https://eupathfinder.agency/" },
-          { "@type": "ListItem", position: 2, name: page.title.replace(/ \| EU Pathfinder$/, ""), item: page.canonical }
+          { "@type": "ListItem", position: 2, name: page.title.replace(/ \| EU PathFinder Agency$/, ""), item: page.canonical }
         ]
       }])
     ]

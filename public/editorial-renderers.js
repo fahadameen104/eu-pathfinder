@@ -48,7 +48,7 @@ function legalText(text) {
 function renderLegalLines(lines) {
   let html="",items=[];
   const flush=()=>{if(items.length){html+=`<ul>${items.map(x=>`<li>${legalText(x)}</li>`).join("")}</ul>`;items=[];}};
-  for(const text of lines){if(legalSubheadings.has(text)){flush();html+=`<h3>${escapeHtml(text)}</h3>`;}else if(text.length<88&&!/[.!?:]$/.test(text)&&!text.includes(":")&&!text.startsWith("EU PathFinder")){items.push(text);}else{flush();html+=`<p>${legalText(text)}</p>`;}}flush();return html;
+  for(const text of lines){if(legalSubheadings.has(text)){flush();html+=`<h3>${escapeHtml(text)}</h3>`;}else if(text.length<88&&!/[.!?:]$/.test(text)&&!text.includes(":")&&!text.startsWith("EU PathFinder Agency")){items.push(text);}else{flush();html+=`<p>${legalText(text)}</p>`;}}flush();return html;
 }
 function legalSection(section) {
   return `<section class="reading-card legal-section" id="policy-${section.number}"><h2>${escapeHtml(section.title)}</h2>${renderLegalLines(section.lines)}${section.number===7?'<p><button type="button" data-analytics-settings>Analytics preferences</button> · <button type="button" data-ad-settings>Advertising preferences</button></p>':""}</section>`;

@@ -1,11 +1,11 @@
-const privacyPage = { slug: "privacy", title: "Privacy Policy", description: "How EU PathFinder handles website enquiries, agreed service information, analytics and advertising choices, retention and privacy requests." };
+const privacyPage = { slug: "privacy", title: "Privacy Policy", description: "How EU PathFinder Agency handles website enquiries, agreed service information, analytics and advertising choices, retention and privacy requests." };
 
 const contactEmail = "info@eupathfinder.agency";
 const whatsappNumber = "+14696268272";
 const callNumber = "+12899143132";
 const ceoEmail = "Eupathfinder@gmail.com";
 const isValidContactNumber = (number) => /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(number);
-const whatsappLink = (number = whatsappNumber, message = "Hello EU Pathfinder, I would like guidance about working in Europe.") => {
+const whatsappLink = (number = whatsappNumber, message = "Hello EU PathFinder Agency, I would like guidance about working in Europe.") => {
   if (!isValidContactNumber(number)) throw new Error("Invalid contact number: " + number);
   return `https://wa.me/${number.slice(1)}?text=${encodeURIComponent(message)}`;
 };
@@ -49,17 +49,17 @@ const countries = [
 ];
 
 const workerMarkets = [
-  { slug: "europe-jobs-from-pakistan", country: "Pakistan", audience: "Pakistani workers", titleAudience: "Pakistani Workers", seoHeading: "Jobs in Europe for Pakistani workers", seoTitle: "Jobs in Europe from Pakistan | EU Pathfinder", seoDescription: "Looking for jobs in Europe from Pakistan? Explore destinations and share your skills with EU Pathfinder to discuss support and current fees.", planningNote: "If you are applying from Pakistan, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Construction and skilled trades", "Transport and logistics", "Agriculture and food production", "Manufacturing", "Hospitality and support services"], seoFaq: "What jobs in Europe can Pakistani workers explore?" },
-  { slug: "europe-jobs-from-india", country: "India", audience: "Indian workers", titleAudience: "Indian Workers", seoHeading: "Jobs in Europe for Indian workers", seoTitle: "Jobs in Europe from India | EU Pathfinder", seoDescription: "Looking for jobs in Europe from India? Explore destinations and share your skills with EU Pathfinder to discuss support and current fees.", planningNote: "If you are applying from India, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Manufacturing and production", "Construction and skilled trades", "Transport and logistics", "Agriculture and food production", "Hospitality and support services"], seoFaq: "What jobs in Europe can Indian workers explore?" },
-  { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", seoHeading: "Jobs in Europe for Bangladeshi workers", seoTitle: "Europe Jobs from Bangladesh: BMET Checks | EU Pathfinder", seoDescription: "Planning work in Europe from Bangladesh? Check agencies through OEP RAIMS, separate BMET clearance from destination rules and prepare your enquiry.", planningNote: "If you are applying from Bangladesh, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Construction and skilled trades", "Manufacturing and production", "Agriculture and food production", "Transport and logistics", "Hospitality and support services"], seoFaq: "What jobs in Europe can Bangladeshi workers explore?" },
-  { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", seoTitle: "Jobs in Europe from Malaysia | EU Pathfinder", seoDescription: "Explore European work destinations from Malaysia. Share your skills and experience with EU Pathfinder and ask about support options and current fees.", planningNote: "If you are applying from Malaysia, tell us about your work history and the kind of role you are seeking. Your nationality and residence status may affect application procedures." },
-  { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", seoHeading: "Jobs in Europe for Nepali workers", seoTitle: "Jobs in Europe from Nepal | EU Pathfinder", seoDescription: "Looking for jobs in Europe from Nepal? Explore destinations and share your skills with EU Pathfinder to discuss support and current fees.", planningNote: "If you are applying from Nepal, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Hospitality and tourism", "Construction and skilled trades", "Agriculture and food production", "Manufacturing", "Transport and support services"], seoFaq: "What jobs in Europe can Nepali workers explore?" },
-  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian and African workers living in Saudi Arabia", titleAudience: "Workers in Saudi Arabia", diaspora: true, seoTitle: "Europe Jobs from Saudi Arabia | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Saudi Arabia. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Saudi Arabia, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
-  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian and African workers living in the UAE", titleAudience: "Workers in the UAE", diaspora: true, seoTitle: "Europe Jobs from the UAE | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in the UAE. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in the UAE, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
-  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian and African workers living in Oman", titleAudience: "Workers in Oman", diaspora: true, seoTitle: "Europe Jobs from Oman | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Oman. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Oman, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
-  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian and African workers living in Qatar", titleAudience: "Workers in Qatar", diaspora: true, seoTitle: "Europe Jobs from Qatar | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Qatar. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Qatar, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
-  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian and African workers living in Kuwait", titleAudience: "Workers in Kuwait", diaspora: true, seoTitle: "Europe Jobs from Kuwait | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Kuwait. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Kuwait, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
-  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian and African workers living in Bahrain", titleAudience: "Workers in Bahrain", diaspora: true, seoTitle: "Europe Jobs from Bahrain | EU Pathfinder", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Bahrain. Explore destinations and contact EU Pathfinder.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Bahrain, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." }
+  { slug: "europe-jobs-from-pakistan", country: "Pakistan", audience: "Pakistani workers", titleAudience: "Pakistani Workers", seoHeading: "Jobs in Europe for Pakistani workers", seoTitle: "Jobs in Europe from Pakistan | EU PathFinder Agency", seoDescription: "Looking for jobs in Europe from Pakistan? Explore destinations and share your skills with EU PathFinder Agency to discuss support and current fees.", planningNote: "If you are applying from Pakistan, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Construction and skilled trades", "Transport and logistics", "Agriculture and food production", "Manufacturing", "Hospitality and support services"], seoFaq: "What jobs in Europe can Pakistani workers explore?" },
+  { slug: "europe-jobs-from-india", country: "India", audience: "Indian workers", titleAudience: "Indian Workers", seoHeading: "Jobs in Europe for Indian workers", seoTitle: "Jobs in Europe from India | EU PathFinder Agency", seoDescription: "Looking for jobs in Europe from India? Explore destinations and share your skills with EU PathFinder Agency to discuss support and current fees.", planningNote: "If you are applying from India, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Manufacturing and production", "Construction and skilled trades", "Transport and logistics", "Agriculture and food production", "Hospitality and support services"], seoFaq: "What jobs in Europe can Indian workers explore?" },
+  { slug: "europe-jobs-from-bangladesh", country: "Bangladesh", audience: "Bangladeshi workers", titleAudience: "Bangladeshi Workers", seoHeading: "Jobs in Europe for Bangladeshi workers", seoTitle: "Europe Jobs from Bangladesh: BMET Checks | EU PathFinder Agency", seoDescription: "Planning work in Europe from Bangladesh? Check agencies through OEP RAIMS, separate BMET clearance from destination rules and prepare your enquiry.", planningNote: "If you are applying from Bangladesh, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Construction and skilled trades", "Manufacturing and production", "Agriculture and food production", "Transport and logistics", "Hospitality and support services"], seoFaq: "What jobs in Europe can Bangladeshi workers explore?" },
+  { slug: "europe-jobs-from-malaysia", country: "Malaysia", audience: "workers applying from Malaysia", titleAudience: "Workers Applying from Malaysia", seoTitle: "Jobs in Europe from Malaysia | EU PathFinder Agency", seoDescription: "Explore European work destinations from Malaysia. Share your skills and experience with EU PathFinder Agency and ask about support options and current fees.", planningNote: "If you are applying from Malaysia, tell us about your work history and the kind of role you are seeking. Your nationality and residence status may affect application procedures." },
+  { slug: "europe-jobs-from-nepal", country: "Nepal", audience: "Nepali workers", titleAudience: "Nepali Workers", seoHeading: "Jobs in Europe for Nepali workers", seoTitle: "Jobs in Europe from Nepal | EU PathFinder Agency", seoDescription: "Looking for jobs in Europe from Nepal? Explore destinations and share your skills with EU PathFinder Agency to discuss support and current fees.", planningNote: "If you are applying from Nepal, tell us about your work history and the kind of role you are seeking. Application procedures depend on the destination, employer and your circumstances.", seoRoles: ["Hospitality and tourism", "Construction and skilled trades", "Agriculture and food production", "Manufacturing", "Transport and support services"], seoFaq: "What jobs in Europe can Nepali workers explore?" },
+  { slug: "europe-jobs-from-saudi-arabia", country: "Saudi Arabia", audience: "South Asian and African workers living in Saudi Arabia", titleAudience: "Workers in Saudi Arabia", diaspora: true, seoTitle: "Europe Jobs from Saudi Arabia | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Saudi Arabia. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Saudi Arabia, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-uae", country: "the UAE", audience: "South Asian and African workers living in the UAE", titleAudience: "Workers in the UAE", diaspora: true, seoTitle: "Europe Jobs from the UAE | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in the UAE. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in the UAE, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-oman", country: "Oman", audience: "South Asian and African workers living in Oman", titleAudience: "Workers in Oman", diaspora: true, seoTitle: "Europe Jobs from Oman | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Oman. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Oman, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-qatar", country: "Qatar", audience: "South Asian and African workers living in Qatar", titleAudience: "Workers in Qatar", diaspora: true, seoTitle: "Europe Jobs from Qatar | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Qatar. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Qatar, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-kuwait", country: "Kuwait", audience: "South Asian and African workers living in Kuwait", titleAudience: "Workers in Kuwait", diaspora: true, seoTitle: "Europe Jobs from Kuwait | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Kuwait. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Kuwait, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." },
+  { slug: "europe-jobs-from-bahrain", country: "Bahrain", audience: "South Asian and African workers living in Bahrain", titleAudience: "Workers in Bahrain", diaspora: true, seoTitle: "Europe Jobs from Bahrain | EU PathFinder Agency", seoDescription: "European work guidance for Pakistani, Indian, Bangladeshi, Nepali and African workers in Bahrain. Explore destinations and contact EU PathFinder Agency.", planningNote: "For Pakistani, Indian, Bangladeshi, Nepali and African workers living in Bahrain, nationality and residence status may affect where an application can be made. We can discuss your work experience and destinations you are considering." }
 ];
 
 const guides = [
@@ -82,7 +82,7 @@ const guides = [
         heading: "How the work-permit route is decided",
         paragraphs: [
           "The destination country's authorities set its work and residence rules. Some routes require an employer to apply or sponsor a permit; seasonal work may have separate rules where that route exists. A job title alone does not establish that a permit is available.",
-          "Before paying anyone, identify the destination, the legal employer and the specific role. Check the current process with the destination's official immigration service or embassy. EU Pathfinder cannot promise a vacancy, permit or visa decision."
+          "Before paying anyone, identify the destination, the legal employer and the specific role. Check the current process with the destination's official immigration service or embassy. EU PathFinder Agency cannot promise a vacancy, permit or visa decision."
         ]
       },
       {
@@ -172,7 +172,7 @@ const guides = [
     { heading: "African nationals living in the Gulf", paragraphs: ["Make your current country of residence clear when enquiring. Do not assume that another person's route or application location applies to your circumstances."], links: [{label: "Planning from Gulf countries", url: "/guides/europe-work-guidance-from-gulf/"}] },
     { heading: "Make a destination comparison you can verify", bullets: ["Compare one or two destinations for your actual occupation, rather than assuming every European country has the same route.", "Record the named employer, workplace, qualifications requested, language expectations and official application source for each option.", "Keep adviser charges, official charges, travel and living costs separate. Ask who receives each payment and what the written refund terms cover.", "Check departure or recruitment requirements with your own country's competent authority. This guide does not replace a national clearance checklist."] },
     { heading: "Prepare evidence without oversharing", paragraphs: ["Create a CV with dates, duties, training and languages. Note which references or certificates you can obtain, but ask the employer or authority what is required before paying for new documents.", "For the first discussion, share a summary of your experience and current residence. Passport scans, bank details and payment credentials are not needed in an initial enquiry. Ask how any later document request will be handled before sending files."] },
-    { heading: "Prepare your first enquiry", bullets: ["Share your nationality, current residence, occupation, experience and preferred destination.", "Ask for current rates, a written service scope and itemized costs.", "Do not include passport scans, payment credentials or sensitive documents in an initial message."], links: [{label: "Contact EU Pathfinder", url: "/#contact"}] }
+    { heading: "Prepare your first enquiry", bullets: ["Share your nationality, current residence, occupation, experience and preferred destination.", "Ask for current rates, a written service scope and itemized costs.", "Do not include passport scans, payment credentials or sensitive documents in an initial message."], links: [{label: "Contact EU PathFinder Agency", url: "/#contact"}] }
   ],
   resources: [{label: "EU Immigration Portal", url: "https://immigration-portal.ec.europa.eu/index_en"}]
 }, {
@@ -187,7 +187,7 @@ const guides = [
     { heading: "Nationality and current residence are separate", paragraphs: ["Workers from Pakistan, India, Nepal, Bangladesh and African countries can have different circumstances even when they work for the same Gulf employer. Share both nationality and residence when enquiring.", "Verify the application location and required residence evidence with the destination authority. A current Gulf residence permit should not be treated as permission to work in Europe."] },
     { heading: "Choose the country where you live", paragraphs: ["Use your current residence guide to prepare the enquiry, then compare European destinations. These guides do not confirm current vacancies or appointments."], links: [{label: "Saudi Arabia", url: "/europe-jobs-from-saudi-arabia/"}, {label: "United Arab Emirates (UAE)", url: "/europe-jobs-from-uae/"}, {label: "Qatar", url: "/europe-jobs-from-qatar/"}, {label: "Oman", url: "/europe-jobs-from-oman/"}, {label: "Kuwait", url: "/europe-jobs-from-kuwait/"}, {label: "Bahrain", url: "/europe-jobs-from-bahrain/"}] },
     { heading: "Prepare before making commitments", bullets: ["Record your job duties, dates, training and language skills accurately.", "Ask the destination employer what references and qualifications it requires.", "Check current employment and residence obligations with the relevant official services before arranging a move.", "Avoid resigning, booking travel or paying based only on an unverified message."] },
-    { heading: "Separate employer terms from adviser fees", paragraphs: ["Ask for the employer, role, location, pay, hours, deductions and accommodation terms in writing. Separately request the service scope, current rates, third-party costs and cancellation terms.", "EU Pathfinder pricing is available by contacting the team. A consultation or quote is not a promise of a job, permit or visa."], links: [{label: "Ask about pricing", url: "/#pricing"}, {label: "Contact the team", url: "/#contact"}] },
+    { heading: "Separate employer terms from adviser fees", paragraphs: ["Ask for the employer, role, location, pay, hours, deductions and accommodation terms in writing. Separately request the service scope, current rates, third-party costs and cancellation terms.", "EU PathFinder Agency pricing is available by contacting the team. A consultation or quote is not a promise of a job, permit or visa."], links: [{label: "Ask about pricing", url: "/#pricing"}, {label: "Contact the team", url: "/#contact"}] },
     { heading: "Build a move checklist around your current residence", bullets: ["Check passport and residence-document expiry dates, and ask the destination authority whether it accepts applications from your current residence.", "Check notice, final settlement and residence or exit procedures with the appropriate official services for the Gulf country where you live. Do not assume the six countries have identical rules.", "Ask what happens if a residence document expires while a European application is pending.", "Request written employer terms and official approval requirements before resigning or buying non-refundable travel."] },
     { heading: "Compare take-home arrangements, not just a salary headline", paragraphs: ["Ask whether a quoted salary is gross or net, which deductions apply, and who pays for housing, transport, insurance and travel. Record working hours and overtime arrangements separately.", "Keep your relocation budget separate from adviser fees. Ask about payment timing and written cancellation or refund terms. Do not treat an estimated processing time as a guaranteed start date."] },
     { heading: "Planning from your country of origin", paragraphs: ["If you are comparing enquiries from home and from your current Gulf residence, use the relevant guide and make your residence clear."], links: [{label: "Pakistan", url: "/europe-jobs-from-pakistan/"}, {label: "India", url: "/europe-jobs-from-india/"}, {label: "Nepal", url: "/europe-jobs-from-nepal/"}, {label: "Bangladesh", url: "/europe-jobs-from-bangladesh/"}, {label: "African applicants", url: "/guides/europe-work-guidance-from-africa/"}] }
@@ -197,10 +197,10 @@ const guides = [
 ];
 
 const publicationPages = [
-  { slug:"services","title":"Guidance, Employer Matching and Relocation Services","description":"Explore EU PathFinder guidance, employer-matching and relocation support. Understand deliverables, your preparation and next steps. Contact us for pricing."},
-  { slug:"insights","title":"Insights and Resources for Work in Europe","description":"Explore EU PathFinder articles about international hiring, work visas, residence permits, employer checks and preparation for life in Europe."},
-  { slug:"gdpr","title":"GDPR Notice and Data Rights","description":"Read EU PathFinder’s GDPR notice, processing information and contact route for access, correction, deletion and other applicable privacy rights."},
-  { slug:"refund-policy","title":"Refund and Cancellation Policy","description":"Read EU PathFinder’s cancellation and refund terms, how requests are assessed and how to contact the refund and customer support teams."},
+  { slug:"services","title":"Guidance, Employer Matching and Relocation Services","description":"Explore EU PathFinder Agency guidance, employer-matching and relocation support. Understand deliverables, your preparation and next steps. Contact us for pricing."},
+  { slug:"insights","title":"Insights and Resources for Work in Europe","description":"Explore EU PathFinder Agency articles about international hiring, work visas, residence permits, employer checks and preparation for life in Europe."},
+  { slug:"gdpr","title":"GDPR Notice and Data Rights","description":"Read EU PathFinder Agency’s GDPR notice, processing information and contact route for access, correction, deletion and other applicable privacy rights."},
+  { slug:"refund-policy","title":"Refund and Cancellation Policy","description":"Read EU PathFinder Agency’s cancellation and refund terms, how requests are assessed and how to contact the refund and customer support teams."},
   { slug:"insights/why-european-employers-look-for-international-workers","title":"Why European employers look for international workers","description":"Understand labour shortages without confusing a market trend with a confirmed job offer."},
   { slug:"insights/understanding-european-work-visas","title":"Understanding European work visas: a beginner’s guide","description":"Separate the job offer, work authorisation, visa and residence questions before applying."},
   { slug:"insights/industries-to-research-for-work-in-europe","title":"Industries to research for work in Europe","description":"Compare roles in construction, production, logistics, agriculture and hospitality against your experience."},
@@ -278,11 +278,11 @@ const faqs = [
   ["Which destinations are covered?", "The site currently has guidance for 35 European destinations. Open a destination page to review general information about sectors, common documents and the process. Availability and requirements depend on the country, role and employer."],
   ["What does the process involve?", "The site outlines a typical seven-stage process, from an initial consultation and document preparation through permit and visa applications, travel preparation and arrival support. The exact steps vary by destination and case; the relevant authorities make all permit and visa decisions."],
   ["What documents might I need?", "A valid passport, an updated CV, education or professional certificates, and evidence of work experience are common starting points. The destination authority and employer set the actual requirements, so confirm the current checklist for your case before arranging documents."],
-  ["Can you guarantee a job, visa or work permit?", "No. Job offers, work permits and visas cannot be guaranteed by EU Pathfinder. Employers make hiring decisions, and government authorities decide permit and visa applications. Check official requirements and independently verify any employer and written job offer."],
+  ["Can you guarantee a job, visa or work permit?", "No. Job offers, work permits and visas cannot be guaranteed by EU PathFinder Agency. Employers make hiring decisions, and government authorities decide permit and visa applications. Check official requirements and independently verify any employer and written job offer."],
   ["How much do your services cost?", "Fees depend on the destination, role and level of support. Contact us for current rates and a clear breakdown of service fees and any separate costs before you agree to proceed."],
   ["Can I apply from a Gulf country?", "Some destination authorities accept applications from people who legally reside in a Gulf country, but rules vary. Your nationality and residence status may affect where you can apply. Check the destination's official embassy or visa authority before making plans."],
   ["How can I check that a job offer is genuine?", "Ask for the employer's full legal name, the specific role and written terms. Verify the employer and vacancy independently, and confirm immigration requirements through official government sources. Do not rely on promises of guaranteed approval."],
-  ["How do I ask about current fees or my situation?", "Email EU Pathfinder using the contact link on this site. Share only the information needed for an initial enquiry; do not send passport scans or other sensitive documents until you have confirmed how they will be handled."],
+  ["How do I ask about current fees or my situation?", "Email EU PathFinder Agency using the contact link on this site. Share only the information needed for an initial enquiry; do not send passport scans or other sensitive documents until you have confirmed how they will be handled."],
   ["How should I handle payment requests?", "Ask for written service terms, an itemized fee breakdown and an invoice before paying. Confirm the beneficiary and payment instructions through a contact method you independently verified. Do not pay anyone who promises a guaranteed job, permit or visa."],
   ["Should I send my passport or bank details by email?", "Do not send passport scans, bank logins, card details, passwords or one-time codes in an initial enquiry. First confirm who will receive any documents, why they are needed and how they will be handled."]
 ];
@@ -388,9 +388,9 @@ function renderWorkplacePhoto(photo, sizes) {
     : `
         <span class="people-photo-brand" aria-hidden="true">
           <span class="people-photo-brand-mark">
-            <svg viewBox="0 0 40 40"><path d="M20 5 31 27l-11-6-11 6L20 5Z"></path><path class="brand-stem" d="M20 21v13"></path></svg>
+            <img src="/brand-logo.png" alt="" width="40" height="40" loading="lazy">
           </span>
-          <span>EU Pathfinder</span>
+          <span>EU PathFinder Agency</span>
         </span>`;
 
   return `
@@ -460,8 +460,8 @@ function renderPageAtmosphere(content) {
   const theme = pageVisualTheme();
   return `<div class="page-theme" data-background-key="${escapeHtml(theme.route || "home")}" style="--page-photo:url('${escapeHtml(theme.primary)}');--page-photo-secondary:url('${escapeHtml(theme.secondary)}');--page-hue:${(theme.index * 19) % 65}deg;--page-position:${30 + theme.index % 5 * 10}%">
     <div class="page-photo-layer" aria-hidden="true"></div>
-    <div class="page-identity-layer" aria-hidden="true"><div class="ambient-globe globe-host" data-globe-host><img class="globe-poster" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div><div class="ambient-logo"><img src="/brand-emblem-3d.svg" alt="" width="240" height="260"><span>EU Pathfinder<small>AGENCY</small></span></div></div>
-    <div class="page-content-layer">${content}${theme.route === "privacy" ? "" : `<aside class="advertisement wrap" aria-label="Advertisement"><h2>Advertisement</h2><p>Third-party advertising is separate from EU Pathfinder services.</p><div id="adsterra-slot" class="advertisement-slot"><p data-ad-status>Advertising is optional.</p><button type="button" data-ad-settings>Advertising preferences</button></div></aside>`}</div></div>`;
+    <div class="page-identity-layer" aria-hidden="true"><div class="ambient-globe globe-host" data-globe-host><img class="globe-poster" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div><div class="ambient-logo"><img src="/brand-logo.png" alt="" width="240" height="260"><span>EU PathFinder<small>AGENCY</small></span></div></div>
+    <div class="page-content-layer">${content}${theme.route === "privacy" ? "" : `<aside class="advertisement wrap" aria-label="Advertisement"><h2>Advertisement</h2><p>Third-party advertising is separate from EU PathFinder Agency services.</p><div id="adsterra-slot" class="advertisement-slot"><p data-ad-status>Advertising is optional.</p><button type="button" data-ad-settings>Advertising preferences</button></div></aside>`}</div></div>`;
 }
 
 function renderEnquiryForm() {
@@ -701,8 +701,8 @@ function renderBankDetails(compact = false) {
 
 function renderClientStart() {
   const audiences = [
-    {name: "Workers", title: "Plan your next step in Europe", intro: "Discuss your experience, destination and questions about employer matching, documents or relocation.", items: ["Nationality and current country", "Occupation, experience and training", "Preferred destination and main question"], action: "Discuss my work plans", message: "Hello EU Pathfinder, I am a worker seeking guidance.\nNationality: \nCurrent country: \nOccupation and experience: \nPreferred destination: \nMy question: "},
-    {name: "Employers", title: "Discuss your workforce needs", intro: "Tell us about your business and roles to discuss candidate requirements and employer-matching support.", items: ["Company website and work location", "Roles, skills and number of workers", "Proposed pay, hours and start date"], action: "Discuss workforce needs", message: "Hello EU Pathfinder, I represent an employer and would like to discuss employer-matching support.\nCompany name and website: \nWork location: \nRoles and number of workers: \nProposed pay, hours and start date: \nMy question: "}
+    {name: "Workers", title: "Plan your next step in Europe", intro: "Discuss your experience, destination and questions about employer matching, documents or relocation.", items: ["Nationality and current country", "Occupation, experience and training", "Preferred destination and main question"], action: "Discuss my work plans", message: "Hello EU PathFinder Agency, I am a worker seeking guidance.\nNationality: \nCurrent country: \nOccupation and experience: \nPreferred destination: \nMy question: "},
+    {name: "Employers", title: "Discuss your workforce needs", intro: "Tell us about your business and roles to discuss candidate requirements and employer-matching support.", items: ["Company website and work location", "Roles, skills and number of workers", "Proposed pay, hours and start date"], action: "Discuss workforce needs", message: "Hello EU PathFinder Agency, I represent an employer and would like to discuss employer-matching support.\nCompany name and website: \nWork location: \nRoles and number of workers: \nProposed pay, hours and start date: \nMy question: "}
   ];
   return `<section class="section client-start wrap" id="start-here" aria-labelledby="client-start-title"><h2 id="client-start-title">Workers and employers: start here</h2><p class="section-lead">Tell us what you need so we can discuss the relevant support, scope and current pricing.</p><div class="client-start-grid">${audiences.map(a=>`<article class="reading-card"><p class="eyebrow">For ${a.name.toLowerCase()}</p><h3>${a.title}</h3><p>${a.intro}</p><ul class="check-list">${a.items.map(i=>`<li>${i}</li>`).join("")}</ul><a class="button button-gold" href="${whatsappLink(whatsappNumber,a.message)}" target="_blank" rel="noopener noreferrer">${a.action}</a><a class="text-link" href="${emailLink(a.name + ' enquiry',a.message)}">Prefer email? Send an enquiry</a></article>`).join("")}</div><p class="client-start-note">Opening WhatsApp or email prepares a message for you to review and send. Share a short summary only; keep passport scans and sensitive documents out of your first enquiry. Recruitment or placement requires a separate written agreement. Jobs and visas are not guaranteed.</p><a class="text-link" href="/services/">What support is included?</a></section>`;
 }
@@ -746,7 +746,7 @@ function renderHome() {
     </section>
 
     ${renderClientStart()}
-    <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-label="How EU Pathfinder supports you">
+    <section class="proof-strip photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)} aria-label="How EU PathFinder Agency supports you">
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">✓</span><div><strong>Practical document guidance</strong><p>We explain common document steps and what to confirm for your situation.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>A clear, step-by-step process</strong><p>You always know what happens next, from first review through arrival.</p></div></div>
       <div class="proof-item"><span class="proof-icon" aria-hidden="true">↗</span><div><strong>Direct email support</strong><p>Send your questions to our team and we will reply with next steps.</p></div></div>
@@ -796,7 +796,7 @@ function renderHome() {
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(workplacePhotos.agriculture)} id="worker-markets" aria-labelledby="worker-markets-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia, Africa or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU Pathfinder to discuss support and current fees. Our Africa guide covers Nigeria, Ghana, Kenya, Uganda, Tanzania, Ethiopia, Egypt and South Africa.</p>
+          <div><h2 id="worker-markets-title">Looking for work in Europe from South Asia, Africa or the Gulf?</h2><p class="section-lead">Explore guidance for applicants in Pakistan, India, Bangladesh and Nepal, and for South Asian and African workers living in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. Share your experience with EU PathFinder Agency to discuss support and current fees. Our Africa guide covers Nigeria, Ghana, Kenya, Uganda, Tanzania, Ethiopia, Egypt and South Africa.</p>
         <nav class="regional-links" aria-label="Regional work guides"><a href="/guides/europe-work-guidance-from-africa/">Europe work guidance from Africa</a><a href="/guides/europe-work-guidance-from-gulf/">Europe work guidance from the Gulf</a></nav></div>
         </div>
         <div class="destination-pills">
@@ -831,7 +831,7 @@ function renderHome() {
     <section class="pricing-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.logistics)} id="pricing" aria-labelledby="pricing-title">
       <div class="wrap pricing-layout">
         <div><h2 id="pricing-title">Fees and pricing</h2><p>Fees vary by destination, role and the level of support you need. Email us for current rates and an itemized breakdown before you agree to a service.</p></div>
-        <a class="button button-gold" href="${emailLink("Ask about EU Pathfinder fees")}">Ask about pricing <span aria-hidden="true">↗</span></a>
+        <a class="button button-gold" href="${emailLink("Ask about EU PathFinder Agency fees")}">Ask about pricing <span aria-hidden="true">↗</span></a>
       </div>
       <div class="wrap">${renderBankDetails()}</div>
     </section>
@@ -848,7 +848,7 @@ function renderHome() {
           <li><strong>Protect your personal information</strong><p>Do not send passport scans, bank credentials, card details, passwords or one-time codes in an initial chat. Confirm how documents will be handled before sharing them.</p></li>
           <li><strong>Verify credentials with the issuer</strong><p>Ask for the issuing authority, registration or certificate number, scope and expiry date, then confirm the record directly with the issuing body.</p></li>
         </ul>
-        <p class="review-note">EU Pathfinder cannot guarantee a job offer, work permit or visa. Employers make hiring decisions; government authorities decide applications.</p>
+        <p class="review-note">EU PathFinder Agency cannot guarantee a job offer, work permit or visa. Employers make hiring decisions; government authorities decide applications.</p>
       </div>
     </section>
 
@@ -861,7 +861,7 @@ function renderHome() {
 
 
     ${renderContactSection({
-      title: "Speak with the EU Pathfinder team",
+      title: "Speak with the EU PathFinder Agency team",
       description: "Tell us your nationality, how to reach you and what kind of work guidance you need. We will reply with the next steps."
     })}`;
 }
@@ -879,7 +879,7 @@ function renderDestinationPills(currentSlug) {
 
 function renderVacancySearchSection(country) {
   const photo = getCountryWorkPhoto(country);
-  const vacancyEmail = emailLink(`Ask about current vacancies in ${country.name}`, `Hello EU Pathfinder, please tell me about current vacancies in ${country.name}.`);
+  const vacancyEmail = emailLink(`Ask about current vacancies in ${country.name}`, `Hello EU PathFinder Agency, please tell me about current vacancies in ${country.name}.`);
 
   return `
     <section class="section vacancy-section photo-backed-section" ${sectionPhotoStyle(photo)} aria-labelledby="vacancies-title">
@@ -889,7 +889,7 @@ function renderVacancySearchSection(country) {
         </figure>
         <div class="vacancy-copy">
           <h2 id="vacancies-title">Ask about current vacancies in ${escapeHtml(country.name)}</h2>
-          <p>Email EU Pathfinder to ask about current vacancies in ${escapeHtml(country.name)}. Our team will share the opportunities available and explain role details and next steps directly.</p>
+          <p>Email EU PathFinder Agency to ask about current vacancies in ${escapeHtml(country.name)}. Our team will share the opportunities available and explain role details and next steps directly.</p>
           <a class="button button-gold" href="${vacancyEmail}">Email us about vacancies <span aria-hidden="true">↗</span></a>
           <p class="vacancy-disclaimer">Availability and eligibility depend on the role and can change. Ask for the employer, written job terms and any fees before making a decision or payment.</p>
         </div>
@@ -898,7 +898,7 @@ function renderVacancySearchSection(country) {
 }
 
 function renderCountryPage(country) {
-  const contactMessage = `Hello EU Pathfinder, I would like information about working in ${country.name}, including current fees.`;
+  const contactMessage = `Hello EU PathFinder Agency, I would like information about working in ${country.name}, including current fees.`;
   const contactUrl = emailLink(`Work in ${country.name}`, contactMessage);
   const countryPhoto = countryPhotos[country.slug]
     ? `url('${escapeHtml(countryPhotos[country.slug])}')`
@@ -1002,7 +1002,7 @@ function renderOriginChecks(market) {
   };
   const local = checks[market.country];
   if (!local) return "";
-  return `<section class="reading-card" id="origin-checks" aria-labelledby="origin-checks-title"><h2 id="origin-checks-title">Official checks for workers in ${escapeHtml(market.country)}</h2><p>${escapeHtml(local.text)}</p><p><a href="${escapeHtml(local.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(local.name)}</a></p><h3>A question to resolve before you commit</h3><p>${escapeHtml(local.question)}</p><p class="content-note">These independent resources do not imply affiliation, licensing or endorsement of EU Pathfinder. Authorities determine which requirements apply; this is general preparation guidance.</p></section>`;
+  return `<section class="reading-card" id="origin-checks" aria-labelledby="origin-checks-title"><h2 id="origin-checks-title">Official checks for workers in ${escapeHtml(market.country)}</h2><p>${escapeHtml(local.text)}</p><p><a href="${escapeHtml(local.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(local.name)}</a></p><h3>A question to resolve before you commit</h3><p>${escapeHtml(local.question)}</p><p class="content-note">These independent resources do not imply affiliation, licensing or endorsement of EU PathFinder Agency. Authorities determine which requirements apply; this is general preparation guidance.</p></section>`;
 }
 
 function renderBangladeshPlanning() {
@@ -1010,7 +1010,7 @@ function renderBangladeshPlanning() {
     <h2 id="bangladesh-route-title">A Bangladesh-to-Europe planning worksheet</h2>
     <p>Keep three checks separate: the Bangladesh intermediary, the overseas employer and the destination's work authorization. An RL number, an offer letter and a visa decision answer different questions. None should be used as a substitute for the others.</p>
     <h3>1. Record the agency identity before discussing payment</h3>
-    <p>Ask for the registered business name and RL licence number. The <a href="https://raims.oep.gov.bd/agencies" target="_blank" rel="noopener noreferrer">official OEP RAIMS register</a> displays agency names, licence status and validity dates. Compare these details with the person or business asking you to pay. If details differ, resolve the discrepancy with the authority before proceeding. Do not infer a relationship with EU Pathfinder from an unrelated agency's licence.</p>
+    <p>Ask for the registered business name and RL licence number. The <a href="https://raims.oep.gov.bd/agencies" target="_blank" rel="noopener noreferrer">official OEP RAIMS register</a> displays agency names, licence status and validity dates. Compare these details with the person or business asking you to pay. If details differ, resolve the discrepancy with the authority before proceeding. Do not infer a relationship with EU PathFinder Agency from an unrelated agency's licence.</p>
     <h3>2. Make a separate record for the European employer</h3>
     <p>Write down the employer's legal name, workplace, contact details, role and written offer reference. Contact the employer through a channel you find independently. Ask which authority handles the proposed work route, who files the application and which documents the employer will provide. A letter showing an agency's name alone is not enough to establish those details.</p>
     <h3>3. Check Bangladesh departure preparation independently</h3>
@@ -1018,7 +1018,7 @@ function renderBangladeshPlanning() {
     <h3>4. Prepare a cost sheet you can compare</h3>
     <ul class="check-list"><li>List the Bangladesh intermediary, adviser and European employer separately, with the responsibility of each.</li><li>Record each proposed charge, recipient, due date and written refund condition. Keep official charges separate from commercial service fees.</li><li>Ask the destination authority whether translation, certification or other evidence is needed before buying those services.</li><li>Record who confirms the start date and what happens if a decision is delayed. Avoid non-refundable travel based only on a message.</li></ul>
     <p>For EU destinations, start with the <a href="https://immigration-portal.ec.europa.eu/index_en" target="_blank" rel="noopener noreferrer">EU Immigration Portal</a> and follow the destination's official instructions. For the UK or other non-EU destinations, use that country's own immigration authority. This worksheet is not a vacancy notice, a complete application checklist or a statement that any route is open to you.</p>
-    <p>For an initial EU Pathfinder enquiry, send a short summary of your occupation, experience, nationality, current residence and preferred destination. <strong>Contact us for current pricing.</strong> Keep passport scans, bank details and verification codes out of the first message.</p>
+    <p>For an initial EU PathFinder Agency enquiry, send a short summary of your occupation, experience, nationality, current residence and preferred destination. <strong>Contact us for current pricing.</strong> Keep passport scans, bank details and verification codes out of the first message.</p>
     <nav class="regional-links" aria-label="Related preparation from Bangladesh"><a href="/services/">Understand the service scope</a><a href="/guides/europe-work-guidance-from-gulf/">If you currently live in a Gulf country</a><a href="#market-contact">Ask about your next preparation step</a></nav>
   </section>`;
 }
@@ -1041,7 +1041,7 @@ function renderPriorityPlanning(market) {
       <li>Prepare a clear CV and a list of available references. Ask what evidence is needed before ordering translations, medical checks or certificates.</li>
     </ul>
     <h2>Compare the complete cost before deciding</h2>
-    <p>Ask for separate amounts for adviser services, official application charges, translations, certification, travel and any accommodation deposit. Confirm who receives each payment, when it is due, what is refundable and what happens if the employer withdraws or an application is refused. EU Pathfinder rates are available on request; there is no fixed price quoted on this page.</p>
+    <p>Ask for separate amounts for adviser services, official application charges, translations, certification, travel and any accommodation deposit. Confirm who receives each payment, when it is due, what is refundable and what happens if the employer withdraws or an application is refused. EU PathFinder Agency rates are available on request; there is no fixed price quoted on this page.</p>
     <h2>Questions to ask about an offer</h2>
     <ul class="check-list"><li>Who is the legal employer, and can I contact it independently?</li><li>What are the work location, duties, gross pay, hours, deductions and accommodation terms?</li><li>Which authority decides the work authorization, and which application steps must I complete myself?</li><li>Which charges are due before a decision, and what do the written cancellation terms say?</li></ul>
     <p>Keep copies of written terms and receipts. An adviser message or payment receipt is not a job offer or government approval. Do not send passport scans or financial details in your first enquiry.</p>
@@ -1050,7 +1050,7 @@ function renderPriorityPlanning(market) {
 }
 
 function renderWorkerMarketPage(market) {
-  const contactMessage = `Hello EU Pathfinder, I am looking for information about legal work in Europe from ${market.country}. Please share the current destinations, requirements and fees.`;
+  const contactMessage = `Hello EU PathFinder Agency, I am looking for information about legal work in Europe from ${market.country}. Please share the current destinations, requirements and fees.`;
   const contactUrl = emailLink(`Work guidance from ${market.country}`, contactMessage);
   const marketIndex = workerMarkets.findIndex(({ slug }) => slug === market.slug);
   const workerPhoto = [
@@ -1073,7 +1073,7 @@ function renderWorkerMarketPage(market) {
           <a href="/">Home</a><span aria-hidden="true">/</span><a href="/#worker-markets">For workers</a><span aria-hidden="true">/</span><span aria-current="page">${escapeHtml(market.country)}</span>
         </nav>
         <h1 id="worker-market-title">${escapeHtml(market.seoHeading || `European work guidance for ${market.audience}`)}</h1>
-        <p class="country-intro">${market.seoHeading ? `Looking for jobs in Europe from ${escapeHtml(market.country)}?` : `Planning to work in Europe from ${escapeHtml(market.country)}?`} Explore destinations, share your work experience and contact EU Pathfinder to discuss support options and current fees.</p>
+        <p class="country-intro">${market.seoHeading ? `Looking for jobs in Europe from ${escapeHtml(market.country)}?` : `Planning to work in Europe from ${escapeHtml(market.country)}?`} Explore destinations, share your work experience and contact EU PathFinder Agency to discuss support options and current fees.</p>
         <a class="button button-gold" href="/#destinations">Explore European destinations</a>
       </div>
     </section>
@@ -1089,7 +1089,7 @@ function renderWorkerMarketPage(market) {
           <h2>Explore Europe work options from ${escapeHtml(market.country)}</h2>
           ${market.country !== "Malaysia" ? `<nav class="regional-links" aria-label="On this preparation page"><a href="#origin-checks">Official checks in ${escapeHtml(market.country)}</a>${market.country === "Bangladesh" ? '<a href="#bangladesh-route-title">Bangladesh planning worksheet</a>' : ""}<a href="#market-contact">Discuss your preparation</a></nav>` : ""}
           <p>${audienceIntro} We welcome enquiries from labourers and workers with experience in construction, logistics, transport, agriculture, hospitality, cleaning, manufacturing and other fields. We can discuss your profile, support options and current fees; this is not a job offer or a promise of a vacancy.</p>
-          <p>Work-permit rules are set by each destination country. The available route depends on the role, employer, your experience and the rules in force when you apply. Review our destination guides and contact EU Pathfinder to discuss your next steps.</p>
+          <p>Work-permit rules are set by each destination country. The available route depends on the role, employer, your experience and the rules in force when you apply. Review our destination guides and contact EU PathFinder Agency to discuss your next steps.</p>
           ${market.seoRoles ? `
           <h2>European job areas to discuss from ${escapeHtml(market.country)}</h2>
           <p>Workers looking for jobs in Europe from ${escapeHtml(market.country)} can tell us about relevant experience in areas such as:</p>
@@ -1100,7 +1100,7 @@ function renderWorkerMarketPage(market) {
             <li>Compare destinations and the sectors described in each country guide.</li>
             <li>Check that an opportunity names a verifiable employer and a specific role.</li>
             <li>Ask for the full service fees and written terms before agreeing or paying.</li>
-            <li>Contact EU Pathfinder to discuss your work background and the support options available.</li>
+            <li>Contact EU PathFinder Agency to discuss your work background and the support options available.</li>
           </ul>
 
           <nav class="regional-links" aria-label="Related regional guides"><a href="/guides/europe-work-guidance-from-africa/">African applicant planning guide</a><a href="/guides/europe-work-guidance-from-gulf/">Gulf resident planning guide</a></nav>
@@ -1110,12 +1110,12 @@ function renderWorkerMarketPage(market) {
           ${market.seoHeading ? `
           <h2>How to enquire about jobs in Europe from ${escapeHtml(market.country)}</h2>
           <p>To help us understand your enquiry, include your nationality, where you currently live, your occupation and work experience, the type of role you are seeking, and any European destinations you have in mind. Do not send passport scans, bank details or other sensitive documents in an initial enquiry.</p>
-          <a class="text-link" href="#market-contact">Contact EU Pathfinder about work from ${escapeHtml(market.country)} <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#market-contact">Contact EU PathFinder Agency about work from ${escapeHtml(market.country)} <span aria-hidden="true">↗</span></a>
           ` : ""}
 
           ${renderOriginChecks(market)}
           ${renderPriorityPlanning(market)}
-          <h2>How EU Pathfinder can help you plan</h2>
+          <h2>How EU PathFinder Agency can help you plan</h2>
           <p>We can discuss your work history and goals, review the documents you provide, and explain the support options and fees before you decide whether to proceed. The steps below are a general overview; the process differs by country and case.</p>
           ${renderProcessSteps(true)}
 
@@ -1130,7 +1130,7 @@ function renderWorkerMarketPage(market) {
           ${market.seoFaq ? `
           <details class="faq-item">
             <summary>${escapeHtml(market.seoFaq)}</summary>
-            <div class="faq-answer"><p>Possible roles depend on your skills and experience, the employer and the destination's current rules. Contact EU Pathfinder to discuss your background and the destinations you are considering. This page does not advertise a vacancy or guarantee a job offer.</p></div>
+            <div class="faq-answer"><p>Possible roles depend on your skills and experience, the employer and the destination's current rules. Contact EU PathFinder Agency to discuss your background and the destinations you are considering. This page does not advertise a vacancy or guarantee a job offer.</p></div>
           </details>
           ` : ""}
           <details class="faq-item">
@@ -1138,7 +1138,7 @@ function renderWorkerMarketPage(market) {
             <div class="faq-answer"><p>That depends on the destination, role, employer and current immigration rules. Review the country guide and verify the official requirements for your situation before making a decision.</p></div>
           </details>
           <details class="faq-item">
-            <summary>Can EU Pathfinder guarantee a job, visa or work permit?</summary>
+            <summary>Can EU PathFinder Agency guarantee a job, visa or work permit?</summary>
             <div class="faq-answer"><p>No. Employers make hiring decisions, and work-permit and visa decisions belong to the relevant authorities. Be cautious of anyone promising guaranteed approval.</p></div>
           </details>
           <details class="faq-item">
@@ -1185,14 +1185,14 @@ function renderNotFound() {
 
 function updatePageMetadata(country, market, guide, publication) {
   const title = publication
-    ? `${publication.title} | EU Pathfinder`
+    ? `${publication.title} | EU PathFinder Agency`
     : guide
-      ? `${guide.title} | EU Pathfinder`
+      ? `${guide.title} | EU PathFinder Agency`
     : market
       ? market.seoTitle
       : country
-        ? `Jobs and Work Permits in ${country.name} | EU Pathfinder`
-        : "Europe Work Guidance: South Asia, Africa & Gulf | EU Pathfinder";
+        ? `Jobs and Work Permits in ${country.name} | EU PathFinder Agency`
+        : "Europe Work Guidance: South Asia, Africa & Gulf | EU PathFinder Agency";
   const description = publication
     ? publication.description
     : guide
@@ -1385,7 +1385,7 @@ function setupWebsiteAssistant() {
   const launcher = document.createElement("button");
   launcher.className = "floating-chat assistant-launcher";
   launcher.type = "button";
-  launcher.setAttribute("aria-label", "Ask EU Pathfinder assistant");
+  launcher.setAttribute("aria-label", "Ask EU PathFinder Agency assistant");
   launcher.setAttribute("aria-expanded", "false");
   launcher.setAttribute("aria-controls", "website-assistant-panel");
   launcher.innerHTML = `
@@ -1401,7 +1401,7 @@ function setupWebsiteAssistant() {
   panel.innerHTML = `
     <header class="assistant-header">
       <div>
-        <h2 id="assistant-title">EU Pathfinder assistant</h2>
+        <h2 id="assistant-title">EU PathFinder Agency assistant</h2>
         <p>Quick answers from our website</p>
       </div>
       <button class="assistant-close" type="button" aria-label="Close assistant">×</button>
@@ -1418,7 +1418,7 @@ function setupWebsiteAssistant() {
       <button class="assistant-send" type="submit">Send</button>
     </form>
     <p class="assistant-note">Answers use this website's information, not legal or visa advice. Please don't enter passport or payment details.</p>
-    <a class="assistant-contact" href="${emailLink("Ask EU Pathfinder a question")}">Email our team</a>`;
+    <a class="assistant-contact" href="${emailLink("Ask EU PathFinder Agency a question")}">Email our team</a>`;
 
   document.body.append(launcher);
   document.body.append(panel);
