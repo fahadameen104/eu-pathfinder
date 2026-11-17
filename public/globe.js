@@ -66,7 +66,7 @@
     if (!last) last = time;
     const elapsed = time - last;
     if (elapsed >= 1000 / 30) {
-      angle = (angle + Math.min(elapsed, 100) * (Math.PI * 2 / 150000)) % (Math.PI * 2);
+      angle = (angle + Math.min(elapsed, 100) * (Math.PI * 2 * 1.1 / 150000)) % (Math.PI * 2);
       last = time;
       draw();
     }
