@@ -1,7 +1,8 @@
 const privacyPage = { slug: "privacy", title: "Privacy Policy", description: "How EU PathFinder Agency handles website enquiries, agreed service information, analytics and advertising choices, retention and privacy requests." };
 
 const contactEmail = "info@eupathfinder.agency";
-const whatsappNumber = "+14696268272";
+const whatsappNumber = "+12899143132";
+const complaintsNumber = "+14696268272";
 const callNumber = "+12899143132";
 const ceoEmail = "Eupathfinder@gmail.com";
 const isValidContactNumber = (number) => /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(number);
@@ -461,7 +462,7 @@ function renderPageAtmosphere(content) {
   return `<div class="page-theme" data-background-key="${escapeHtml(theme.route || "home")}" style="--page-photo:url('${escapeHtml(theme.primary)}');--page-photo-secondary:url('${escapeHtml(theme.secondary)}');--page-hue:${(theme.index * 19) % 65}deg;--page-position:${30 + theme.index % 5 * 10}%">
     <div class="page-photo-layer" aria-hidden="true"></div>
     <div class="page-identity-layer" aria-hidden="true"><div class="ambient-globe globe-host" data-globe-host><img class="globe-poster" src="/glass-globe-hero.svg" alt="" width="900" height="700" decoding="async"></div><div class="ambient-logo"><img src="/brand-logo.png" alt="" width="240" height="260"><span>EU PathFinder<small>AGENCY</small></span></div></div>
-    <div class="page-content-layer">${content}${theme.route === "privacy" ? "" : `<aside class="advertisement wrap" aria-label="Advertisement"><h2>Advertisement</h2><p>Third-party advertising is separate from EU PathFinder Agency services.</p><div id="adsterra-slot" class="advertisement-slot"><p data-ad-status>Advertising is optional.</p><button type="button" data-ad-settings>Advertising preferences</button></div></aside>`}</div></div>`;
+    <div class="page-content-layer">${content}${theme.route === "privacy" ? "" : `<aside class="advertisement wrap" aria-label="Advertisement"><h2>Advertisement</h2><p>Third-party advertising is separate from EU PathFinder Agency services.</p><div id="adsterra-slot" class="advertisement-slot"><p data-ad-status>Advertising is optional.</p></div></aside>`}</div></div>`;
 }
 
 function renderEnquiryForm() {
@@ -528,18 +529,18 @@ function renderContactSection({
           <p>${escapeHtml(description)}</p>
           <div class="contact-options" aria-label="Call and WhatsApp contact options">
             <div class="contact-option">
-              <span class="contact-option-label">WhatsApp</span>
-              <a class="contact-number" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">${whatsappNumber}</a>
-              <a class="contact-option-action" href="${whatsappLink()}" target="_blank" rel="noopener noreferrer">Start a conversation <span aria-hidden="true">↗</span></a>
+              <span class="contact-option-label">Complaints &amp; fraud · WhatsApp</span>
+              <a class="contact-number" href="${whatsappLink(complaintsNumber)}" target="_blank" rel="noopener noreferrer">${complaintsNumber}</a>
+              <a class="contact-option-action" href="${whatsappLink(complaintsNumber)}" target="_blank" rel="noopener noreferrer">Report a concern <span aria-hidden="true">↗</span></a>
             </div>
             <div class="contact-option">
-              <span class="contact-option-label">Calls &amp; WhatsApp</span>
+              <span class="contact-option-label">Customer support · Calls &amp; WhatsApp</span>
               <a class="contact-number" href="tel:${callNumber}">+1 289 914 3132</a>
               <div class="contact-option-actions"><a class="contact-option-action" href="tel:${callNumber}">Call us</a><span aria-hidden="true"> · </span><a class="contact-option-action" href="${whatsappLink(callNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
             </div>
           </div>
-          <a class="contact-email" href="mailto:${contactEmail}">Email us at ${contactEmail}</a>
-          <a class="contact-email ceo-contact" href="mailto:${ceoEmail}">CEO email: ${ceoEmail}</a>
+          <a class="contact-email" href="mailto:${contactEmail}">Customer support: ${contactEmail}</a>
+          <a class="contact-email ceo-contact" href="mailto:${ceoEmail}">Refund and cancellation: ${ceoEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional travel documents." width="700" height="440" loading="lazy" decoding="async">
           </figure>
@@ -1334,7 +1335,7 @@ function getAssistantReply(question) {
   }
   if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
     return answer(
-      `WhatsApp us on ${whatsappNumber}, or call or WhatsApp ${callNumber}. Email ${contactEmail}; CEO enquiries can be sent to ${ceoEmail}.`,
+      `Customer support: call or WhatsApp ${callNumber}, or email ${contactEmail}. Complaints and fraud: WhatsApp ${complaintsNumber}. Refund and cancellation: email ${ceoEmail}.`,
       { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
     );
   }

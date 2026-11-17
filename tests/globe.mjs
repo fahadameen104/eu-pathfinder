@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { runInNewContext } from "node:vm";
 const source=await readFile(new URL("../public/globe.js",import.meta.url),"utf8");
-async function setup({gpu=true,reducedMotion=false,mapOk=true}={}) {
+async function setup({gpu=true,reducedMotion=false,mapOk=true,hasToggle=true}={}) {
   const events={},canvasEvents={},docEvents={},classes=new Set(),jobs=new Map(),calls=[];
   let id=0,stored,initialization;
   const gl=new Proxy({}, {get(_target,name){
@@ -18,7 +18,7 @@ async function setup({gpu=true,reducedMotion=false,mapOk=true}={}) {
   const host={classList:{add(k){classes.add(k);},remove(k){classes.delete(k);}},append(){},getBoundingClientRect(){return{width:600,height:800};}};
   const toggle={hidden:true,setAttribute(k,v){this[k]=v;},addEventListener(_k,fn){this.click=fn;}};
   const media={matches:reducedMotion,addEventListener(_k,fn){this.change=fn;}};
-  const document={hidden:false,querySelector(k){return k==="[data-globe-host]"?host:toggle;},addEventListener(k,fn){docEvents[k]=fn;},createElement(){return canvas.className?{getContext(){return ctx;}}:canvas;}};
+  const document={hidden:false,querySelector(k){return k==="[data-globe-host]"?host:(hasToggle?toggle:null);},addEventListener(k,fn){docEvents[k]=fn;},createElement(){return canvas.className?{getContext(){return ctx;}}:canvas;}};
   const window={addEventListener(k,fn){events[k]=fn;}};
   class Observer {observe(){}disconnect(){}}
   runInNewContext(source,{document,window,matchMedia:()=>media,localStorage:{getItem(){return stored;},setItem(_k,v){stored=v;}},
@@ -43,3 +43,5 @@ for(const options of [{gpu:false},{mapOk:false}]){const failed=await setup(optio
 const still=await setup({reducedMotion:true});assert.ok(still.classes.has("globe-ready"));assert.equal(still.jobs.size,0);
 const leave=await setup();leave.events.pagehide({persisted:false});assert.equal(leave.jobs.size,0);assert.ok(!leave.classes.has("globe-ready"));
 console.log("Globe checks passed: mesh render, bounded resolution, rotation, pause/resume, visibility, reduced motion, map/GPU failure, context loss and cleanup.");
+
+const noControl=await setup({hasToggle:false});assert.ok(noControl.classes.has("globe-ready"));noControl.step(40);noControl.step(80);const start=noControl.canvas.dataset.rotation;noControl.step(120);assert.notEqual(noControl.canvas.dataset.rotation,start);noControl.media.matches=true;noControl.media.change();assert.equal(noControl.jobs.size,0);

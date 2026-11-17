@@ -3,15 +3,16 @@
   "use strict";
   const host = document.querySelector("[data-globe-host]");
   const toggle = document.querySelector("[data-globe-toggle]");
-  if (!host || !toggle) return;
+  if (!host) return;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   let paused = false;
-  try { paused = localStorage.getItem("eu-globe-paused") === "true"; } catch {}
+  try { paused = Boolean(toggle) && localStorage.getItem("eu-globe-paused") === "true"; } catch {}
   let gl, program, texture, canvas, observer, frame = 0, last = 0, angle = 1.2;
   let lost = false, disposed = false, ready = false;
   const buffers = [], shaders = [];
   const abort = new AbortController();
   function updateControl() {
+    if (!toggle) return;
     toggle.hidden = !ready;
     toggle.textContent = paused ? "Resume globe rotation" : "Pause globe rotation";
     toggle.setAttribute("aria-pressed", String(paused));
@@ -65,7 +66,7 @@
     if (!last) last = time;
     const elapsed = time - last;
     if (elapsed >= 1000 / 30) {
-      angle = (angle + Math.min(elapsed, 100) * (Math.PI * 2 / 180000)) % (Math.PI * 2);
+      angle = (angle + Math.min(elapsed, 100) * (Math.PI * 2 / 150000)) % (Math.PI * 2);
       last = time;
       draw();
     }
@@ -77,7 +78,7 @@
     if (ready && !lost && !disposed && !document.hidden && !paused && !reduced.matches) frame = requestAnimationFrame(animate);
     else draw();
   }
-  toggle.addEventListener("click", () => {
+  toggle?.addEventListener("click", () => {
     paused = !paused;
     try { localStorage.setItem("eu-globe-paused", String(paused)); } catch {}
     sync();
