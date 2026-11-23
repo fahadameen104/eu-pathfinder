@@ -754,8 +754,6 @@ function renderHome() {
     </section>
 
 
-    ${renderIndicativeVacancies(country)}
-
     ${renderPeoplePhotoSection([
       workplacePhotos.consultation,
       workplacePhotos.agriculture,
@@ -978,6 +976,7 @@ function renderCountryPage(country) {
 
     ${renderVacancySearchSection(country)}
 
+    ${renderIndicativeVacancies(country)}
 
     <section class="section other-destinations photo-backed-section" ${sectionPhotoStyle(getCountryWorkPhoto(country))}>
       <div class="wrap">
