@@ -16,6 +16,7 @@ const countries = [
   { slug: "uk", name: "United Kingdom", code: "gb", region: "Western", landmark: "Big Ben and Westminster, London", intro: "A major English-speaking job market with recurring demand in care, hospitality and skilled trades.", sectors: ["Health and social care", "Hospitality", "Skilled trades", "Logistics", "Food production"], colors: ["#012169", "#c8102e"] },
   { slug: "germany", name: "Germany", code: "de", region: "Western", landmark: "Brandenburg Gate, Berlin", intro: "Europe's largest economy, with structured pathways for skilled and semi-skilled workers.", sectors: ["Skilled trades", "Logistics", "Care and healthcare support", "Manufacturing", "Hospitality"], colors: ["#1a1a1a", "#dd0000"] },
   { slug: "austria", name: "Austria", code: "at", region: "Western", landmark: "Schönbrunn Palace, Vienna", intro: "A high-income Alpine economy with strong tourism, construction and manufacturing sectors.", sectors: ["Tourism and hospitality", "Construction", "Manufacturing", "Care services", "Agriculture"], colors: ["#ed2939", "#9c1824"] },
+  { slug: "albania", name: "Albania", code: "al", region: "Central & Eastern", landmark: "Skanderbeg Square, Tirana", intro: "A Balkan destination with historical listings in agriculture, food processing, warehousing, renewable energy and transport. Verify current availability and written terms.", sectors: ["Agriculture", "Food processing", "Warehousing", "Renewable energy", "Transport"], colors: ["#e41e20", "#7c1010"] },
   { slug: "croatia", name: "Croatia", code: "hr", region: "Southern", landmark: "Dubrovnik City Walls", intro: "An Adriatic destination where tourism and construction create steady seasonal and year-round roles.", sectors: ["Tourism and hospitality", "Construction", "Shipbuilding", "Logistics", "Agriculture"], colors: ["#c8102e", "#171796"] },
   { slug: "slovakia", name: "Slovakia", code: "sk", region: "Central & Eastern", landmark: "Bratislava Castle", intro: "A manufacturing-led economy at the heart of Central Europe, known for automotive production.", sectors: ["Automotive manufacturing", "Logistics", "Construction", "Electronics assembly", "Hospitality"], colors: ["#0b4ea2", "#ee1c25"] },
   { slug: "portugal", name: "Portugal", code: "pt", region: "Southern", landmark: "Belém Tower, Lisbon", intro: "A welcoming Atlantic destination with demand in tourism, agriculture and construction.", sectors: ["Tourism and hospitality", "Agriculture", "Construction", "Logistics", "Care services"], colors: ["#046a38", "#da291c"] },
@@ -44,6 +45,7 @@ const countries = [
   { slug: "sweden", name: "Sweden", code: "se", region: "Northern", landmark: "Gamla Stan, Stockholm", intro: "A Nordic economy with openings in healthcare support, construction and hospitality.", sectors: ["Healthcare support", "Construction", "Hospitality", "Forestry and berry picking", "Logistics"], colors: ["#006aa7", "#fecc02"] },
   { slug: "russia", name: "Russia", code: "ru", region: "Central & Eastern", landmark: "St. Basil's Cathedral, Moscow", intro: "The largest country in the region; opportunities and rules change often and are confirmed case by case.", sectors: ["Construction", "Manufacturing", "Logistics", "Services", "Agriculture"], colors: ["#0039a6", "#d52b1e"] },
   { slug: "malta", name: "Malta", code: "mt", region: "Southern", landmark: "Valletta Grand Harbour", intro: "A small Mediterranean island economy with demand in hospitality, care and construction.", sectors: ["Hospitality", "Care services", "Construction", "Customer support", "Retail"], colors: ["#cf142b", "#7e0b1a"] },
+  { slug: "turkey", name: "Turkey", code: "tr", region: "Central & Eastern", landmark: "Hagia Sophia, Istanbul", intro: "A transcontinental destination with historical listings in logistics, construction, hospitality, food processing and manufacturing. Verify current availability and written terms.", sectors: ["Transport and logistics", "Construction", "Hospitality", "Food processing", "Manufacturing"], colors: ["#e30a17", "#7c0510"] },
   { slug: "belarus", name: "Belarus", code: "by", region: "Central & Eastern", landmark: "Mir Castle", intro: "An Eastern European economy with roles in manufacturing, construction and agriculture; confirmed case by case.", sectors: ["Manufacturing", "Construction", "Agriculture", "Logistics", "Services"], colors: ["#a30d25", "#00693e"] },
   { slug: "hungary", name: "Hungary", code: "hu", region: "Central & Eastern", landmark: "Hungarian Parliament Building, Budapest", intro: "A Central European manufacturing economy with strong automotive and logistics employers.", sectors: ["Automotive manufacturing", "Logistics", "Electronics assembly", "Hospitality", "Construction"], colors: ["#ce2939", "#477050"] },
   { slug: "italy", name: "Italy", code: "it", region: "Southern", landmark: "Colosseum, Rome", intro: "A large Mediterranean economy with demand in agriculture, hospitality, construction and care.", sectors: ["Agriculture", "Hospitality", "Construction", "Care services", "Manufacturing"], colors: ["#008c45", "#cd212a"] }
@@ -276,7 +278,7 @@ const services = [
 
 const faqs = [
   ["How do I get started?", "Choose a destination and email us about your skills, experience and goals. Our team can explain the support available and outline possible next steps before you decide whether to proceed."],
-  ["Which destinations are covered?", "The site currently has guidance for 35 European destinations. Open a destination page to review general information about sectors, common documents and the process. Availability and requirements depend on the country, role and employer."],
+  ["Which destinations are covered?", "The site currently has 37 destination guides. Open a destination page to review general information about sectors, common documents and the process. Availability and requirements depend on the country, role and employer."],
   ["What does the process involve?", "The site outlines a typical seven-stage process, from an initial consultation and document preparation through permit and visa applications, travel preparation and arrival support. The exact steps vary by destination and case; the relevant authorities make all permit and visa decisions."],
   ["What documents might I need?", "A valid passport, an updated CV, education or professional certificates, and evidence of work experience are common starting points. The destination authority and employer set the actual requirements, so confirm the current checklist for your case before arranging documents."],
   ["Can you guarantee a job, visa or work permit?", "No. Job offers, work permits and visas cannot be guaranteed by EU PathFinder Agency. Employers make hiring decisions, and government authorities decide permit and visa applications. Check official requirements and independently verify any employer and written job offer."],
@@ -766,7 +768,7 @@ function renderHome() {
     <section class="section destinations-section photo-backed-section" ${sectionPhotoStyle(workplacePhotos.logistics)} id="destinations" aria-labelledby="destinations-title">
       <div class="wrap">
         <div class="section-heading">
-          <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Browse 35 European destinations. Work authorization and application rules vary by country; each guide provides general information and a way to ask us about current vacancies.</p></div>
+          <div><h2 id="destinations-title">Choose your destination</h2><p class="section-lead">Browse 37 destination guides. Work authorization and application rules vary by country; each guide provides general information and a way to ask us about current vacancies.</p></div>
         </div>
         <div class="destination-controls">
           <div class="region-filters" role="group" aria-label="Filter countries by region">
@@ -1207,7 +1209,7 @@ function renderNotFound() {
   return `
     <section class="not-found wrap photo-backed-section" ${sectionPhotoStyle(workplacePhotos.consultation)}>
       <h1>We couldn't find that destination.</h1>
-      <p>Choose from our 35 destination guides to explore typical sectors, documents and next steps.</p>
+      <p>Choose from our 37 destination guides to explore typical sectors, documents and next steps.</p>
       <a class="button button-gold" href="/#destinations">Browse destinations</a>
     </section>`;
 }
@@ -1229,7 +1231,9 @@ function updatePageMetadata(country, market, guide, publication) {
     : market
       ? market.seoDescription
       : country
-        ? `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
+        ? indicativeVacancies[country.slug]
+          ? `Jobs and work in ${country.name}: review indicative, unverified role profiles. Confirm current openings, employer, pay and written terms.`
+          : `${country.intro} Explore work routes, common hiring sectors, documents and support for ${country.name}.`
         : "Europe work guidance for Pakistan, India, Nepal, Bangladesh and African applicants, plus workers in Saudi Arabia, UAE, Qatar, Oman, Kuwait and Bahrain.";
   const canonicalPath = publication
     ? publication.slug
