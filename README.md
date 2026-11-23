@@ -1,4 +1,4 @@
-# EU Pathfinder
+# EU PathFinder Agency 
 
 A responsive website for EU Pathfinder with European destination guides and worker-market landing pages for applicants in Pakistan, India, Bangladesh and Nepal, plus South Asian and African workers in Saudi Arabia, the UAE, Oman, Qatar, Kuwait and Bahrain. It includes work-route guidance, document checklists, support services, pricing information, FAQs, phone and WhatsApp contacts, email, and an enquiry form. WhatsApp: `+14696268272`. Calls and WhatsApp: `+12899143132` (corrected by owner, format-valid). CEO contact: `Eupathfinder@gmail.com`. Format validation does not verify account registration or ownership.
 
