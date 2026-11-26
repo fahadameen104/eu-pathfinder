@@ -9,7 +9,7 @@ The live homepage returned HTTP 200 before editing and referenced `script.js?v=3
 - F02: preserve named FAQ lookup from latest main, improve intent precedence, regression-test quick prompts, fees/contact overlap, documents, start, country and fallback contact behavior.
 - F03/F14/S01: explicit single labels, privacy description, visible and hidden page context; server validates known contexts and includes them in email. Older cached forms without context remain accepted. PR #7's email-only form remains; no new mandatory phone field.
 - S02: enforce 8192 bytes actually read before form parsing, including absent/misleading Content-Length. S03 is obsolete because PR #7 removed the visitor WhatsApp field.
-- Contacts: +14696268272 and owner-corrected +12899143132 pass +1 numbering structure. The corrected number is linked for calls and WhatsApp; CEO email is Eupathfinder@gmail.com. The earlier invalid value is excluded. Account ownership and WhatsApp registration are not established by format validation.
+- Contacts: +14696268272 and owner-corrected +12899143132 pass +1 numbering structure. Customer support uses the 469 number for calls and WhatsApp. Refunds and complaints use the 289 number for calls only; CEO email is Eupathfinder@gmail.com. The earlier invalid value is excluded. Account ownership and WhatsApp registration are not established by format validation.
 - F04: remove all advertising initialization. Persistent Privacy & advertising settings link explains disabled state. No pretend consent acceptance UI; advertising cannot be enabled through this site until an appropriate certified CMP/account integration is configured.
 - F05/F06: add factual privacy/data-flow/contact information, state retention details remain unpublished, and direct visitors to request written terms before paying. This is not a complete owner-reviewed jurisdiction-specific notice or service agreement.
 - F07: destination cards use 330/960px responsive thumbnails with dimensions/lazy loading; raw Spain/Luxembourg originals are replaced with thumbnails. Smaller mobile section and hero backgrounds; remove mobile watermark. Existing alt text retained, fictional art described truthfully. No visible illustrative-photo disclaimers remain.
@@ -27,7 +27,7 @@ The live homepage returned HTTP 200 before editing and referenced `script.js?v=3
 
 ## Open items / blockers to full audit closure
 
-- Resolved by owner: corrected calls/WhatsApp number +12899143132 passes format validation and is now linked. The earlier invalid value remains excluded.
+- Resolved by owner: refunds and complaints phone number +12899143132 passes format validation and is now linked. The earlier invalid value remains excluded.
 - F01/S04: Cloudflare security events, human false-positive investigation and actual rate limits require account access. No blanket security weakening or unbacked in-memory limiter added.
 - F05/F06: owner must substantiate retention, applicable processing/legal details and actual service/refund/complaint terms. Owner name, registration country and address deliberately not invented or added.
 - F09: destination-specific official authority trail and content review dates require genuine content verification. No invented reviewer, review timestamp, vacancy, salary, eligibility or guarantee.

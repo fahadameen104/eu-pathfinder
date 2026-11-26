@@ -319,9 +319,9 @@ const editorialContent = {
           "Contact Information",
           "Website: https://www.eupathfinder.agency",
           "Customer Support: info@eupathfinder.agency",
-          "Refund Team: Eupathfinder@gmail.com",
-          "Complaint & WhatsApp Support: +1 469 626 8272",
-          "Customer Support Calls & WhatsApp: +1 289 914 3132",
+          "Written cancellation requests: Eupathfinder@gmail.com",
+          "Refunds and complaints (calls only): +1 289 914 3132",
+          "Customer Support Calls & WhatsApp: +1 469 626 8272",
           "Reading or using this website does not, by itself, give consent to optional analytics, advertising or marketing. Use the separate choices described below."
         ]
       },
@@ -630,7 +630,7 @@ const editorialContent = {
           "EU PathFinder Agency provides consultancy, advisory, administrative support, document preparation assistance, and referral services. Payment for services does not constitute payment for a guaranteed outcome.",
           "Cancellation Requests",
           "Cancellation requests must be submitted in writing to:",
-          "Refund Team: Eupathfinder@gmail.com",
+          "Written cancellation requests: Eupathfinder@gmail.com",
           "Support Team: info@eupathfinder.agency",
           "Refund Eligibility",
           "All fees are earned progressively as services are performed. Refund requests will be evaluated individually and subject to:",
@@ -657,9 +657,9 @@ const editorialContent = {
           "Refund Processing",
           "Approved refunds will generally be returned through the original payment method. Processing times vary according to financial institutions and payment providers.",
           "Refund Complaints",
-          "Refund disputes may be directed to:",
-          "Refund Team: Eupathfinder@gmail.com",
-          "Complaint WhatsApp: +1 469 626 8272"
+          "For refund disputes, call the number below.",
+          "Written cancellation requests: Eupathfinder@gmail.com",
+          "Refunds and complaints (calls only): +1 289 914 3132"
         ]
       },
       {
@@ -695,10 +695,10 @@ const editorialContent = {
           "EU PathFinder Agency",
           "Website: https://www.eupathfinder.agency",
           "Privacy & Customer Support: info@eupathfinder.agency",
-          "Refund Team: Eupathfinder@gmail.com",
-          "Complaint WhatsApp: +1 469 626 8272",
-          "Customer Support Calls: +1 289 914 3132",
-          "Customer Support WhatsApp: +1 289 914 3132"
+          "Written cancellation requests: Eupathfinder@gmail.com",
+          "Refunds and complaints (calls only): +1 289 914 3132",
+          "Customer Support Calls: +1 469 626 8272",
+          "Customer Support WhatsApp: +1 469 626 8272"
         ]
       }
     ]

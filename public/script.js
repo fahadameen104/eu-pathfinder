@@ -1,9 +1,9 @@
 const privacyPage = { slug: "privacy", title: "Privacy Policy", description: "How EU PathFinder Agency handles website enquiries, agreed service information, analytics and advertising choices, retention and privacy requests." };
 
 const contactEmail = "info@eupathfinder.agency";
-const whatsappNumber = "+12899143132";
-const complaintsNumber = "+14696268272";
-const callNumber = "+12899143132";
+const whatsappNumber = "+14696268272";
+const complaintsNumber = "+12899143132";
+const callNumber = whatsappNumber;
 const ceoEmail = "Eupathfinder@gmail.com";
 const isValidContactNumber = (number) => /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(number);
 const whatsappLink = (number = whatsappNumber, message = "Hello EU PathFinder Agency, I would like guidance about working in Europe.") => {
@@ -529,18 +529,18 @@ function renderContactSection({
           <p>${escapeHtml(description)}</p>
           <div class="contact-options" aria-label="Call and WhatsApp contact options">
             <div class="contact-option">
-              <span class="contact-option-label">Complaints &amp; fraud · WhatsApp</span>
-              <a class="contact-number" href="${whatsappLink(complaintsNumber)}" target="_blank" rel="noopener noreferrer">${complaintsNumber}</a>
-              <a class="contact-option-action" href="${whatsappLink(complaintsNumber)}" target="_blank" rel="noopener noreferrer">Report a concern <span aria-hidden="true">↗</span></a>
+              <span class="contact-option-label">Refunds &amp; complaints · Calls only</span>
+              <a class="contact-number" href="tel:${complaintsNumber}">${complaintsNumber}</a>
+              <a class="contact-option-action" href="tel:${complaintsNumber}">Call about a refund or complaint <span aria-hidden="true">↗</span></a>
             </div>
             <div class="contact-option">
               <span class="contact-option-label">Customer support · Calls &amp; WhatsApp</span>
-              <a class="contact-number" href="tel:${callNumber}">+1 289 914 3132</a>
+              <a class="contact-number" href="tel:${callNumber}">+1 469 626 8272</a>
               <div class="contact-option-actions"><a class="contact-option-action" href="tel:${callNumber}">Call us</a><span aria-hidden="true"> · </span><a class="contact-option-action" href="${whatsappLink(callNumber)}" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
             </div>
           </div>
           <a class="contact-email" href="mailto:${contactEmail}">Customer support: ${contactEmail}</a>
-          <a class="contact-email ceo-contact" href="mailto:${ceoEmail}">Refund and cancellation: ${ceoEmail}</a>
+          <a class="contact-email ceo-contact" href="mailto:${ceoEmail}">Written cancellation requests: ${ceoEmail}</a>
           <figure class="contact-travel-art">
             <img src="/family-airport.svg" alt="Illustration of a family preparing to travel with generic, fictional travel documents." width="700" height="440" loading="lazy" decoding="async">
           </figure>
@@ -1347,7 +1347,7 @@ function getAssistantReply(question) {
   }
   if (matches(/\b(whatsapp|phone|telephone|call|contact|human|adviser|advisor)\b/)) {
     return answer(
-      `Customer support: call or WhatsApp ${callNumber}, or email ${contactEmail}. Complaints and fraud: WhatsApp ${complaintsNumber}. Refund and cancellation: email ${ceoEmail}.`,
+      `Customer support: call or WhatsApp ${callNumber}, or email ${contactEmail}. For refunds and complaints, call ${complaintsNumber}.`,
       { href: whatsappLink(), label: "Chat with our team on WhatsApp" }
     );
   }
