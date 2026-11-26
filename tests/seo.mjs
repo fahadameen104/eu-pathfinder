@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 const base=new URL('../public/',import.meta.url);
 const xml=await readFile(new URL('sitemap.xml',base),'utf8');
 const urls=[...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m=>m[1]);
-assert.equal(urls.length,66);
+assert.equal(urls.length,68);
 const pages=new Map();
 for(const url of urls){const path=new URL(url).pathname;const html=await readFile(new URL(path==='/'?'index.html':path.slice(1)+'index.html',base),'utf8');pages.set(path,html);
 assert.equal([...html.matchAll(/<h1\b/g)].length,1,path);
@@ -19,4 +19,4 @@ for(const name of ['Nigeria','Ghana','Kenya','Uganda','Tanzania','Ethiopia','Egy
 const gulf=pages.get('/guides/europe-work-guidance-from-gulf/');
 for(const country of ['saudi-arabia','uae','qatar','oman','kuwait','bahrain'])assert.ok(gulf.includes(`/europe-jobs-from-${country}/`));
 for(const country of ['pakistan','india','nepal','bangladesh'])assert.ok(pages.get(`/europe-jobs-from-${country}/`).includes('Related regional guides'));
-console.log('SEO checks passed: 66 canonical pages, WebPage/Breadcrumb data, one H1, internal links/fragments, eight African and six Gulf targets.');
+console.log('SEO checks passed: 68 canonical pages, WebPage/Breadcrumb data, one H1, internal links/fragments, eight African and six Gulf targets.');

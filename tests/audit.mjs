@@ -8,7 +8,7 @@ runInNewContext(source.slice(0,source.indexOf('document.querySelector("#year")')
 const reply=q=>runInNewContext(`getAssistantReply(${JSON.stringify(q)})`,scope).message;
 assert.match(reply('How much do your services cost?'),/fee|rates|pricing/i);
 assert.match(reply('Can you guarantee a visa or work permit?'),/^No\./);
-assert.match(reply('Which countries can you help with?'),/35/);
+assert.match(reply('Which countries can you help with?'),/37 destination guides/);
 assert.match(reply('What are the fees for calling an adviser?'),/fee|rates|pricing/i);
 assert.match(reply('hidden fees before I commit'),/fee|rates|pricing/i);
 assert.match(reply('What documents do I need?'),/passport/i);
@@ -32,7 +32,7 @@ for(const img of html.matchAll(/<img\b[^>]*>/g))assert.match(img[0],/\balt="[^"]
 for(const json of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g))JSON.parse(json[1]);
 }}
 await scan(fileURLToPath(new URL('../public',import.meta.url)));
-assert.equal(backgrounds.size,66);assert.equal(primaryPhotos.size,53);
+assert.equal(backgrounds.size,68);assert.equal(primaryPhotos.size,55);
 assert.equal(runInNewContext('isValidContactNumber("+12899143132")',scope),true);
 const {onRequestPost}=await import('../functions/api/enquiry.js');
 let sent=0,lastPayload;
