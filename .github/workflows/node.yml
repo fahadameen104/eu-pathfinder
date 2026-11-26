@@ -29,3 +29,13 @@ jobs:
 
       - name: Build static SEO pages
         run: node build-seo.mjs
+
+      - name: Run site regression checks
+        run: |
+          node tests/seo.mjs
+          node tests/audit.mjs
+          node tests/analytics.mjs
+          node tests/advertising.mjs
+          node tests/canonical-host.mjs
+          node tests/favicon.mjs
+          node tests/globe.mjs
