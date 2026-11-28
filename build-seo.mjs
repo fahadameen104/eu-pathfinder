@@ -162,7 +162,9 @@ function prerender(pathname) {
   const normalizedHtml = prerenderedHtml.replace(/[ \t]+$/gm, "");
   return pathname === "/"
     ? normalizedHtml
-    : normalizedHtml.replace('<body class="home-page">', "<body>");
+    : normalizedHtml
+        .replace(/^[ \t]*<meta name="algolia-site-verification"[^>]*>\r?\n/m, "")
+        .replace('<body class="home-page">', "<body>");
 }
 
 const titles = new Set();
